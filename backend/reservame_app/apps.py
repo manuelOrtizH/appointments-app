@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ReservameConfig(AppConfig):
+class ReservameAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'reservame'
+    name = 'reservame_app'
