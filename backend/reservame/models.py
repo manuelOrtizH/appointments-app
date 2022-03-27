@@ -36,6 +36,7 @@ class Appointment(models.Model):
     company = models.ForeignKey(Pyme, on_delete=models.CASCADE, default=' ')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     professionist = models.ForeignKey(Professionist, on_delete=models.CASCADE)
+    completed = models.BooleanField(default = False)
 
     def __str__(self):
         return f'Fecha: {self.date} \n Razon: {self.reason} \n Paciente: {self.user.first_name} {self.user.last_name}'
