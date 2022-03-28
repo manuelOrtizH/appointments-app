@@ -13,6 +13,8 @@ class App extends Component {
 			viewCompleted: false,
 			appointments: [],
 			pymes: [],
+			pymesD: {},
+			professionals: [],
 			modal: false,
 			activeItem: {
 			reason: "",
@@ -25,16 +27,27 @@ class App extends Component {
 
 	componentDidMount() {
 		this.refreshList();
+		
 	}
 
 	refreshList = () => {
 		axios.get("http://localhost:8000/api/pymes/")
 		.then((res) => this.setState({ pymes: res.data }))
-		.catch((err) => console.log('Error en pymes'));
+		.catch((err) => console.log(err));
+
+		// axios.get("http://localhost:8000/api/pymes/")
+		// .then((res) => {
+		// 	this.pymesD = res.data.reduce((acc, value) => {
+		// 		console.log(value.id)
+		// 	return acc
+		// 	}, {})
+		// });
 
 		axios.get("http://localhost:8000/api/appointments/")
 		.then((res) => this.setState({ appointments: res.data }))
-		.catch((err) => console.log('Error en appts: ' + err));
+		.catch((err) => console.log(err));
+
+
 	
 	};
 
@@ -60,6 +73,13 @@ class App extends Component {
 		item.completed = !item.completed
 		axios
 		.put(`http://localhost:8000/api/appointments/${id}/`,item)
+		.then((res) => this.refreshList());
+	};
+
+	handleDelete = (id) => {
+		console.log('Id when deleting: ' + id);
+		axios
+		.delete(`http://localhost:8000/api/appointments/${id}/`)
 		.then((res) => this.refreshList());
 	};
 
@@ -118,7 +138,7 @@ class App extends Component {
 
 		const pymes = this.state.pymes.filter(el => el)
 		
-
+		this.state.pymesD.forEach((el,val) => console.log('uwu: ' + el));
 
 		return appts.map((appt, index) => (
 		<li
@@ -131,6 +151,7 @@ class App extends Component {
 			}`}
 			title={appt.reason}
 			>
+			{appt.id}
 			<i>{pymes[appt.company - 1].name}</i><br></br>
 			<b>{appt.reason} </b> <br></br>
 			{appt.date}
@@ -148,6 +169,12 @@ class App extends Component {
 				onClick={() => this.handleCompleted(appt, index+1)}
 			>
 				Marcar como completada
+			</button>
+			<button
+				className="btn btn-danger mt-3"
+				onClick={() => this.handleDelete(index+1)}
+			>
+				Eliminar
 			</button>
 			</span>
 		</li>
@@ -168,10 +195,16 @@ class App extends Component {
 				<div className="card p-3">
 				<div className="mb-4">
 					<button
+					className="btn btn-primary mr-3"
+					onClick={this.createItem}
+					>
+					Cita con Veterinaria
+					</button>
+					<button
 					className="btn btn-primary"
 					onClick={this.createItem}
 					>
-					Hacer una Cita
+					Cita con Estetica
 					</button>
 				</div>
 				{this.renderTabList()}

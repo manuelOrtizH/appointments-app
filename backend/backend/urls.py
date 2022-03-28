@@ -23,7 +23,9 @@ router.register(r'appointments', views.AppointmentView, 'appointment')
 router.register(r'pymes', views.PymeView, 'pyme')
 router.register(r'proffessionists', views.ProfessionistView, 'professionist')
 router.register(r'users', views.UserView, 'user')
-
+router.register(r'appointments_infos', views.AppointmentInfoView, 'appointment_info')
+router.register(r'veterinaries', views.VeterinaryView, 'veterinary')
+router.register(r'beautyshops', views.BeautyShopView, 'beautyshop')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
