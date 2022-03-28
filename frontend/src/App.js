@@ -17,7 +17,7 @@ class App extends Component {
 			vets: [],
 			beauty: [],
 			professionals: [],
-			modal: false,
+			modalVet: false,
 			activeItem: {
 			reason: "",
 			date: "",
@@ -60,20 +60,26 @@ class App extends Component {
 	};
 
 	toggle = () => {
-		this.setState({ modal: !this.state.modal });
+		this.setState({ modalVet: !this.state.modalVet });
 	};
 
-	handleSubmit = (item) => {
+	handleVet = (item) => {
 		this.toggle();
 
-		if (item.id) {
+		// if (this.setState.vet) {
+		// axios
+		// 	.put(`http://localhost:8000/api/veterinaries/${this.setState.vet.length + 1}/`, item)
+		// 	.then((res) => this.refreshList());
+		// return;
+		// }
+		console.log('Handle Vet')
 		axios
-			.put(`/api/todos/${item.id}/`, item)
-			.then((res) => this.refreshList());
-		return;
-		}
+		.post("http://localhost:8000/api/appointments/", this.setState.prevAppt)
+		.catch((err) => console.log(err));
+		
+
 		axios
-		.post("/api/todos/", item)
+		.post(`http://localhost:8000/api/veterinaries/`, item)
 		.then((res) => this.refreshList());
 	};
 
@@ -92,22 +98,23 @@ class App extends Component {
 	};
 
 	vetAppt = () => {
-		const appt = { date: new Date.now().toString(), 
+		const appt = { date: '', 
 					   reason: 'Visita al Vet', company: 2, user: 1, professionist: 2, completed: false }
-		const apptVet = { petName: "", animal: "", petAge: 4, petMedHistory: "", 
-						  appointment: this.setState.appointments.length + 2}
+		// const l = this.setState.appointments.length || 0 
+		const apptVet = { pet_name: "", animal: "", pet_age: 4, pet_medical_history: "", 
+						  appointment: 3}
 
-		this.setState({ activeItem: apptVet, modal: !this.state.modal, prevAppt: appt });
+		this.setState({ activeItem: apptVet, modalVet: !this.state.modalVet, prevAppt: appt });
 	}
 
 	createItem = () => {
 		const item = { title: "", description: "", completed: false };
 
-		this.setState({ activeItem: item, modal: !this.state.modal });
+		this.setState({ activeItem: item, modalVet: !this.state.modalVet });
 	};
 
 	editItem = (item) => {
-		this.setState({ activeItem: item, modal: !this.state.modal });
+		this.setState({ activeItem: item, modalVet: !this.state.modalVet });
 	};
 
 	displayCompleted = (status) => {
@@ -152,11 +159,19 @@ class App extends Component {
 		const appts = this.state.appointments.filter(
 			(appt) => appt.completed === viewCompleted & appt.user === 1
 		);
+		var pymes = new Map();
+		this.state.pymes.filter(el => {
+			pymes.set(el.id, el)
+		});
 
-		const pymes = this.state.pymes.filter(el => el)
-		//Hard-code
-		const vets = this.state.vets.filter((vet) => vet.appointment === 2);
-		const beauty = this.state.beauty.filter((beauty) => beauty.appointment === 1);
+		var profesionals = new Map();
+		this.state.professionals.filter(el => {
+			profesionals.set(el.id, el)
+		});
+		
+		
+		const vets = this.state.vets.filter((vet) => vet);
+		const beauty = this.state.beauty.filter((beauty) => beauty);
 		
 		return appts.map((appt, index) => (
 		<li
@@ -169,10 +184,11 @@ class App extends Component {
 			}`}
 			title={appt.reason}
 			>
-			{appt.id}
-			<i>{pymes[appt.company - 1].name}</i><br></br>
+			
+			<i>{pymes.get(appt.company).name}</i><br></br>
 			<b>{appt.reason} </b> <br></br>
-			{appt.date}
+			{appt.date} <br></br>
+			<b>Responsable: </b> {profesionals.get(appt.professionist).first_name} {profesionals.get(appt.professionist).last_name}
 			
 			</span>
 			<span>
@@ -184,13 +200,13 @@ class App extends Component {
 			</button> */}
 			<button
 				className="btn btn-warning"
-				onClick={() => this.handleCompleted(appt, index+1)}
+				onClick={() => this.handleCompleted(appt, appt.id)}
 			>
 				Marcar como completada
 			</button>
 			<button
 				className="btn btn-danger mt-3"
-				onClick={() => this.handleDelete(index+1)}
+				onClick={() => this.handleDelete(appt.id)}
 			>
 				Eliminar
 			</button>
@@ -220,7 +236,7 @@ class App extends Component {
 					</button>
 					<button
 					className="btn btn-primary"
-					onClick={this.createItem}
+					// onClick={this.createItem}
 					>
 					Cita con Estetica
 					</button>
@@ -232,11 +248,11 @@ class App extends Component {
 				</div>
 			</div>
 			</div>
-			{this.state.modal ? (
+			{this.state.modalVet ? (
 			<ModalVet
 				activeItem={this.state.activeItem}
 				toggle={this.toggle}
-				onSave={this.handleSubmit}
+				onSave={this.handleVet}
 			/>
 			) : null}
 		</main>

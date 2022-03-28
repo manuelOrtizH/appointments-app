@@ -40,12 +40,12 @@ export default class CustomModalVet extends Component {
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="name">Nombre de tu mascota</Label>
+              <Label for="pet_name">Nombre de tu mascota</Label>
               <Input
                 type="text"
-                id="vet-petName"
-                name="petName"
-                value={this.state.activeItem.petName}
+                id="vet-pet_name"
+                name="pet_name"
+                value={this.state.activeItem.pet_name}
                 onChange={this.handleChange}
                 placeholder="Nombre"
               />
@@ -63,24 +63,24 @@ export default class CustomModalVet extends Component {
             </FormGroup>
               
             <FormGroup>
-              <Label for="age">Edad de tu mascota</Label>
+              <Label for="pet_age">Edad de tu mascota</Label>
               <Input
                 type="number"
-                id="vet-age"
-                name="age"
-                value={this.state.activeItem.petAge}
+                id="vet-pet_age"
+                name="pet_age"
+                value={this.state.activeItem.pet_age}
                 onChange={this.handleChange}
                 placeholder="Edad"
               />
             </FormGroup>
 
             <FormGroup>
-              <Label for="histmed">Historial Medico</Label>
+              <Label for="pet_medical_history">Historial Medico</Label>
               <Input
                 type="text"
-                id="vet-petMedHistory"
-                name="petMedHistory"
-                value={this.state.activeItem.petMedHistory}
+                id="vet-pet_medical_history"
+                name="pet_medical_history"
+                value={this.state.activeItem.pet_medical_history}
                 onChange={this.handleChange}
                 placeholder="Historial Medico"
               />
