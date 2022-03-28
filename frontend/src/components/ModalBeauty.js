@@ -22,55 +22,53 @@ export default class CustomModalBeauty extends Component {
   handleChange = (e) => {
     let { name, value } = e.target;
 
-    if (e.target.type === "checkbox") {
-      value = e.target.checked;
-    }
-
     const activeItem = { ...this.state.activeItem, [name]: value };
 
     this.setState({ activeItem });
   };
-
+//   style_type = models.CharField(max_length=20)
+//   hair_type = models.CharField(max_length=20)
+//   hair_treatment = models.CharField(max_length=20)
   render() {
     const { toggle, onSave } = this.props;
 
     return (
       <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Veterinaria: Veterinaria La Lupe</ModalHeader>
+        <ModalHeader toggle={toggle}>Veterinaria: Estetica Tepis</ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="todo-title">Nombre Mascota</Label>
+              <Label for="style_type">Tipo de Estilo</Label>
               <Input
                 type="text"
-                id="todo-title"
-                name="title"
-                value={this.state.activeItem.title}
+                id="style_type"
+                name="style_type"
+                value={this.state.activeItem.style_type}
                 onChange={this.handleChange}
-                placeholder="Enter Todo Title"
+                placeholder="Tipo de Estilo"
               />
             </FormGroup>
             <FormGroup>
-              <Label for="todo-description">Description</Label>
+              <Label for="hair_type">Tipo de Pelo</Label>
               <Input
                 type="text"
-                id="todo-description"
-                name="description"
-                value={this.state.activeItem.description}
+                id="hair_type"
+                name="hair_type"
+                value={this.state.activeItem.hair_type}
                 onChange={this.handleChange}
-                placeholder="Enter Todo description"
+                placeholder="Tipo de Pelo"
               />
             </FormGroup>
-            <FormGroup check>
-              <Label check>
-                <Input
-                  type="checkbox"
-                  name="completed"
-                  checked={this.state.activeItem.completed}
-                  onChange={this.handleChange}
-                />
-                Completed
-              </Label>
+            <FormGroup>
+              <Label for="hair_treatment">Tratamiento de Pelo</Label>
+              <Input
+                type="text"
+                id="hair_treatment"
+                name="hair_treatment"
+                value={this.state.activeItem.hair_treatment}
+                onChange={this.handleChange}
+                placeholder="Tratamiento"
+              />
             </FormGroup>
           </Form>
         </ModalBody>

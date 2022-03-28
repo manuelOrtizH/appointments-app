@@ -18,12 +18,8 @@ class App extends Component {
 			beauty: [],
 			professionals: [],
 			modalVet: false,
-			activeItem: {
-			reason: "",
-			date: "",
-			completed: false,
-			prevAppt: {},
-			},
+			modalBeauty: false,
+			activeItem: {},
 		};
 
 	
@@ -59,29 +55,45 @@ class App extends Component {
 	
 	};
 
-	toggle = () => {
+	toggleV = () => {
 		this.setState({ modalVet: !this.state.modalVet });
 	};
 
-	handleVet = (item) => {
-		this.toggle();
+	toggleB = () => {
+		this.setState({ modalBeauty: !this.state.modalBeauty })
+	};
 
-		// if (this.setState.vet) {
-		// axios
-		// 	.put(`http://localhost:8000/api/veterinaries/${this.setState.vet.length + 1}/`, item)
-		// 	.then((res) => this.refreshList());
-		// return;
-		// }
-		console.log('Handle Vet')
+	handleVet = (item) => {
+		this.toggleV();
+
+		if (item.id) {
 		axios
-		.post("http://localhost:8000/api/appointments/", this.setState.prevAppt)
-		.catch((err) => console.log(err));
-		
+			.put(`http://localhost:8000/api/veterinaries/${item.id}/`, item)
+			.then((res) => this.refreshList());
+		return;
+		}
 
 		axios
 		.post(`http://localhost:8000/api/veterinaries/`, item)
 		.then((res) => this.refreshList());
 	};
+
+	handleBeauty = (item) => {
+		this.toggleB();
+
+		if (item.id) {
+		axios
+			.put(`http://localhost:8000/api/beautyshops/${item.id}/`, item)
+			.then((res) => this.refreshList());
+		return;
+		}
+
+		axios
+		.post(`http://localhost:8000/api/beautyshops/`, item)
+		.then((res) => this.refreshList());
+
+		
+	}
 
 	handleCompleted = (item, id) => {
 		item.completed = !item.completed
@@ -98,24 +110,15 @@ class App extends Component {
 	};
 
 	vetAppt = () => {
-		const appt = { date: '', 
-					   reason: 'Visita al Vet', company: 2, user: 1, professionist: 2, completed: false }
-		// const l = this.setState.appointments.length || 0 
-		const apptVet = { pet_name: "", animal: "", pet_age: 4, pet_medical_history: "", 
-						  appointment: 3}
-
-		this.setState({ activeItem: apptVet, modalVet: !this.state.modalVet, prevAppt: appt });
+		const appt = { pet_name: "", animal: "", pet_age: "", pet_medical_history: "", }
+		this.setState({ activeItem: appt, modalVet: !this.state.modalVet});
 	}
 
-	createItem = () => {
-		const item = { title: "", description: "", completed: false };
+	beautyAppt = () => {
+		const appt = { style_type: "", hair_type: "", hair_treatment: ""}
+		this.setState({ activeItem: appt, modalBeauty: !this.state.modalBeauty});
+	}
 
-		this.setState({ activeItem: item, modalVet: !this.state.modalVet });
-	};
-
-	editItem = (item) => {
-		this.setState({ activeItem: item, modalVet: !this.state.modalVet });
-	};
 
 	displayCompleted = (status) => {
 		if (status) {
@@ -236,7 +239,7 @@ class App extends Component {
 					</button>
 					<button
 					className="btn btn-primary"
-					// onClick={this.createItem}
+					onClick={this.beautyAppt}
 					>
 					Cita con Estetica
 					</button>
@@ -251,8 +254,15 @@ class App extends Component {
 			{this.state.modalVet ? (
 			<ModalVet
 				activeItem={this.state.activeItem}
-				toggle={this.toggle}
+				toggle={this.toggleV}
 				onSave={this.handleVet}
+			/>
+			) : null}
+			{this.state.modalBeauty ? (
+			<ModalBeauty
+				activeItem={this.state.activeItem}
+				toggle={this.toggleB}
+				onSave={this.handleBeauty}
 			/>
 			) : null}
 		</main>

@@ -45,7 +45,7 @@ class BeautyShop(models.Model):
     style_type = models.CharField(max_length=20)
     hair_type = models.CharField(max_length=20)
     hair_treatment = models.CharField(max_length=20)
-    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    # appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'''Cita de estetica con siguientes atributos: \n
@@ -59,7 +59,7 @@ class Veterinary(models.Model):
     pet_age = models.IntegerField()
     #Should be a file update
     pet_medical_history = models.CharField(max_length=10)
-    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    # appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'''Cita de veterinaria con siguientes atributos: \n
