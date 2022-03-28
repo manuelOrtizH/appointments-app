@@ -56,9 +56,10 @@ class App extends Component {
 		.then((res) => this.refreshList());
 	};
 
-	handleDelete = (item) => {
+	handleCompleted = (item, id) => {
+		item.completed = !item.completed
 		axios
-		.delete(`/api/todos/${item.id}/`)
+		.put(`http://localhost:8000/api/appointments/${id}/`,item)
 		.then((res) => this.refreshList());
 	};
 
@@ -119,7 +120,7 @@ class App extends Component {
 		
 
 
-		return appts.map((appt) => (
+		return appts.map((appt, index) => (
 		<li
 			key={appt.id}
 			className="list-group-item d-flex justify-content-between align-items-center"
@@ -130,9 +131,9 @@ class App extends Component {
 			}`}
 			title={appt.reason}
 			>
-			Pyme:{pymes[appt.company - 1].name}<br></br>
+			<i>{pymes[appt.company - 1].name}</i><br></br>
 			<b>{appt.reason} </b> <br></br>
-			Fecha: {appt.date}
+			{appt.date}
 			
 			</span>
 			<span>
@@ -144,7 +145,7 @@ class App extends Component {
 			</button> */}
 			<button
 				className="btn btn-warning"
-				onClick={() => this.handleDelete(appt)}
+				onClick={() => this.handleCompleted(appt, index+1)}
 			>
 				Marcar como completada
 			</button>
