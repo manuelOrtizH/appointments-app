@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from reservame.serializers import AppointmentSerializer, PymeSerializer, ProfessionistSerializer, UserSerializer, AppointmentInfoSerializer, BeautyShopSerializer, VeterinarySerializer
-from reservame.models import Appointment, Pyme, Professionist, User, Veterinary, BeautyShop, Appointment_info
+from reservame.serializers import AppointmentSerializer, PymeSerializer, ProfessionistSerializer, UserSerializer, BeautyShopSerializer, VeterinarySerializer
+from reservame.models import Appointment, Pyme, Professionist, User, Veterinary, BeautyShop
 # Create your views here.
 class AppointmentView(viewsets.ModelViewSet):
     serializer_class = AppointmentSerializer
@@ -18,10 +18,6 @@ class ProfessionistView(viewsets.ModelViewSet):
 class UserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-
-class AppointmentInfoView(viewsets.ModelViewSet):
-    serializer_class = AppointmentInfoSerializer
-    queryset = Appointment_info.objects.all()
 
 class BeautyShopView(viewsets.ModelViewSet):
     serializer_class = BeautyShopSerializer

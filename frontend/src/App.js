@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Header } from './components/Navbar/Header'
-import Modal from "./components/Modal";
+import ModalVet from "./components/ModalVet";
+import ModalBeauty from "./components/ModalBeauty";
 import axios from "axios";
 
 
@@ -13,15 +14,19 @@ class App extends Component {
 			viewCompleted: false,
 			appointments: [],
 			pymes: [],
-			pymesD: {},
+			vets: [],
+			beauty: [],
 			professionals: [],
 			modal: false,
 			activeItem: {
 			reason: "",
 			date: "",
 			completed: false,
+			prevAppt: {},
 			},
 		};
+
+	
 		
 	}
 
@@ -35,16 +40,19 @@ class App extends Component {
 		.then((res) => this.setState({ pymes: res.data }))
 		.catch((err) => console.log(err));
 
-		// axios.get("http://localhost:8000/api/pymes/")
-		// .then((res) => {
-		// 	this.pymesD = res.data.reduce((acc, value) => {
-		// 		console.log(value.id)
-		// 	return acc
-		// 	}, {})
-		// });
-
 		axios.get("http://localhost:8000/api/appointments/")
 		.then((res) => this.setState({ appointments: res.data }))
+
+		axios.get("http://localhost:8000/api/veterinaries/")
+		.then((res) => this.setState({ vets: res.data }))
+		.catch((err) => console.log(err));
+
+		axios.get("http://localhost:8000/api/beautyshops/")
+		.then((res) => this.setState({ beauty: res.data }))
+		.catch((err) => console.log(err));
+
+		axios.get("http://localhost:8000/api/proffessionists/")
+		.then((res) => this.setState({ professionals: res.data }))
 		.catch((err) => console.log(err));
 
 
@@ -82,6 +90,15 @@ class App extends Component {
 		.delete(`http://localhost:8000/api/appointments/${id}/`)
 		.then((res) => this.refreshList());
 	};
+
+	vetAppt = () => {
+		const appt = { date: new Date.now().toString(), 
+					   reason: 'Visita al Vet', company: 2, user: 1, professionist: 2, completed: false }
+		const apptVet = { petName: "", animal: "", petAge: 4, petMedHistory: "", 
+						  appointment: this.setState.appointments.length + 2}
+
+		this.setState({ activeItem: apptVet, modal: !this.state.modal, prevAppt: appt });
+	}
 
 	createItem = () => {
 		const item = { title: "", description: "", completed: false };
@@ -131,15 +148,16 @@ class App extends Component {
 		
 		const { viewCompleted } = this.state;
 		
-		
+		//Hard-code
 		const appts = this.state.appointments.filter(
 			(appt) => appt.completed === viewCompleted & appt.user === 1
 		);
 
 		const pymes = this.state.pymes.filter(el => el)
+		//Hard-code
+		const vets = this.state.vets.filter((vet) => vet.appointment === 2);
+		const beauty = this.state.beauty.filter((beauty) => beauty.appointment === 1);
 		
-		this.state.pymesD.forEach((el,val) => console.log('uwu: ' + el));
-
 		return appts.map((appt, index) => (
 		<li
 			key={appt.id}
@@ -196,7 +214,7 @@ class App extends Component {
 				<div className="mb-4">
 					<button
 					className="btn btn-primary mr-3"
-					onClick={this.createItem}
+					onClick={this.vetAppt}
 					>
 					Cita con Veterinaria
 					</button>
@@ -215,7 +233,7 @@ class App extends Component {
 			</div>
 			</div>
 			{this.state.modal ? (
-			<Modal
+			<ModalVet
 				activeItem={this.state.activeItem}
 				toggle={this.toggle}
 				onSave={this.handleSubmit}

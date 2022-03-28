@@ -11,7 +11,7 @@ import {
   Label,
 } from "reactstrap";
 
-export default class CustomModal extends Component {
+export default class CustomModalBeauty extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,11 +36,11 @@ export default class CustomModal extends Component {
 
     return (
       <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Todo Item</ModalHeader>
+        <ModalHeader toggle={toggle}>Veterinaria: Veterinaria La Lupe</ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="todo-title">Title</Label>
+              <Label for="todo-title">Nombre Mascota</Label>
               <Input
                 type="text"
                 id="todo-title"
