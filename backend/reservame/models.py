@@ -3,7 +3,7 @@ from django.db import models
 from mongoengine import *
 import datetime
 # Create your models here.
-class Pyme(models.Model):
+class Pyme(Document):
     name = StringField(max_length=50, required=True)
     address = StringField(max_length=255)
     # phone_number = PhoneNumber.from_string(phone_number = raw_phone, region='MX').as_e164

@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import mongoengine
+mongoengine.connect('reservamedb', 
+                    username='manuelortiz', password='mfkm03162212')
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -92,20 +96,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 
-DATABASES = {
-        'defaul': {
-        'ENGINE': '',
-    }
-}
+# DATABASES = {
+#         'default': {
+#         'ENGINE': '',
+#     }
+# }
 
-MONGO_USER = 'manuelortiz'
-MONGO_PASS = 'mfkm03162212'
-MONGO_HOST = 'localhost'
-MONGO_NAME = 'reservamedb'
-MONGO_DATABASE_HOST = \
-'mongodb://%s:%s@%s/%s' \
-% (MONGO_USER, MONGO_PASS, MONGO_HOST, MONGO_NAME)
-mongoengine.connect(MONGO_NAME, host=MONGO_DATABASE_HOST)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
