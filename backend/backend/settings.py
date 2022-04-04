@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import mongoengine
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,24 +79,33 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'reservame_db',
+#         'USER': 'manuel',
+#         'PASSWORD': 'mfkm03162212',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'reservame_db',
-        'USER': 'manuel',
-        'PASSWORD': 'mfkm03162212',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'defaul': {
+        'ENGINE': '',
     }
 }
 
-
-# DATABASES = {
-#     'default' : {
-#         'ENGINE': 'djongo',
-#         'NAME': 'reservameDB'
-#     }
-# }
+MONGO_USER = 'manuelortiz'
+MONGO_PASS = 'mfkm03162212'
+MONGO_HOST = 'localhost'
+MONGO_NAME = 'reservamedb'
+MONGO_DATABASE_HOST = \
+'mongodb://%s:%s@%s/%s' \
+% (MONGO_USER, MONGO_PASS, MONGO_HOST, MONGO_NAME)
+mongoengine.connect(MONGO_NAME, host=MONGO_DATABASE_HOST)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

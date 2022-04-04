@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from rest_framework import viewsets
-from reservame.serializers import AppointmentSerializer, PymeSerializer, ProfessionistSerializer, UserSerializer, BeautyShopSerializer, VeterinarySerializer
-from reservame.models import Appointment, Pyme, Professionist, User, Veterinary, BeautyShop
+from rest_framework_mongoengine import viewsets
+from reservame.serializers import PymeSerializer
+from reservame.models import Pyme
 # Create your views here.
 class AppointmentView(viewsets.ModelViewSet):
     serializer_class = AppointmentSerializer

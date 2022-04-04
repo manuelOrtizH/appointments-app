@@ -9,6 +9,7 @@ djangorestframework = "*"
 django-cors-headers = "*"
 mongoengine = "*"
 djongo = "*"
+django-rest-framework-mongoengine = "*"
 
 [dev-packages]
 
