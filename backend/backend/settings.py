@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import mongoengine
 mongoengine.connect('reservamedb', 
-                    username='manuelortiz', password='mfkm03162212')
+                    username='manuelortiz', password='test123')
 
 
 
