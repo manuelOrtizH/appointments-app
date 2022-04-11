@@ -2,25 +2,32 @@ from django.db import models
 # from phonenumber_field.modelfields import PhoneNumberField
 from mongoengine import *
 import datetime
+
+BUSINESS_LINE = (
+    ('beautyshop','Estética'),
+    ('veterinary', 'Veterinaria'),
+    ('fastfood','Comida rápida'),
+    ('restaurant','Restaurante'),
+)
 # Create your models here.
 class Pyme(Document):
+
     name = StringField(max_length=50, required=True)
     address = StringField(max_length=255)
-    # phone_number = PhoneNumber.from_string(phone_number = raw_phone, region='MX').as_e164
     employees = IntField()
-    business_line = StringField(max_length=50)
+    business_line = StringField(max_length=50, choices=BUSINESS_LINE)
 
     def __str__(self):
         return f'{self.name}'
     
-# class Professionist(models.Model):
-#     first_name = models.CharField(max_length=20)
-#     last_name = models.CharField(max_length=20)
-#     email = models.EmailField()
-#     company = models.ForeignKey(Pyme, on_delete=models.CASCADE)
+class Professionist(Document):
+    first_name = StringField(max_length=50, required=True)
+    last_name = StringField(max_length=50, required=True)
+    email = EmailField()
+    company = ForeignKey(Pyme, on_delete=models.CASCADE)
 
-#     def __str__(self):
-#         return f'{self.first_name} {self.last_name}'
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
 
 # class User(models.Model):
