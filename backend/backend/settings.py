@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import mongoengine
+mongoengine.connect('reservamedb', 
+                    username='manuelortiz', password='test123')
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,16 +83,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'reservame_db',
-        'USER': 'manuel',
-        'PASSWORD': 'mfkm03162212',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'reservame_db',
+#         'USER': 'manuel',
+#         'PASSWORD': 'mfkm03162212',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
+
+
+# DATABASES = {
+#         'default': {
+#         'ENGINE': '',
+#     }
+# }
 
 
 # Password validation

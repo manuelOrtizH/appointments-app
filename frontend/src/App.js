@@ -51,7 +51,7 @@ class App extends Component {
 		.then((res) => this.setState({ professionals: res.data }))
 		.catch((err) => console.log(err));
 
-
+		
 	
 	};
 
