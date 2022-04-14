@@ -1,28 +1,18 @@
 from django.shortcuts import render
 from rest_framework_mongoengine import viewsets
-from reservame.serializers import PymeSerializer
-from reservame.models import Pyme
+# from reservame.serializers import PymeSerializer, AppointmentSerializer
+# from reservame.models import Pyme, Appointment
 # Create your views here.
+# class PymeView(viewsets.ModelViewSet):
+#     lookup_field = 'id'
+#     serializer_class = PymeSerializer
+    
+#     def get_queryset(self):
+#         return Pyme.objects.all()
+
 # class AppointmentView(viewsets.ModelViewSet):
+#     lookup_field = 'id'
 #     serializer_class = AppointmentSerializer
-#     queryset = Appointment.objects.all()
-
-class PymeView(viewsets.ModelViewSet):
-    serializer_class = PymeSerializer
-    queryset = Pyme.objects.all()
-
-# class ProfessionistView(viewsets.ModelViewSet):
-#     serializer_class = ProfessionistSerializer
-#     queryset = Professionist.objects.all()
-
-# class UserView(viewsets.ModelViewSet):
-#     serializer_class = UserSerializer
-#     queryset = User.objects.all()
-
-# class BeautyShopView(viewsets.ModelViewSet):
-#     serializer_class = BeautyShopSerializer
-#     queryset = BeautyShop.objects.all() 
-
-# class VeterinaryView(viewsets.ModelViewSet):
-#     serializer_class = VeterinarySerializer
-#     queryset = Veterinary.objects.all()
+    
+#     def get_queryset(self):
+#         return Appointment.objects.all()
