@@ -11,6 +11,8 @@ mongoengine = "*"
 djongo = "*"
 django-rest-framework-mongoengine = "*"
 pyrebase = "*"
+djangorestframework-simplejwt = "*"
+djoser = "*"
 
 [dev-packages]
 

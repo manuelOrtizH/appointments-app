@@ -1,7 +1,7 @@
 from django.contrib import admin
-# from reservame.models import Pyme, Appointment
+from reservame.models import Pyme, Appointment
 
-# # Register your models here.
+# Register your models here.
 
-# admin.register(Pyme)
-# admin.register(Appointment)
+admin.register(Pyme)
+admin.register(Appointment)
