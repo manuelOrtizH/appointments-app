@@ -11,7 +11,7 @@ import {
 import { Logo } from './Logo';
 
 
-export function Header(){
+export default function Header(){
     return (
         <header class='shadow-lg'>
           
