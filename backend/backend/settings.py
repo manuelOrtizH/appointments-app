@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'reservame',
+    'rest_framework_simplejwt.token_blacklist',
     
 ]
 

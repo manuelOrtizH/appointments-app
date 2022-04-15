@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/auth';
 
-const Login = ({ login }) => {
+const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -21,17 +21,20 @@ const Login = ({ login }) => {
 
     //Is the user authenticated
     //Redirect them to the home page
+    if(isAuthenticated){
+        return (<Navigate to='/' replace={true} />);
+    }
 
     return (
         <div className='container mt-5'>
-            <h1>Sign In</h1>
-            <p>Sign into your account</p>
+            <h1>Ingresar</h1>
+            <p>Ingresa con tus credenciales</p>
             <form onSubmit={e => onSubmit(e)}>
                 <div className='form-group'>
                     <input
                         className='form-control'
                         type='email'
-                        placeholder='Correo'
+                        placeholder='Correo Electrónico'
                         name='email'
                         value={email}
                         onChange={e=>onChange(e)}
@@ -42,7 +45,7 @@ const Login = ({ login }) => {
                     <input
                         className='form-control'
                         type='password'
-                        placeholder='Contrasena'
+                        placeholder='Contraseña'
                         name='password'
                         value={password}
                         onChange={e=>onChange(e)}
@@ -50,20 +53,20 @@ const Login = ({ login }) => {
                         required
                     />
                 </div>
-                <button className='btn btn-warning' type='submit'>Login</button>
+                <button className='btn btn-warning' type='submit'>Ingresar</button>
             </form>
             <p className='mt-3'>
-                No tienes una cuenta? <Link to='/signup'>Sign Up</Link>
+                No tienes una cuenta? <Link to='/signup'>Registrarse</Link>
             </p>
             <p className='mt-3'>
-                Olvidaste tu contrasena <Link to='/reset-password'>Reset Password</Link>
+                Olvidaste tu contrasena <Link to='/reset-password'>Cambiar Contraseña</Link>
             </p>
         </div>
     );
 };
 
 const mapStateToProps = state => ({
-    //is authenticated ?
+    isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(null, { login })(Login);
+export default connect(mapStateToProps, { login })(Login);
