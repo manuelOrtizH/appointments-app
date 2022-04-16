@@ -49,7 +49,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item mr-auto">
-                        <a href="#" className="nav-link text-white mr-auto" onClick={logout} >Salir</a>
+                        <Link to='/' className="nav-link text-white mr-auto" onClick={logout} >Salir</Link>
                     </li>
                 </ul>
             </div>
@@ -69,7 +69,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
                     <ul className="navbar-nav ">
                         
                         <li className="nav-item ">
-                            <Link to="/" className="nav-link text-white">Home</Link>
+                            <Link to="/" className="nav-link text-white">Inicio</Link>
                         </li>
                         {isAuthenticated ? authLinks(): guestLinks()}
      

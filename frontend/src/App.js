@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from "react";
 import './App.css';
 import Home from './containers/Home';
@@ -7,6 +7,7 @@ import Login from './containers/Login';
 import Signup from './containers/Signup';
 import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
+import Dashboard from './components/Dashboard';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -22,6 +23,7 @@ const App = () => {
 					<Routes>
 						<Route path='/' element={<Home/>}/>
 						<Route path='/login' element={<Login/>}/>
+						<Route path='/home' element={<Dashboard/>}/>
 						<Route path='/signup' element={<Signup/>}/>
 						<Route path='/reset-password' element={<ResetPassword/>}/>
 						<Route path='/password/reset/confirm/:uid/:token' element={<ResetPasswordConfirm/>}/>

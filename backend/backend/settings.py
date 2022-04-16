@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import mongoengine
+from datetime import timedelta
 mongoengine.connect('reservamedb', 
                     username='manuelortiz', password='test123')
 
@@ -196,6 +197,11 @@ DJOSER = {
         'user': 'reservame.serializers.UserCreateSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     },
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=360),
 }
 
 AUTH_USER_MODEL = 'reservame.UserAccount'
