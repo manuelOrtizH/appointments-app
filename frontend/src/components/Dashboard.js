@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios';
 
 const Dashboard = () => {
-    const user = localStorage.getItem('userName');
+    const uid = localStorage.getItem('userId');
     
+    console.log('uid ' + uid);
     return (
         <div>
             Dashboard
