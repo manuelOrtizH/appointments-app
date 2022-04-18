@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'reservame',
+    'fireapp',
     
 ]
 
@@ -96,11 +97,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 
-# DATABASES = {
-#         'default': {
-#         'ENGINE': '',
-#     }
-# }
+DATABASES = {}
+
+
 
 
 # Password validation

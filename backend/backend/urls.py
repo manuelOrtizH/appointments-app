@@ -19,12 +19,9 @@ from rest_framework import routers
 from reservame import views
 
 router = routers.DefaultRouter()
+# router.register(r'pymes', views.PymeView, 'pyme')
 # router.register(r'appointments', views.AppointmentView, 'appointment')
-router.register(r'pymes', views.PymeView, 'pyme')
-# router.register(r'proffessionists', views.ProfessionistView, 'professionist')
-# router.register(r'users', views.UserView, 'user')
-# router.register(r'veterinaries', views.VeterinaryView, 'veterinary')
-# router.register(r'beautyshops', views.BeautyShopView, 'beautyshop')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

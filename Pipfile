@@ -10,6 +10,7 @@ django-cors-headers = "*"
 mongoengine = "*"
 djongo = "*"
 django-rest-framework-mongoengine = "*"
+pyrebase = "*"
 
 [dev-packages]
 

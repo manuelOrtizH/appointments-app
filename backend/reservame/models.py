@@ -1,77 +1,32 @@
 from django.db import models
-# from phonenumber_field.modelfields import PhoneNumberField
-from mongoengine import *
+from mongoengine import Document, EmbeddedDocument, fields, CASCADE
 import datetime
+from django.contrib.auth.models import User
+from bson.objectid import ObjectId
 
-BUSINESS_LINE = (
-    ('beautyshop','Estética'),
-    ('veterinary', 'Veterinaria'),
-    ('fastfood','Comida rápida'),
-    ('restaurant','Restaurante'),
-)
-# Create your models here.
-class Pyme(Document):
+# BUSINESS_LINE = (
+#     ('beautyshop','Estética'),
+#     ('veterinary', 'Veterinaria'),
+#     ('fastfood','Comida rápida'),
+#     ('restaurant','Restaurante'),
+# )
+# # Create your models here.
+# class Pyme(Document):
+#     name = fields.StringField(max_length=50, required=True)
+#     address = fields.StringField(max_length=255)
+#     employees = fields.IntField()
+#     business_line = fields.StringField(max_length=50, choices=BUSINESS_LINE)
 
-    name = StringField(max_length=50, required=True)
-    address = StringField(max_length=255)
-    employees = IntField()
-    business_line = StringField(max_length=50, choices=BUSINESS_LINE)
+#     def __str__(self):
+#         return f'{self.name}'
 
-    def __str__(self):
-        return f'{self.name}'
+# class Appointment(Document):    
+#     date = fields.DateTimeField(default=datetime.datetime.utcnow) 
+#     reason = fields.StringField(max_length=255)
+#     pyme = fields.ReferenceField(Pyme, reverse_delete_rule=CASCADE)
+#     completed = fields.BooleanField(default = False)
+#     owner = fields.ReferenceField('User', reverse_delete_rule=CASCADE)
     
-class Professionist(Document):
-    first_name = StringField(max_length=50, required=True)
-    last_name = StringField(max_length=50, required=True)
-    email = EmailField()
-    company = ForeignKey(Pyme, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.first_name} {self.last_name}'
-
-
-# class User(models.Model):
-#     first_name = models.CharField(max_length=20)
-#     last_name = models.CharField(max_length=20)
-#     email = models.EmailField()
-#     # phone_number = PhoneNumber.from_string(phone_number = raw_phone, region='MX').as_e164
-
 #     def __str__(self):
-#         return f'{self.first_name} {self.last_name}'
-
-# class Appointment(models.Model):    
-#     date = models.DateTimeField(auto_now=True) 
-#     reason = models.CharField(max_length=255)
-#     company = models.ForeignKey(Pyme, on_delete=models.CASCADE)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     professionist = models.ForeignKey(Professionist, on_delete=models.CASCADE)
-#     completed = models.BooleanField(default = False)
-
-#     def __str__(self):
-#         return f'Fecha: {self.date} \n Razon: {self.reason} \n Paciente: {self.user.first_name} {self.user.last_name}'
-
-# class BeautyShop(models.Model):
-#     style_type = models.CharField(max_length=20)
-#     hair_type = models.CharField(max_length=20)
-#     hair_treatment = models.CharField(max_length=20)
-#     # appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return f'''Cita de estetica con siguientes atributos: \n
-#                    Tipo de estilo: {self.style_type} \n Tipo de pelo: {self.hair_type} \n
-#                    Tratamiento: {self.hair_treatment}'''
-
-
-# class Veterinary(models.Model):
-#     pet_name = models.CharField(max_length=20)
-#     animal = models.CharField(max_length=20)
-#     pet_age = models.IntegerField()
-#     #Should be a file update
-#     pet_medical_history = models.CharField(max_length=10)
-#     # appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return f'''Cita de veterinaria con siguientes atributos: \n
-#                    Mascota: {self.pet_name} \n Edad: {self.pet_age}'''
-
+#         return f'Fecha: {self.date} \n Razon: {self.reason}'
 
