@@ -46,6 +46,7 @@ export default function(state = initialState, action){
             }
 
         case USER_LOADED_SUCCESS:
+            localStorage.setItem('user', payload);
             return{
                 ...state,
                 user: payload
@@ -71,6 +72,7 @@ export default function(state = initialState, action){
         case LOGOUT:
             localStorage.removeItem('access');
             localStorage.removeItem('refresh');
+            localStorage.removeItem('user');
             return {
                 ...state,
                 access: null,

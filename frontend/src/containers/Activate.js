@@ -10,7 +10,7 @@ const Activate = ({ verify, props }) => {
     const { uid, token } = useParams();
     
 
-    const verifyAccount = e =>{
+    const verify_account = e =>{
         verify(uid,token);
         setVerified(true);
     };
@@ -29,7 +29,7 @@ const Activate = ({ verify, props }) => {
             >
                 <h1>Verificar tu cuenta</h1>
                 <button 
-                    onClick={verifyAccount}
+                    onClick={verify_account}
                     style={{ marginTop: '50px'}}
                     type='button'
                     className='btn btn-warning btn-lg'

@@ -58,10 +58,12 @@ export const load_user = () => async dispatch => {
                 'Accept': 'application/json'
             }
         };
-
+        
         try{
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
-            console.log('RES: ' + res.data.name);
+            // localStorage.setItem('userName', res.data.name);
+            console.log('uwu' + localStorage.getItem('user'));
+            
             dispatch({
                 type: USER_LOADED_SUCCESS,
                 payload: res.data
