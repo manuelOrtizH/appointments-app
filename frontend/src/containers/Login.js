@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { login } from '../actions/auth';
 import '../components/common/Card.css';
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import { Logo } from '../components/common/Logo';
 
 
 const Login = ({ login, isAuthenticated }) => {
@@ -32,8 +33,9 @@ const Login = ({ login, isAuthenticated }) => {
         <div className='container'>
             <div className='mt-5 card mb-3 shadow-lg'>
                 <div className='card-header text-center text-white'>
-                    <h1>Ingresar</h1>
-                    <p></p>
+
+                    <h1 className='mt-3'>Ingresar</h1>
+                    
                 </div>
                 <div className='card-body'>
                     <p class="card-text text-center">Ingresa con tus credenciales</p>
