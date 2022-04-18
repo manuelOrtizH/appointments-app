@@ -61,8 +61,9 @@ export const load_user = () => async dispatch => {
         
         try{
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
-            // localStorage.setItem('userName', res.data.name);
-            console.log('uwu' + localStorage.getItem('user'));
+            localStorage.setItem('userName', res.data.name);
+            localStorage.setItem('userId', res.data.id)
+            localStorage.setItem('userEmail', res.data.email)
             
             dispatch({
                 type: USER_LOADED_SUCCESS,
@@ -118,7 +119,9 @@ export const signup = (name, email,password, re_password) => async dispatch => {
 
     try{
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body,config);
-
+        
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, {name: res.data.name, email: res.data.email, uid: res.data.id})
+                   .catch((err) => console.log(err));
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: res.data

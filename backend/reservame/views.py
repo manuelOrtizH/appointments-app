@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework_mongoengine import viewsets
-from reservame.serializers import PymeSerializer, AppointmentSerializer, UserCreateSerializer
-from reservame.models import Pyme, Appointment, UserAccount
+from reservame.serializers import PymeSerializer, AppointmentSerializer, UserCreateSerializer, UserClientSerializer
+from reservame.models import Pyme, Appointment, UserAccount, UserClient
 # Create your views here.
 
 class UserAccountView(viewsets.ModelViewSet):
@@ -23,3 +23,10 @@ class AppointmentView(viewsets.ModelViewSet):
     
     def get_queryset(self):
         return Appointment.objects.all()
+
+class UserClientView(viewsets.ModelViewSet):
+    lookup_field = 'id'
+    serializer_class = UserClientSerializer
+
+    def get_queryset(self):
+        return UserClient.objects.all()

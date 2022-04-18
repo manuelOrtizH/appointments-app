@@ -62,3 +62,12 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     
     def __str__(self):
         return self.email
+
+
+class UserClient(Document):
+    name = fields.StringField(max_length=50, required=True)
+    email = fields.EmailField()
+    uid = fields.IntField()
+
+    def __str__(self):
+        return f'{self.name} \n {self.email}'

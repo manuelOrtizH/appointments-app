@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import { logout } from '../../actions/auth';
 import { connect } from 'react-redux';
 
-const Navbar = ({ logout, isAuthenticated }) => {
 
+const Navbar = ({ logout, isAuthenticated }) => {
+    
     const guestLinks = () => (
         <Fragment>
             <li className="nav-item">
