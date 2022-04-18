@@ -61,8 +61,7 @@ export const load_user = () => async dispatch => {
         
         try{
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
-            // localStorage.setItem('userName', res.data.name);
-            console.log('uwu' + localStorage.getItem('user'));
+            localStorage.setItem('userName', res.data.name);
             
             dispatch({
                 type: USER_LOADED_SUCCESS,
