@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup } from '../actions/auth';
-import '../components/common/Card.css';
+import '../components/common/Form.css';
 import { FaEnvelope, FaLock, FaUserAlt } from "react-icons/fa";
 
 

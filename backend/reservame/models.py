@@ -19,6 +19,7 @@ class Professionist(Document):
     profile_image = fields.URLField(default=' ')
     email = fields.EmailField()
     calendar = fields.DictField()
+    
 class Pyme(Document):
     name = fields.StringField(max_length=50, required=True)
     address = fields.StringField(max_length=255)
@@ -34,6 +35,7 @@ class Appointment(Document):
     reason = fields.StringField(max_length=555, default=' ')
     pyme = fields.ReferenceField(Pyme, reverse_delete_rule=CASCADE)
     completed = fields.BooleanField(default = False)
+    data = fields.DictField()
     
     responsable = fields.ReferenceField(Professionist, reverse_delete_rule=CASCADE)
     

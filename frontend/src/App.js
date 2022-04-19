@@ -7,6 +7,7 @@ import Login from './containers/Login';
 import Signup from './containers/Signup';
 import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
+import BusinessLine from './components/businessLine/BusinessLine';
 import Dashboard from './components/Dashboard';
 
 import { Provider } from 'react-redux';

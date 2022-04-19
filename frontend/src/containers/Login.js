@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/auth';
-import '../components/common/Card.css';
+import '../components/common/Form.css';
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { Logo } from '../components/common/Logo';
 
