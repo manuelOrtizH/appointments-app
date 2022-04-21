@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/auth';
-import '../components/common/Form.css';
+import '../components/common/styles/Form.css';
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import { Logo } from '../components/common/Logo';
-
+import '../components/common/styles/Card.css';
 
 const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({

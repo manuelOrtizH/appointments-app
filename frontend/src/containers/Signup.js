@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup } from '../actions/auth';
-import '../components/common/Form.css';
+import '../components/common/styles/Form.css';
 import { FaEnvelope, FaLock, FaUserAlt } from "react-icons/fa";
+import '../components/common/styles/Card.css';
 
 
 const Signup = ({ signup, isAuthenticated }) => {

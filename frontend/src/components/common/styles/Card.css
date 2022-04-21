@@ -1,9 +1,9 @@
-.card-appt {
+.card{
     border: 0;
     color: #696969;
-    box-shadow: 5px 5px 10px;
+    box-shadow: 0 0 10px;
 }
-.card-appt {
+.card{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -15,9 +15,10 @@
     border-radius: 8px;
 }
 
-.card-header-appt{
+
+.card .card-header{
+    background-color: #880808;
     flex-direction: column;
     border-radius: 8px;
-    background-color: #880808;
-    color:white;
+    color: white;
 }

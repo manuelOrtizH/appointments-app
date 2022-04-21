@@ -1,12 +1,12 @@
 .appt-data{
     width: 35%;
+    height: 100%;
 }
 
 .appt-list{
     width: 65%;
+    height: auto;
 }
-
-
 
 .diagonalCross2 {
     background: linear-gradient(to top right, #fff calc(50% - 1px), black , #880808 calc(50% + 1px) )
@@ -33,7 +33,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #e6ff47;
+    background-color: rgb(217, 255, 0);
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
@@ -42,13 +42,13 @@
 .calendar-badge .badge-day {
     color: #4e73e5;
     font-weight: 500;
-    font-size: 1.5rem;
+    font-size: 150%;
     line-height: 1;
 }
 
 .calendar-badge .badge-month {
     color: #4e73e5;
     line-height: 1;
-    font-size: 1rem;
+    font-size: 100%;
     text-transform: uppercase;
 }

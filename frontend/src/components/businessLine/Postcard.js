@@ -1,7 +1,7 @@
 import React from 'react';
-import './Card.css'
+import './Postcard.css'
 
-const Card = ({name, description, pymes, imageUrl}) => {
+const Postcard = ({name, description, pymes, imageUrl}) => {
 
     const totalPymes = pymes.length 
 
@@ -36,4 +36,4 @@ const Card = ({name, description, pymes, imageUrl}) => {
     );
 };
 
-export default Card;
+export default Postcard;

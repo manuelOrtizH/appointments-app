@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import UserData from './UserData';
-import ListAppts from './ListAppts';
+import UserData from './cardUserData/CardUserData';
+import CardAppts from './cardAppointments/CardAppts';
+import Loading from '../common/Loading';
 
 const Appointment = () => {
-    const months = {1: 'Enero', 2: ''}
+    const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(false);
-
     const newDate = new Date()
     const date = newDate.getDate();
     const formatter = new Intl.DateTimeFormat('es', { month: 'short' });
@@ -24,10 +24,13 @@ const Appointment = () => {
  
             <section className='cards' style={{display: 'flex', border: 'transparent'}}>
                 <UserData/>
-                <ListAppts 
+            
+                <CardAppts 
                     date={date}
                     month={month}
+                    user={user}
                 />
+               
 
             </section>
         </div>
