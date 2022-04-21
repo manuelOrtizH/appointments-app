@@ -1,12 +1,28 @@
-.card .card-header{
-    background-color: #880808;
+.card-form {
+    border: 0;
+    color: #696969;
+    box-shadow: 5px 5px 10px;
+}
+.card-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffff;
+    background-clip: border-box;
+    border: 0 solid #e6e4e9;
+    border-radius: 8px;
 }
 
-.card{
-    border-radius: 2%;
-    margin: auto;
-    width: 90%
+
+.card-form .card-header-form{
+    background-color: #880808;
+    flex-direction: column;
+    border-radius: 8px;
 }
+
+
 
 .form-field {
     display: block;

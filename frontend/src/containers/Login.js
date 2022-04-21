@@ -31,13 +31,13 @@ const Login = ({ login, isAuthenticated }) => {
 
     return (
         <div className='container'>
-            <div className='mt-5 card mb-3 shadow-lg'>
-                <div className='card-header text-center text-white'>
+            <div className='mt-5 card card-form mb-3'>
+                <div className='card-header card-header-form text-center text-white'>
 
                     <h1 className='mt-3'>Ingresar</h1>
                     
                 </div>
-                <div className='card-body'>
+                <div className='card-body card-body-form'>
                     <p class="card-text text-center">Ingresa con tus credenciales</p>
                     <form onSubmit={e => onSubmit(e)}>
                         

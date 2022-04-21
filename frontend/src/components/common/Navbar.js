@@ -10,6 +10,9 @@ const Navbar = ({ logout, isAuthenticated }) => {
     
     const guestLinks = () => (
         <Fragment>
+            <li className="nav-item ">
+                <Link to="/" className="nav-link text-white">Inicio</Link>
+            </li>
             <li className="nav-item">
                 <Link to="/login" className="nav-link text-white">Ingresar</Link>
             </li>
@@ -26,11 +29,14 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
     const authLinks = () => (
         <Fragment>
+            <li className="nav-item ">
+                <Link to="/home" className="nav-link text-white">Inicio</Link>
+            </li>
             <li className="nav-item">
                 <a href="#" className="nav-link text-white">Perfil</a>
             </li>
             <li className="nav-item">
-                <a href="#" className="nav-link text-white">Citas</a>
+                <Link to='/appointment' className="nav-link text-white">Citas</Link>
             </li>
             <li className="nav-item">
                 <a href="#" className="nav-link text-white">Historial</a>
@@ -69,9 +75,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
                 <Logo></Logo>
                     <ul className="navbar-nav ">
                         
-                        <li className="nav-item ">
-                            <Link to="/" className="nav-link text-white">Inicio</Link>
-                        </li>
+
                         {isAuthenticated ? authLinks(): guestLinks()}
      
 

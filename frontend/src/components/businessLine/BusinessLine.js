@@ -1,22 +1,22 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
-import './Carousel.css';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import Loading from '../common/Loading';
+
 
 const BusinessLine = () => {
 
     const options = {
         items: 2,
-        nav: false,
+        nav: true,
         loop: true,
         center: true,
-        dotsData: true,
         fluidSpeed: true,
         animateIn: true,
+        autoplay: true,
 
     };
 
@@ -60,7 +60,7 @@ const BusinessLine = () => {
             {!isLoading && <OwlCarousel className='slider-items owl-theme' {...options}>
                 {cardItems}
             </OwlCarousel>}
-            {isLoading && <p className='container text-center'>Loading...</p>}
+            {isLoading && <Loading/>}
  
         </div>
     );

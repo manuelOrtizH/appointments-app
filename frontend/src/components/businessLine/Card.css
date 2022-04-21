@@ -1,6 +1,6 @@
-.dark{
-	background: #49405e;
-}
+/* .dark{
+	 background: #49405e;
+} */
 
  a, a:hover {
 	 text-decoration: none;
@@ -15,7 +15,8 @@
 /* Cards */
 .postcard {
     flex-wrap: wrap;
-    display: flex;
+    display: flex;	
+    
     box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 2.66);
     border-radius: 10px;
     margin: 0 0 2rem 0;
@@ -24,8 +25,11 @@
     color: #fff;
 }
 
+
+
 .postcard.dark {
     background-color: #a00e0e;
+
 }
 
  .postcard .t-dark {
@@ -40,7 +44,7 @@
     line-height: 1.2;
 }
  .postcard .small {
-	 font-size: 80%;
+	 font-size: 90%;
 }
  .postcard .postcard__title {
 	 font-size: 1.75rem;
@@ -93,7 +97,8 @@
 	 transition: background-color 0.3s;
 }
  .postcard .postcard__tagbox .tag__item:hover {
-	 background: rgba(83, 83, 83, 0.8);
+	 background: yellow;
+	 color: black;
 }
  .postcard:before {
 	 content: "";

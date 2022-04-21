@@ -9,7 +9,7 @@ import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
 import BusinessLine from './components/businessLine/BusinessLine';
 import Dashboard from './components/Dashboard';
-
+import Appointment from './components/appointments/Appointments';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -29,6 +29,7 @@ const App = () => {
 						<Route path='/reset-password' element={<ResetPassword/>}/>
 						<Route path='/password/reset/confirm/:uid/:token' element={<ResetPasswordConfirm/>}/>
 						<Route path='/activate/:uid/:token' element={<Activate/>}/>
+						<Route path='/appointment' element={<Appointment/>}/>
 					</Routes>
 				</Layout>
 			</Router>

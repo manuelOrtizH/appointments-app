@@ -3,7 +3,7 @@ import './Card.css'
 
 const Card = ({name, description, pymes, imageUrl}) => {
 
-    // const totalPymes = pymes.length()
+    const totalPymes = pymes.length 
 
     return(
         <section className='dark '>
@@ -17,16 +17,16 @@ const Card = ({name, description, pymes, imageUrl}) => {
                         <div className='postcard__subtitle small'>
                             
                             <i className='fas fa-calendar-alt mr-2'></i>
-                            Disponibilidad de PyMES: 
+                            Disponibilidad de PyMES:  <b>{totalPymes}</b>
                             
                         </div>
                         <div className='postcard__bar'></div>
-                        <div className='postcard__preview-txt'>{description}</div>
+                        {/* <div className='postcard__preview-txt'>{description}</div> */}
                         <ul className='postcard__tagbox'>
-                            <li className='tag__item'><i className='fas fa-tag mr-2'></i>Podcast</li>
-                            <li className='tag__item'><i className='fas fa-clock mr-2'></i>55 mins.</li>
+                            <li className='tag__item'><i className='fas fa-tag mr-2'></i>Pyme 1</li>
+                            <li className='tag__item'><i className='fas fa-clock mr-2'></i>Pyme 2</li>
                             <li className='tag__item play blue'>
-                                <a href='#'><i className='fas fa-play mr-2'></i>Play Episode</a>
+                                <a href='#'><i className='fas fa-play mr-2'></i>Buscar PyMEs</a>
                             </li>
                         </ul>
                     </div>

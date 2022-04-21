@@ -13,13 +13,14 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className='container'>
+                <h2 className='text-black text-center'>Próximas citas</h2>
+            </div>
+            <div className='container'>
                 <h2 className='text-black text-center'>Explora los diferentes sectores que puedes encontrar.</h2>
 
             </div>
             <BusinessLine/>
-            <div className='container'>
-                <h2 className='text-black text-center'>Próximas citas</h2>
-            </div>
+     
         </div>
     );
 };
