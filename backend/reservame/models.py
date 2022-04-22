@@ -10,6 +10,7 @@ BUSINESS_LINE = (
     ('veterinary', 'Veterinaria'),
     ('fast_food','Comida rápida'),
     ('restaurant','Restaurante'),
+    ('club','Discoteca'),
 )
 # Create your models here.
 class Professionist(Document):
@@ -19,13 +20,14 @@ class Professionist(Document):
     profile_image = fields.URLField(default=' ')
     email = fields.EmailField()
     calendar = fields.DictField()
-    
+
 class Pyme(Document):
     name = fields.StringField(max_length=50, required=True)
     address = fields.StringField(max_length=255)
     employees = fields.ListField(fields.ReferenceField(Professionist))
     business_line = fields.StringField(max_length=50, choices=BUSINESS_LINE)
     custom_data_form = fields.DictField()
+    image_url = fields.URLField()
 
     def __str__(self):
         return f'{self.name}'

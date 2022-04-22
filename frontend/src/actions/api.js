@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-export const getUser = async (uid, setUser) => {
+export const getUser = async (uid, setUser, setAppointments) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -11,8 +11,8 @@ export const getUser = async (uid, setUser) => {
 
     await axios.get(`${process.env.REACT_APP_API_URL}/api/users_clients/`, {params: uid}, config)
     .then((res) => {
-        console.log('USER: ', res.data)
         setUser(res.data);
+        setAppointments(res.data[0].appointments)
     });   
 };
 
@@ -26,12 +26,11 @@ export const getAllBusinessLines = async (setBusinessLines) => {
     
     await axios.get(`${process.env.REACT_APP_API_URL}/api/business_lines/`, config)
     .then((res) => {
-        console.log('BL: ', res.data);
         setBusinessLines(res.data);
     });
 };
 
-export const getUserAppointments = async (apptIds, setUserAppointments) => {
+export const getUserAppointments = async (setUserAppointments) => {
 
     const config = {
         headers: {
@@ -40,9 +39,9 @@ export const getUserAppointments = async (apptIds, setUserAppointments) => {
         }
     };
 
-    await axios.get(`${process.env.REACT_APP_API_URL}/api/appointments/`, {params: {id: apptIds}}, config)
+    
+    await axios.get(`${process.env.REACT_APP_API_URL}/api/appointments/`,config)
     .then((res) => {
-        console.log('APPTS: ', res.data);
         setUserAppointments(res.data);
     });
 };
@@ -59,7 +58,6 @@ export const getAllProfessionals = async (setProfessionals) => {
     await
     axios.get(`${process.env.REACT_APP_API_URL}/api/professionists/`, config)
     .then((res) => {
-        console.log('PROS: ', res.data);
         setProfessionals(res.data);
     });
 };
@@ -76,7 +74,6 @@ export const getAppointmentsProfessionals = async (profIds, setProfessionals) =>
     await
     axios.get(`${process.env.REACT_APP_API_URL}/api/professionists/`, {params: {id: profIds}},config)
     .then((res) => {
-        console.log('PROS: ', res.data);
         setProfessionals(res.data);
     });
 };
@@ -94,7 +91,6 @@ export const getAllPymes = async (setPymes) => {
     await
     axios.get(`${process.env.REACT_APP_API_URL}/api/pymes/`, config)
     .then((res) => {
-        console.log('PYMES: ', res.data);
         setPymes(res.data);
     });
     

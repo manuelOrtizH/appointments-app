@@ -10,7 +10,7 @@ const ListAppt = ({pyme,reason,responsable,day,month,hour}) => {
     return (
         <section>
             <article className='appt'>
-                <img className='appt-icon' src='https://randomuser.me/api/portraits/men/32.jpg' alt='Mark Zuckerberg'/> 
+                <img className='appt-icon' src='https://pbs.twimg.com/media/EEHMzFzU4AAYv1I.jpg' alt='Mark Zuckerberg'/> 
                 
                 <span className='main-info'>{pyme}: {reason}<span> <br></br> <i>{responsable}</i></span></span>
                 <span className='date-info'>{day} {month}<span> <br></br> Hora:{hour}</span></span>

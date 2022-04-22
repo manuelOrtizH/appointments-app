@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserData from './cardUserData/CardUserData';
 import CardAppts from './cardAppointments/CardAppts';
-import Loading from '../common/Loading';
+import CarouselPymes from './pymesAppointments/CarouselPymes';
+
 
 const Appointment = () => {
     const [user, setUser] = useState({});
@@ -30,9 +31,13 @@ const Appointment = () => {
                     month={month}
                     user={user}
                 />
+
+                
                
 
             </section>
+            <h3 className='text-center'>Explora las diferentes PyMEs</h3>
+            <CarouselPymes/>
         </div>
     );
 };
