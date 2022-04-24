@@ -11,7 +11,7 @@ const Appointment = () => {
     const [appointments, setAppointments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [userAppts, setUserAppts] = useState([]);
-    const newDate = new Date()
+    const newDate = new Date();
     const date = newDate.getDate();
     const formatter = new Intl.DateTimeFormat('es', { month: 'short' });
     const month = formatter.format(new Date());

@@ -13,15 +13,19 @@ const CardAppts = ({date,month, appointments}) => {
     const listAppointmentsItems = [];
 
     for (const [key, appt] of Object.entries(appointments)) {
+        const apptDate = new Date(appt.date);
+        const dayFormatter = new Intl.DateTimeFormat('es', {day: '2-digit'});
+        const monthFormatter = new Intl.DateTimeFormat('es', {month: 'long'});
+        const hourFormatter = new Intl.DateTimeFormat('es', {hour: '2-digit', minute: '2-digit'})
         listAppointmentsItems.push( 
             <div key={key}>
                 <ListAppt
                     pyme={'Pyme'}
                     reason={appt.reason}
                     responsable={' '}
-                    day={'21'}
-                    month={'ABR'}
-                    hour={'18:30'}
+                    day={dayFormatter.format(apptDate)}
+                    month={monthFormatter.format(apptDate)}
+                    hour={hourFormatter.format(apptDate)}
                 />
             </div>
         );
