@@ -99,5 +99,29 @@
             "data": {},
             "responsable": "Manuel"
         }
+    ],
+    "BusinessLine": [
+        {
+            "name": "Barbería",
+            "description": "",
+            "pymes": [
+                "Barberia Cardona"
+            ],
+            "image_description": ""
+        },{
+            "name": "Veterinaría",
+            "description": "",
+            "pymes": [
+                "Veterinaria del ave"
+            ],
+            "image_description": ""
+        },{
+            "name": "Salud",
+            "description": "",
+            "pymes": [
+                "Clinica general"
+            ],
+            "image_description": ""
+        }
     ]
 }
