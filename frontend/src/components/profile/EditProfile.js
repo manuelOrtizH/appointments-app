@@ -1,5 +1,6 @@
 import React from 'react';
 import '../profile/styles/Profile.css';
+import { FaEnvelope, FaPhone, FaUserAlt } from "react-icons/fa";
 
 const EditProfile = () => {
     return(
@@ -15,6 +16,7 @@ const EditProfile = () => {
                         <form>
                             <div className='form-group input'>
                                 <span class="card-text text-white">
+                                    <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
                                     Nombre:
                                 </span>
                                 <input
@@ -28,6 +30,7 @@ const EditProfile = () => {
 
                             <div className='form-group input'>
                                 <span class="card-text text-white">
+                                    <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
                                     Apellido Paterno:
                                 </span>
                                 <input
@@ -41,6 +44,7 @@ const EditProfile = () => {
 
                             <div className='form-group input'>
                                 <span class="card-text text-white">
+                                    <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
                                     Apellido Materno:
                                 </span>
                                 <input
@@ -54,6 +58,7 @@ const EditProfile = () => {
 
                             <div className='form-group input'>
                                 <span class="card-text text-white">
+                                    <FaEnvelope style={{color: 'white', marginRight: '5px'}}/>
                                     Correo Electrónico:
                             </span>
                             <input
@@ -67,6 +72,7 @@ const EditProfile = () => {
 
                             <div className='form-group input'>
                                 <span class="card-text text-white mt-3">
+                                    <FaPhone style={{color: 'white', marginRight: '5px'}}/>
                                     Teléfono:
                                 </span>
                                 <input
