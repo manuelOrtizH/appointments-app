@@ -3,28 +3,21 @@ import '../../../components/businessLine/Postcard.css';
 import CustomModal from '../CustomModal';
 import { createAppointment, getUser } from '../../../actions/api';
 
-const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, employees}) => {
+const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, employees, appointments, user}) => {
     
     const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
-
-    const [modalState, setModalState] = useState({viewCompleted: false, 
-                                                  modal: false, apptForm: '' });
-
-    const [appointments, setAppointments] = useState([]);
-    const [user, setUser] = useState([]);
-                                                
+    const [modalState, setModalState] = useState({viewCompleted: false, modal: false, apptForm: '' });
+    const [appointmentsId, setAppointmentsId] = useState(appointments.map(el=>el.id))
+    
     const toggle = () => {
         setModalState({ modal: !modalState.modal })
     }
 
-    const handleSubmit = async(formData, apptData) => {
+    const handleSubmit = (formData, apptData) => {
         toggle();
         apptData.data = formData;
-        console.log(apptData);
-        // await getUser(localStorage.getItem('userId'), setUser ,setAppointments)
-        // setAppointments([...localStorage.getItem('userAppts')])
-        console.log(appointments)
-        // await createAppointment(localStorage.getItem('userClientId'), apptData, localStorage.getItem('userAppts'));
+        console.log(apptData);       
+        createAppointment(user[0], apptData, appointmentsId);
         
     };
 

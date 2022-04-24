@@ -8,26 +8,11 @@ import axios from 'axios';
 import ListAppt from './ListAppt';
 import Loading from '../../common/Loading';
 
-const CardAppts = ({date,month}) => {
-    const [user, setUser] = useState({});
-    const [appointments, setAppointments] = useState([])
-    const [userAppts, setUserAppts] = useState([]);
-    const [professionals, setProfessionals] = useState({});
+const CardAppts = ({date,month, appointments}) => {
     const [isLoading, setIsLoading] = useState(false);
     const listAppointmentsItems = [];
-    
 
-    useEffect(async () => {
-        setIsLoading(true);     
-        await getUser(localStorage.getItem('userId'),setUser, setAppointments); 
-        await getUserAppointments(setUserAppts);
-        setIsLoading(false);
-    }, []);
-
-    const filteredAppts = userAppts.filter(el=>appointments.includes(el.id));
-    
-
-    for (const [key, appt] of Object.entries(filteredAppts)) {
+    for (const [key, appt] of Object.entries(appointments)) {
         listAppointmentsItems.push( 
             <div key={key}>
                 <ListAppt

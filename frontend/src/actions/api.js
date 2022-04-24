@@ -15,7 +15,7 @@ export const getUser = async (uid, setUser, setAppointments) => {
         setUser(actualUser);
         setAppointments(actualUser[0].appointments);
         localStorage.setItem('userClientId', actualUser[0].id);
-        localStorage.setItem('userAppts', actualUser[0].appointments);
+        localStorage.setItem('userAppts', [...actualUser[0].appointments]);
     });   
 };
 
@@ -99,7 +99,7 @@ export const getAllPymes = async (setPymes) => {
     
 };
 
-export const createAppointment = async (userId,body, appointments) => {
+export const createAppointment = async (user,body, appts) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -111,8 +111,9 @@ export const createAppointment = async (userId,body, appointments) => {
     await
     axios.post(`${process.env.REACT_APP_API_URL}/api/appointments/`, body,config)
     .then((res)=>{
-        appointments.push(res.data.id);
-        console.log(appointments)
-        axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${userId}/`, {appointments: appointments});
+        appts.push(res.data.id);
+        console.log(appts)
+        user.appointments = appts;
+        axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user, config);
     })
 };

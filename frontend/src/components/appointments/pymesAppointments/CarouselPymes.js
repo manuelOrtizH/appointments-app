@@ -6,7 +6,7 @@ import { getAllPymes } from '../../../actions/api';
 import PymeAppointment from './PymeAppointment';
 
 
-const CarouselPymes = (professionals) => {
+const CarouselPymes = ({professionals, appointments, user}) => {
     const options = {
         items: 2,
         nav: true,
@@ -25,6 +25,8 @@ const CarouselPymes = (professionals) => {
         setIsLoading(false)
     }, []);
 
+    console.log(appointments)
+
     pymes.map((pyme, key) => {
         listPymes.push(
             <div key={key} className='item'>
@@ -36,6 +38,8 @@ const CarouselPymes = (professionals) => {
                     customForm={pyme.custom_data_form}
                     professionals={professionals}
                     employees={pyme.employees}
+                    appointments={appointments}
+                    user={user}
                 />
             </div>
         );

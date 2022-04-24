@@ -15,7 +15,7 @@ import {
 const CustomModal = (props) => {
 
     const [formData, setFormData] = useState(props.customForm);
-	const [professionals, setProfessionals] = useState(props.professionals.professionals);
+	const [professionals, setProfessionals] = useState(props.professionals);
 	const [apptData, setApptData] = useState(props.apptForm)
     const listFormData = [];
 	const listOptions = [];
