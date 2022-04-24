@@ -33,7 +33,7 @@ const App = () => {
 						<Route path='/activate/:uid/:token' element={<Activate/>}/>
 						<Route path='/appointment' element={<Appointment/>}/>
 						<Route path='/profile' element={<Profile/>}/>
-						<Route path='/profile/EditProfile' element={<EditProfile/>}/>
+						<Route path='/editprofile' element={<EditProfile/>}/>
 					</Routes>
 				</Layout>
 			</Router>
