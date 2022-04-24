@@ -14,22 +14,22 @@ class UserCreateSerializer(UserCreateSerializer):
 class PymeSerializer(serializers.DocumentSerializer):
     class Meta:
         model = Pyme
-        fields = 'all'
+        fields = 'id', 'name', 'address', 'employees', 'business_line', 'custom_data_form', 'image_url'  
 
 class AppointmentSerializer(serializers.DocumentSerializer):
     class Meta:
         model = Appointment
-        fields = 'all'
+        fields = 'id', 'date', 'reason', 'pyme', 'completed', 'data'
 
 class UserClientSerializer(serializers.DocumentSerializer):
     class Meta:
         model = UserClient
-        fields = 'all'
+        fields = 'id', 'name', 'last_name', 'phone_number', 'profile_image', 'email', 'uid', 'appointments', 'calendar'
 
 class BusinessLineSerializer(serializers.DocumentSerializer):
     class Meta: 
         model = BusinessLine
-        fields = 'all'
+        fields = 'id', 'name', 'description', 'pymes', 'image_description'
 
 class ProfessionistSerializer(serializers.DocumentSerializer):
     class Meta: 

@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import mongoengine
 from datetime import timedelta
-mongoengine.connect('reservamedb', username='manuelortiz', password='test123')
+mongoengine.connect('reservamedb')
 
 
 

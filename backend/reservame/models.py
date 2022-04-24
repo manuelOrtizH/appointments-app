@@ -5,6 +5,7 @@ import datetime
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from bson.objectid import ObjectId
 
+#choices=BUSINESS_LINE
 BUSINESS_LINE = (
     ('beauty_shop','Estética'),
     ('veterinary', 'Veterinaria'),
@@ -26,7 +27,7 @@ class Pyme(Document):
     name = fields.StringField(max_length=50, required=True)
     address = fields.StringField(max_length=255)
     employees = fields.ListField(fields.ReferenceField(Professionist))
-    business_line = fields.StringField(max_length=50, choices=BUSINESS_LINE)
+    business_line = fields.StringField(max_length=50)
     custom_data_form = fields.DictField()
     image_url = fields.URLField()
 
