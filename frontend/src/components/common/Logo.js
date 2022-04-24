@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 export function Logo(){
     return (
         <div className="logo-main">
-            <Link to='/'>
-                <img src="https://i.ibb.co/kHDWsxD/logo-main.png" width="250px"></img>
-            </Link>
+            <img src="https://i.ibb.co/kHDWsxD/logo-main.png" width="250px"></img>
         </div>
     );
 }

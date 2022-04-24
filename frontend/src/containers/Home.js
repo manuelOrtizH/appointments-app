@@ -10,7 +10,7 @@ const Home = () => (
                 <hr className='my-4 text-white'/>
                 <p>Comienza aqui uwu.</p>
                 
-                <Link className='btn-main' class='btn btn-warning btn-lg' to='/login' role='button'>Avanzar</Link>
+                <Link className='btn-main btn btn-warning btn-lg' to='/login' role='button'>Avanzar</Link>
                 
             </div>
         </div>

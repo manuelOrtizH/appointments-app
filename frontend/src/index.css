@@ -1,8 +1,11 @@
 body {
   margin: 0;
   font-family: 'Spectral SC';
+  /* background-color: #49405e; */
+  background-color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: black;
 }
 
 code {

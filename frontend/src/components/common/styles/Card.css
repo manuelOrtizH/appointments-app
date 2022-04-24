@@ -1,0 +1,24 @@
+.card{
+    border: 0;
+    color: #696969;
+    box-shadow: 0 0 10px;
+}
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffff;
+    background-clip: border-box;
+    border: 0 solid #e6e4e9;
+    border-radius: 8px;
+}
+
+
+.card .card-header{
+    background-color: #880808;
+    flex-direction: column;
+    border-radius: 8px;
+    color: white;
+}

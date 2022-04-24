@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import './Navbar.css'
+import './styles/Navbar.css'
 import { Logo } from './Logo';
 import { Link } from 'react-router-dom';
 import { logout } from '../../actions/auth';
@@ -10,6 +10,10 @@ const Navbar = ({ logout, isAuthenticated }) => {
     
     const guestLinks = () => (
         <Fragment>
+            <Link to='/'><Logo></Logo></Link>
+            <li className="nav-item ">
+                <Link to="/" className="nav-link text-white">Inicio</Link>
+            </li>
             <li className="nav-item">
                 <Link to="/login" className="nav-link text-white">Ingresar</Link>
             </li>
@@ -26,11 +30,15 @@ const Navbar = ({ logout, isAuthenticated }) => {
 
     const authLinks = () => (
         <Fragment>
+            <Link to='/home'><Logo></Logo></Link>
+            <li className="nav-item ">
+                <Link to="/home" className="nav-link text-white">Inicio</Link>
+            </li>
             <li className="nav-item">
                 <a href="#" className="nav-link text-white">Perfil</a>
             </li>
             <li className="nav-item">
-                <a href="#" className="nav-link text-white">Citas</a>
+                <Link to='/appointment' className="nav-link text-white">Citas</Link>
             </li>
             <li className="nav-item">
                 <a href="#" className="nav-link text-white">Historial</a>
@@ -66,12 +74,10 @@ const Navbar = ({ logout, isAuthenticated }) => {
                     <span className="fa fa-bars"></span> Menu
                 </button>
                 <div className="collapse navbar-collapse ml-5" id="ftco-nav">
-                <Logo></Logo>
+                
                     <ul className="navbar-nav ">
                         
-                        <li className="nav-item ">
-                            <Link to="/" className="nav-link text-white">Inicio</Link>
-                        </li>
+
                         {isAuthenticated ? authLinks(): guestLinks()}
      
 

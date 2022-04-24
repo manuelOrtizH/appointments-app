@@ -24,6 +24,8 @@ router.register(r'pymes', views.PymeView, 'pyme')
 router.register(r'appointments', views.AppointmentView, 'appointment')
 router.register(r'user_accounts', views.UserAccountView, 'user_account')
 router.register(r'users_clients', views.UserClientView, 'user_client')
+router.register(r'business_lines', views.BusinessLineView, 'business_line')
+router.register(r'professionists', views.ProfessionistView, 'professionist')
 
 
 urlpatterns = [
@@ -33,6 +35,6 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
 ]
 
-urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
+# urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
 
 
