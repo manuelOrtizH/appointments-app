@@ -123,5 +123,47 @@
             ],
             "image_description": ""
         }
+    ],
+    "UserClient": [
+        {
+            "name": "Monica",
+            "last_name": "Lara",
+            "phone_number": "+52 1 55 3994 2282",
+            "profile_image": " ",
+            "email": "moni@hotmail.com",
+            "uid": 1,
+            "apppointments": [
+
+            ],
+            "calendar": {
+
+            }
+        },{
+            "name": "Aldo",
+            "last_name": "Ortiz",
+            "phone_number": "+52 1 55 9108 2066",
+            "profile_image": " ",
+            "email": "aldo@hotmail.com",
+            "uid": 1,
+            "apppointments": [
+
+            ],
+            "calendar": {
+
+            }
+        },{
+            "name": "Lia",
+            "last_name": "Diaz",
+            "phone_number": "+52 1 55 3984 4109",
+            "profile_image": " ",
+            "email": "lia@hotmail.com",
+            "uid": 1,
+            "apppointments": [
+
+            ],
+            "calendar": {
+
+            }
+        }
     ]
 }
