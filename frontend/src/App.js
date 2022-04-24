@@ -10,6 +10,7 @@ import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
 import BusinessLine from './components/businessLine/BusinessLine';
 import Dashboard from './components/Dashboard';
 import Appointment from './components/appointments/Appointments';
+import Profile from './components/profile/Profile';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -30,6 +31,7 @@ const App = () => {
 						<Route path='/password/reset/confirm/:uid/:token' element={<ResetPasswordConfirm/>}/>
 						<Route path='/activate/:uid/:token' element={<Activate/>}/>
 						<Route path='/appointment' element={<Appointment/>}/>
+						<Route path='/profile' element={<Profile/>}/>
 					</Routes>
 				</Layout>
 			</Router>
