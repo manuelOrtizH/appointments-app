@@ -1,0 +1,84 @@
+.card{
+    border: 0;
+    color: #696969;
+    box-shadow: 0 0 10px;
+}
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffff;
+    background-clip: border-box;
+    border: 0 solid #e6e4e9;
+    border-radius: 8px;
+    margin-left: 19%;
+}
+
+.header{
+    margin-left: 5%;
+}
+
+.hr {
+    border-top: 1px dotted #880808;
+    border-radius: 25px;
+}
+
+.card .card-header{
+    background-color: #880808;
+    flex-direction: column;
+    border-radius: 8px;
+    color: white;
+}
+
+.data{
+    margin-top: 12%;
+}
+
+.btn-edit{
+    margin-top: 7%;
+    margin-left: 35%;
+}
+
+.btn-cancel{
+    margin-top: 7%;
+    margin-left: 10%;
+    background-color: #ab1e1e;
+}
+
+.btn-save{
+    margin-top: 7%;
+    margin-left: 19%;
+}
+
+.img{
+    border: 11px solid #880808;
+    border-radius: 8px;
+    margin-left: 2.9%;
+    margin-top: 23%;
+    width: 60%;
+    height: 70%;
+}
+
+.img-edit{
+    border: 11px solid #880808;
+    border-radius: 8px;
+    margin-left: 2.9%;
+    margin-top: 15%;
+    width: 60%;
+    height: 70%;
+}
+
+.h4{
+    text-align: center;
+}
+
+.text{
+    font-size: xx-large;
+}
+
+.input{
+    margin-left: 5%;
+    width: 90%;
+}
