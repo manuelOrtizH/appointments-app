@@ -1,35 +1,29 @@
 import React, {useState} from 'react';
 import '../../../components/businessLine/Postcard.css';
 import CustomModal from '../CustomModal';
+import { createAppointment } from '../../../actions/api';
 
-const Postcard = ({id,name,imageUrl, address, customForm}) => {
+const Postcard = ({id,name,imageUrl, address, customForm, professionals, employees}) => {
     
+    const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
+
     const [modalState, setModalState] = useState({viewCompleted: false, 
-                                                  modal: false, 
-                                                  activeItem:{
-                                                      title: '',
-                                                      description: '',
-                                                      completed: false,
-                                                  },
-                                                });
+                                                  modal: false, apptForm: '' });
                                                 
     const toggle = () => {
         setModalState({ modal: !modalState.modal })
     }
 
-    const handleSubmit = (item) => {
+    const handleSubmit = (formData, apptData) => {
         toggle();
-    
-        console.log('saved');
-    };
-
-    const handleDelete = (item) => {
-        console.log('delete');
+        apptData.data = formData;
+        console.log(apptData);
+        createAppointment(apptData);
     };
 
     
     const scheduleAppointment = (item) => {
-        setModalState({ activeItem: item, modal: !modalState.modal });
+        setModalState({ apptForm: apptForm, modal: !modalState.modal });
     };
 
 
@@ -63,6 +57,9 @@ const Postcard = ({id,name,imageUrl, address, customForm}) => {
                     pymeAddress={address}
                     pymeImage={imageUrl}
                     customForm={customForm}
+                    professionals={professionals}
+                    pymeEmployees={employees}
+                    apptForm={apptForm}
                 />
             ) : null}
         </div>

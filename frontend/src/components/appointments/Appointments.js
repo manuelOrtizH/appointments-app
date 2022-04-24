@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getAllProfessionals, getUser } from '../../actions/api';
 import UserData from './cardUserData/CardUserData';
 import CardAppts from './cardAppointments/CardAppts';
 import CarouselPymes from './pymesAppointments/CarouselPymes';
 
 
 const Appointment = () => {
-    const [user, setUser] = useState({});
+    const [professionals, setProfessionals] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const newDate = new Date()
     const date = newDate.getDate();
@@ -17,27 +17,27 @@ const Appointment = () => {
     
 
     useEffect(async() => {
-
+        setIsLoading(true);
+        await getAllProfessionals(setProfessionals);
+        setIsLoading(false);
     }, []);
 
     return(
         <div className='centered '>
- 
+            
+            
+        
             <section className='cards' style={{display: 'flex', border: 'transparent'}}>
                 <UserData/>
             
                 <CardAppts 
                     date={date}
                     month={month}
-                    user={user}
                 />
-
-                
-               
-
             </section>
             <h3 className='text-center'>Explora las diferentes PyMEs</h3>
-            <CarouselPymes/>
+            <CarouselPymes professionals={professionals}/>
+            
         </div>
     );
 };

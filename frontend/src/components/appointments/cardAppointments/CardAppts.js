@@ -23,9 +23,9 @@ const CardAppts = ({date,month}) => {
         await getUserAppointments(setUserAppts);
         setIsLoading(false);
     }, []);
+    //Retomar
+    // localStorage.setItem('userClientId', user[0].id)
     
-    
-
     const filteredAppts = userAppts.filter(el=>appointments.includes(el.id));
     
 
