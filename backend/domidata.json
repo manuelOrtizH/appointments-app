@@ -36,5 +36,37 @@
             "email": "victor@hotmail.com",
             "calendar": {}
         }
+    ],
+    "Pyme": [
+        {
+            "name": "Barberia Cardona",
+            "address": "CALLE. TEOTIHUACAN 18, HIPODROMO, CUAUHTEMOC, DF, C.P.06100",
+            "employees": [
+                "Raul", 
+                "Manuel"
+            ],
+            "business_line": "Barbería",
+            "custom_data_form": {},
+            "image_url": ""
+        },{
+            "name": "Veterinaria del ave",
+            "address": "CLL DOCTOR LICEAGA 113, FICT LOCALITY, FICTICIO, MEX, C.P.06700",
+            "employees": [
+                "Omar", 
+                "Diego"
+            ],
+            "business_line": "Veterinaría",
+            "custom_data_form": {},
+            "image_url": ""
+        },{
+            "name": "Clinica general",
+            "address": "CLLE MIXTECAS MZ 107 LT 7, AJUSCO, MEXICO, DF, C.P.04300",
+            "employees": [
+                "Victor"
+            ],
+            "business_line": "Salud",
+            "custom_data_form": {},
+            "image_url": ""
+        }
     ]
 }
