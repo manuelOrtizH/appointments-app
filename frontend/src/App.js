@@ -11,6 +11,7 @@ import BusinessLine from './components/businessLine/BusinessLine';
 import Dashboard from './components/Dashboard';
 import Appointment from './components/appointments/Appointments';
 import Profile from './components/profile/Profile';
+import EditProfile from './components/profile/EditProfile';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -32,6 +33,7 @@ const App = () => {
 						<Route path='/activate/:uid/:token' element={<Activate/>}/>
 						<Route path='/appointment' element={<Appointment/>}/>
 						<Route path='/profile' element={<Profile/>}/>
+						<Route path='/profile/EditProfile' element={<EditProfile/>}/>
 					</Routes>
 				</Layout>
 			</Router>
