@@ -8,13 +8,11 @@ import Postcard from './Postcard';
 
 const CarouselPymes = () => {
     const options = {
-        items: 3,
+        items: 2,
         nav: true,
         loop: true,
-        center: true,
-        fluidSpeed: true,
-        animateIn: true,
-        autoplay: true,
+        
+        
     };
 
     const [pymes, setPymes] = useState([])
