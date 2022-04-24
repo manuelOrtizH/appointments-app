@@ -90,8 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'reservame_db',
-        'USER': 'manuel',
-        'PASSWORD': 'mfkm03162212',
+        'USER': 'root',
+        'PASSWORD': 'Jebg_2013',
         'HOST': 'localhost',
         'PORT': '3306',
     }
