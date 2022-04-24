@@ -23,9 +23,7 @@ const CardAppts = ({date,month}) => {
         await getUserAppointments(setUserAppts);
         setIsLoading(false);
     }, []);
-    //Retomar
-    // localStorage.setItem('userClientId', user[0].id)
-    
+
     const filteredAppts = userAppts.filter(el=>appointments.includes(el.id));
     
 
@@ -43,6 +41,7 @@ const CardAppts = ({date,month}) => {
             </div>
         );
     };
+    
 
     return (
         <article className='appt-list mr-5 card  mt-5 mb-5'>

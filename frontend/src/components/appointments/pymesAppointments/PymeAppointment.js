@@ -1,24 +1,31 @@
 import React, {useState} from 'react';
 import '../../../components/businessLine/Postcard.css';
 import CustomModal from '../CustomModal';
-import { createAppointment } from '../../../actions/api';
+import { createAppointment, getUser } from '../../../actions/api';
 
-const Postcard = ({id,name,imageUrl, address, customForm, professionals, employees}) => {
+const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, employees}) => {
     
     const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
 
     const [modalState, setModalState] = useState({viewCompleted: false, 
                                                   modal: false, apptForm: '' });
+
+    const [appointments, setAppointments] = useState([]);
+    const [user, setUser] = useState([]);
                                                 
     const toggle = () => {
         setModalState({ modal: !modalState.modal })
     }
 
-    const handleSubmit = (formData, apptData) => {
+    const handleSubmit = async(formData, apptData) => {
         toggle();
         apptData.data = formData;
         console.log(apptData);
-        createAppointment(apptData);
+        // await getUser(localStorage.getItem('userId'), setUser ,setAppointments)
+        // setAppointments([...localStorage.getItem('userAppts')])
+        console.log(appointments)
+        // await createAppointment(localStorage.getItem('userClientId'), apptData, localStorage.getItem('userAppts'));
+        
     };
 
     
@@ -66,4 +73,4 @@ const Postcard = ({id,name,imageUrl, address, customForm, professionals, employe
     );
 };
 
-export default Postcard;
+export default PymeAppointment;

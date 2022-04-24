@@ -10,7 +10,6 @@ import {
     Input,
     Label,
   } from "reactstrap";
-import CustomForm from './CustomForm';
 
 
 const CustomModal = (props) => {
@@ -21,20 +20,9 @@ const CustomModal = (props) => {
     const listFormData = [];
 	const listOptions = [];
 
-	console.log(apptData)
-
-    const onCustomFormChange = e => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-        console.log(formData)
-    }
-
-	const onApptFormChange = e => {
-        setApptData({ ...apptData, [e.target.name]: e.target.value });
-        console.log(apptData);
-    }
-
-	console.log(apptData)
-	
+    const onCustomFormChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+	const onApptFormChange = e => setApptData({ ...apptData, [e.target.name]: e.target.value });
+        
 	const filteredPros = professionals.filter(el=>props.pymeEmployees.includes(el.id));
 	
 	filteredPros.map((el,index)=>{
@@ -55,15 +43,13 @@ const CustomModal = (props) => {
                 type = 'checkbox';
                 break;
             default:
+				//Ver mas tipos 
                 type = 'file';
         }
 	
-
 		listFormData.push( 
 			<FormGroup key={key}>
-				<span className="card-text text-white">
-					{key}
-				</span>
+				<span className="card-text text-white">{key}</span>
 				<Input
 					className='form-control form-field'
 					type={type}
@@ -77,12 +63,7 @@ const CustomModal = (props) => {
 		);
 	}
 
-
-
-
     const { toggle, onSave } = props;
-
-
 
     return (
       <div className=''>
@@ -93,9 +74,9 @@ const CustomModal = (props) => {
 				{props.pymeName} 
 				<br></br>
 				<p style={{fontSize: '65%'}}>{props.pymeAddress}</p>
-			
 			</ModalHeader>
 			<ModalBody>
+				<p className='text-center'>Ingrese los datos que se le piden a continuación</p>
 				<Form>
 					<FormGroup>
 						<span className='card-text text-white'>

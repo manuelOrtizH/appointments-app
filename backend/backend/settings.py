@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'djoser',
     'reservame',
     'rest_framework_simplejwt.token_blacklist',
-    
 ]
 
 MIDDLEWARE = [
@@ -166,6 +165,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000'
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSIONS_CLASSES': [
