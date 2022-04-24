@@ -12,6 +12,7 @@ BUSINESS_LINE = (
     ('restaurant','Restaurante'),
     ('club','Discoteca'),
 )
+
 # Create your models here.
 class Professionist(Document):
     name = fields.StringField(max_length=50, required=True)
@@ -44,19 +45,12 @@ class Appointment(Document):
     def __str__(self):
         return f'Fecha: {self.date} \n Razon: {self.reason}'
 
-
-    
-
-
 class BusinessLine(Document):
     name = fields.StringField(max_length=50, required=True)
     description = fields.StringField(max_length=1000)
     pymes = fields.ListField(fields.ReferenceField(Pyme, reverse_delete_rule=CASCADE))
     image_description = fields.URLField()
-
-
-
-    
+  
 class UserClient(Document):
     name = fields.StringField(max_length=50, required=True)
     last_name = fields.StringField(max_length=50, default='')
@@ -83,6 +77,7 @@ class UserAccountManager(BaseUserManager):
         user.save()
 
         return user
+
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
@@ -101,5 +96,3 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     
     def __str__(self):
         return self.email
-
-
