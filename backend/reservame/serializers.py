@@ -19,7 +19,7 @@ class PymeSerializer(serializers.DocumentSerializer):
 class AppointmentSerializer(serializers.DocumentSerializer):
     class Meta:
         model = Appointment
-        fields = 'id', 'date', 'reason', 'pyme', 'completed', 'data'
+        fields = 'id', 'date', 'reason', 'pyme', 'completed', 'data', 'responsable'
 
 class UserClientSerializer(serializers.DocumentSerializer):
     class Meta:
