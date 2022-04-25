@@ -29,11 +29,13 @@
 
 .postcard.dark {
     background-color: #a00e0e;
+	
 
 }
 
  .postcard .t-dark {
 	 color: #a00e0e;
+	 
 }
  .postcard a {
 	 color: inherit;

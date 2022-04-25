@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProfessionals, getUser, getUserAppointments, getAllPymes } from '../../actions/api';
-import UserData from './cardUserData/CardUserData';
+import CardHistoryAppts from './cardHistoryAppt/CardHistoryAppts';
 import CardAppts from './cardAppointments/CardAppts';
 import CarouselPymes from './pymesAppointments/CarouselPymes';
 import Loading from '../common/Loading';
@@ -43,8 +43,11 @@ const Appointment = () => {
             {!isLoading &&
                 <div>
                     <section className='cards' style={{display: 'flex', border: 'transparent'}}>
-                        <UserData/>
-                    
+                        <CardHistoryAppts
+                            appointments={filteredAppts}
+                            professionals={professionals}
+                            pymes={pymes}
+                        />
                         <CardAppts 
                             date={date}
                             month={month}

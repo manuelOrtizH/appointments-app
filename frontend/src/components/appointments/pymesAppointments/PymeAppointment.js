@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../../../components/businessLine/Postcard.css';
 import CustomModal from '../CustomModal';
-import { createAppointment, getUser } from '../../../actions/api';
+import { handleAppointment } from '../../../actions/api';
 import { Link, Navigate } from 'react-router-dom';
 
 const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, employees, appointments, user}) => {
@@ -18,7 +18,7 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
         toggle();
         apptData.data = formData;
         console.log(apptData);       
-        createAppointment(user[0], apptData, appointmentsId);
+        handleAppointment(user[0], apptData, appointmentsId);
         return (<Navigate to='/appointment' replace={true} />);
     };
 

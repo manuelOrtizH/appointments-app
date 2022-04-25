@@ -3,9 +3,10 @@ import '../styles/Appointments.css';
 import '../../common/styles/Card.css';
 import '../styles/ListAppts.css';
 import useCollapse from 'react-collapsed';
+import { deleteAppointment, handleAppointment } from '../../../actions/api';
+import axios from 'axios';
 
-
-const ListAppt = ({pyme,reason,responsable,day,month,hour, imageUrl, customForm}) => {
+const ListAppt = ({appointment, id,pyme,reason,responsable,day,month,hour, imageUrl, customForm, isHistorial}) => {
     const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
     const listInfoAppt = [];
     let key = 0
@@ -19,6 +20,15 @@ const ListAppt = ({pyme,reason,responsable,day,month,hour, imageUrl, customForm}
         );
         key+=1;
     };    
+
+    const handleDelete = () => deleteAppointment(id);
+    const handleCompleted = async() => {
+        appointment.completed = true;
+        const crsf_token = `${document.cookie}`
+        // await axios.put(`${process.env.REACT_APP_API_URL}/api/appointments/${id}`, appointment);
+        handleAppointment(crsf_token,appointment,[]);
+    };
+    
 
     return (
 
@@ -45,15 +55,19 @@ const ListAppt = ({pyme,reason,responsable,day,month,hour, imageUrl, customForm}
                 <p className='text-center'>Más información con respecto a la cita</p>
                     {listInfoAppt }
                     {listInfoAppt.length === 0 && <p>No se encontraron más datos</p>}
-
-                    <div className='row mt-3'>
-                        <div className='col'>
-                            <button className='btn btn-success'> Editar Cita</button>
+                    {!isHistorial && 
+                        <div className='row mt-3'>
+                            <div className='col'>
+                                <button className='btn btn-success'> Editar Cita</button>
+                            </div>
+                            <div className='col'>
+                                <button className='btn btn-info btn-sm mt-1' onClick={handleCompleted}> Marcar como Completada</button>
+                            </div>
+                            <div className='col'>
+                                <button className='btn btn-danger' onClick={handleDelete}> Eliminar Cita</button>
+                            </div>
                         </div>
-                        <div className='col'>
-                            <button className='btn btn-danger'> Eliminar Cita</button>
-                        </div>
-                    </div>
+                    }
 
                 </div>
             </article>
