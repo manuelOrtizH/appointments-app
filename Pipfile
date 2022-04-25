@@ -13,6 +13,7 @@ django-rest-framework-mongoengine = "*"
 pyrebase = "*"
 djangorestframework-simplejwt = "*"
 djoser = "*"
+mysqlclient = "*"
 
 [dev-packages]
 

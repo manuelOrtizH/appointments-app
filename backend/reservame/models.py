@@ -5,6 +5,7 @@ import datetime
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from bson.objectid import ObjectId
 
+#choices=BUSINESS_LINE
 BUSINESS_LINE = (
     ('beauty_shop','Estética'),
     ('veterinary', 'Veterinaria'),
@@ -12,6 +13,7 @@ BUSINESS_LINE = (
     ('restaurant','Restaurante'),
     ('club','Discoteca'),
 )
+
 # Create your models here.
 class Professionist(Document):
     name = fields.StringField(max_length=50, required=True)
@@ -25,7 +27,7 @@ class Pyme(Document):
     name = fields.StringField(max_length=50, required=True)
     address = fields.StringField(max_length=255)
     employees = fields.ListField(fields.ReferenceField(Professionist))
-    business_line = fields.StringField(max_length=50, choices=BUSINESS_LINE)
+    business_line = fields.StringField(max_length=50)
     custom_data_form = fields.DictField()
     image_url = fields.URLField()
 
@@ -44,19 +46,12 @@ class Appointment(Document):
     def __str__(self):
         return f'Fecha: {self.date} \n Razon: {self.reason}'
 
-
-    
-
-
 class BusinessLine(Document):
     name = fields.StringField(max_length=50, required=True)
     description = fields.StringField(max_length=1000)
     pymes = fields.ListField(fields.ReferenceField(Pyme, reverse_delete_rule=CASCADE))
     image_description = fields.URLField()
-
-
-
-    
+  
 class UserClient(Document):
     name = fields.StringField(max_length=50, required=True)
     last_name = fields.StringField(max_length=50, default='')
@@ -83,6 +78,7 @@ class UserAccountManager(BaseUserManager):
         user.save()
 
         return user
+
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
@@ -101,5 +97,3 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     
     def __str__(self):
         return self.email
-
-
