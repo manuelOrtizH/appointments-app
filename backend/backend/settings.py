@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import mongoengine
 from datetime import timedelta
-mongoengine.connect('reservamedb')
+mongoengine.connect('reservamedb', 
+                    username='manuelortiz', password='test123')
 
 
 
@@ -88,22 +89,23 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'reservame_db',
-        'USER': 'root',
-        'PASSWORD': 'Jebg_2013',
+        'USER': 'manuel',
+        'PASSWORD': 'mfkm03162212',
         'HOST': 'localhost',
         'PORT': '3306',
     }
 }
 
 
-'''
-DATABASES = {
-    'default' : {
-        'ENGINE' : 'django_mongodb_engine',
-        'NAME' : 'reservamedb',
-    }
-}
-'''
+
+# DATABASES = {
+#     'default' : {
+#         'ENGINE' : 'django_mongodb_engine',
+#         'NAME' : 'reservamedb',
+#     }
+# }
+
+
 
 #monthypython15@gmail.com
 #akdicgsseabfrwke
