@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllProfessionals, getUser, getUserAppointments } from '../../actions/api';
+import { getAllProfessionals, getUser, getUserAppointments, getAllPymes } from '../../actions/api';
 import UserData from './cardUserData/CardUserData';
 import CardAppts from './cardAppointments/CardAppts';
 import CarouselPymes from './pymesAppointments/CarouselPymes';
@@ -18,17 +18,23 @@ const Appointment = () => {
     const year = newDate.getFullYear();
     const today = `${date} / ${month<10?`0${month}`:`${month}`} / ${year}`
     
+    const [pymes, setPymes] = useState([])
+    const listPymes = []
+
+  
 
     useEffect(async() => {
         setIsLoading(true);
         await getAllProfessionals(setProfessionals);
         await getUser(localStorage.getItem('userId'),setUser, setAppointments); 
         await getUserAppointments(setUserAppts);
+        await getAllPymes(setPymes)
         setIsLoading(false);
     }, []);
 
-    const filteredAppts = userAppts.filter(el=>appointments.includes(el.id))
     
+    const filteredAppts = userAppts.filter(el=>appointments.includes(el.id))
+    console.log(professionals)
 
     return(
         <div className='centered '>
@@ -43,13 +49,15 @@ const Appointment = () => {
                             date={date}
                             month={month}
                             appointments={filteredAppts}
+                            professionals={professionals}
+                            pymes={pymes}
                         />
                     </section>
                     <h3 className='text-center'>Explora las diferentes PyMEs</h3>
-                    <CarouselPymes professionals={professionals} appointments={filteredAppts} user={user}/>
+                    <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>
                 </div>
             }
-            {isLoading && <Loading/>}
+            {isLoading && <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>}
         </div>
     );
 };

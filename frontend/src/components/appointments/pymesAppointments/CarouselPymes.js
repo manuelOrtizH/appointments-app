@@ -6,7 +6,7 @@ import { getAllPymes } from '../../../actions/api';
 import PymeAppointment from './PymeAppointment';
 
 
-const CarouselPymes = ({professionals, appointments, user}) => {
+const CarouselPymes = ({pymes, professionals, appointments, user}) => {
     const options = {
         items: 2,
         nav: true,
@@ -14,18 +14,7 @@ const CarouselPymes = ({professionals, appointments, user}) => {
         
         
     };
-
-    const [pymes, setPymes] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
     const listPymes = []
-
-    useEffect(async () =>{
-        setIsLoading(true)
-        await getAllPymes(setPymes)
-        setIsLoading(false)
-    }, []);
-
-    console.log(appointments)
 
     pymes.map((pyme, key) => {
         listPymes.push(
@@ -47,9 +36,9 @@ const CarouselPymes = ({professionals, appointments, user}) => {
 
     return (
         <div >
-            {!isLoading && <OwlCarousel className='slider-items owl-theme' {...options}>
+            <OwlCarousel className='slider-items owl-theme' {...options}>
                 {listPymes}
-            </OwlCarousel>}
+            </OwlCarousel>
         </div>
     );
 

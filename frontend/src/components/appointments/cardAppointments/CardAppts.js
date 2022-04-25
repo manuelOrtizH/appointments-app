@@ -8,27 +8,34 @@ import axios from 'axios';
 import ListAppt from './ListAppt';
 import Loading from '../../common/Loading';
 
-const CardAppts = ({date,month, appointments}) => {
+const CardAppts = ({date,month, appointments, professionals, pymes}) => {
     const [isLoading, setIsLoading] = useState(false);
     const listAppointmentsItems = [];
-
+    const dayFormatter = new Intl.DateTimeFormat('es', {day: '2-digit'});
+    const monthFormatter = new Intl.DateTimeFormat('es', {month: 'long'});
+    const hourFormatter = new Intl.DateTimeFormat('es', {hour: '2-digit', minute: '2-digit'})
+    let eventKey = 0
     for (const [key, appt] of Object.entries(appointments)) {
         const apptDate = new Date(appt.date);
-        const dayFormatter = new Intl.DateTimeFormat('es', {day: '2-digit'});
-        const monthFormatter = new Intl.DateTimeFormat('es', {month: 'long'});
-        const hourFormatter = new Intl.DateTimeFormat('es', {hour: '2-digit', minute: '2-digit'})
+        const pyme = pymes.filter(el=> el.id === appt.pyme)[0]
+        const responsable = professionals.filter(el=>el.id === appt.responsable)[0]
+        
+        
         listAppointmentsItems.push( 
             <div key={key}>
                 <ListAppt
-                    pyme={'Pyme'}
+                    pyme={pyme.name}
                     reason={appt.reason}
-                    responsable={' '}
+                    responsable={`${responsable.name} ${responsable.last_name}`}
                     day={dayFormatter.format(apptDate)}
                     month={monthFormatter.format(apptDate)}
                     hour={hourFormatter.format(apptDate)}
+                    imageUrl={pyme.image_url}
+                    customForm={appt.data}
                 />
             </div>
         );
+        eventKey+=1;
     };
     
 

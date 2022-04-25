@@ -10,7 +10,24 @@
     transition: transform 0.25s cubic-bezier(0.7, 0.98, 0.86, 0.5), box-shadow 0.15s cubic-bezier(0.7, 0.98, 0.86, 0.98);
     background-color: #fff;
     margin-top: 2vh;
-    margin-bottom: 1.5vh;
+    margin-bottom: 0.5vh;
+}
+
+
+.appt-info{
+    
+    margin-left: 9vh;
+    margin-right: 9vh;
+    
+    
+    padding: 20px 30px 20px 10px;
+    
+    border-radius: 10px;
+    border-color: yellow;
+    box-shadow: 0 0 5px;
+    background-color: #fff;
+    
+    
 }
 .appt:hover {
     transform: scale(1.05);
@@ -18,9 +35,9 @@
 }
 .appt-icon {
     max-width: 100%;
-    width: 120px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 10px #ebeef3, 0 0 0 22px #f3f4f6;
+    width: 80%;
+    border-radius: 30%;
+    box-shadow: 0 0 0 10px #880808, 0 0 0 22px #c50c0c;
 }
 .main-info {
     color: #979cb0;
@@ -41,4 +58,5 @@
     font-size: 20px;
     margin-left: 3px;
 }
+
 

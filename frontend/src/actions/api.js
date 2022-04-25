@@ -9,13 +9,16 @@ export const getUser = async (uid, setUser, setAppointments) => {
         }
     };
 
-    await axios.get(`${process.env.REACT_APP_API_URL}/api/users_clients/`, {params: uid}, config)
+    await axios.get(`${process.env.REACT_APP_API_URL}/api/users_clients/`, config)
     .then((res) => {
         const actualUser = res.data.filter(el=>el.uid == uid)
         setUser(actualUser);
-        setAppointments(actualUser[0].appointments);
+        if (actualUser[0].appointments.length > 0){
+            setAppointments(actualUser[0].appointments);
+        }
+        
         localStorage.setItem('userClientId', actualUser[0].id);
-        localStorage.setItem('userAppts', [...actualUser[0].appointments]);
+        
     });   
 };
 

@@ -58,12 +58,14 @@ export const load_user = () => async dispatch => {
                 'Accept': 'application/json'
             }
         };
+
+
         
         try{
             const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
+            
             localStorage.setItem('userName', res.data.name);
-            localStorage.setItem('userId', res.data.id)
-            localStorage.setItem('userEmail', res.data.email)
+            localStorage.setItem('userId', res.data.id);
             
             dispatch({
                 type: USER_LOADED_SUCCESS,
@@ -115,13 +117,26 @@ export const signup = (name, email,password, re_password) => async dispatch => {
         }
     };
 
+    const userConfig = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+
     const body = JSON.stringify({ name, email, password, re_password });
 
     try{
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body,config);
-        
-        await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, {name: res.data.name, email: res.data.email, uid: res.data.id})
-                   .catch((err) => console.log(err));
+        console.log(res);
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, 
+                        {name: res.data.name, 
+                         last_name: ' ', 
+                         phone_number: ' ', 
+                         profile_image: ' ', 
+                         email: res.data.email, 
+                         uid: res.data.id, 
+                         appointments: [], 
+                         calendar: {}}, userConfig).then((res)=>console.log(res)).catch(err=>console.log(err));
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: res.data
