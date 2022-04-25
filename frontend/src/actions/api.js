@@ -110,6 +110,7 @@ export const handleAppointment = async (user, body, appts) => {
     };
 
     if (body.id){
+        console.log('Edit');
         await axios.put(`${process.env.REACT_APP_API_URL}/api/appointments/${body.id}/`, body,config);
     } else {
         await axios.post(`${process.env.REACT_APP_API_URL}/api/appointments/`, body,config)

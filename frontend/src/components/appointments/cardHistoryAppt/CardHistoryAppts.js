@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Appointments.css';
 import { createApptFragments } from '../createApptsCard';
+import { handleAppointment } from '../../../actions/api';
 
-const CardHistoryAppts = ({appointments, professionals, pymes}) => {
+const CardHistoryAppts = ({appointments, professionals, pymes, user}) => {
     
     const completedAppointments = appointments.filter(el=>el.completed);
-    const listAppointmentsItems = createApptFragments(completedAppointments, pymes, professionals, true);
+    const listAppointmentsItems = createApptFragments(completedAppointments, pymes, professionals, true, user);
+
     
     return (
         <article className='appt-data ml-5 card mr-5 mt-5' >

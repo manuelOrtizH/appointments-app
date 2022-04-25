@@ -47,6 +47,7 @@ const Appointment = () => {
                             appointments={filteredAppts}
                             professionals={professionals}
                             pymes={pymes}
+                            user={user}
                         />
                         <CardAppts 
                             date={date}
@@ -54,6 +55,7 @@ const Appointment = () => {
                             appointments={filteredAppts}
                             professionals={professionals}
                             pymes={pymes}
+                            user={user}
                         />
                     </section>
                     <h3 className='text-center'>Explora las diferentes PyMEs</h3>

@@ -1,7 +1,7 @@
 import React from "react";
 import ListAppt from "./cardAppointments/ListAppt";
 
-export const createApptFragments = (appointments, pymes, professionals, isHistorial) => {
+export const createApptFragments = (appointments, pymes, professionals, isHistorial, user) => {
     const dayFormatter = new Intl.DateTimeFormat('es', {day: '2-digit'});
     const monthFormatter = new Intl.DateTimeFormat('es', {month: 'long'});
     const hourFormatter = new Intl.DateTimeFormat('es', {hour: '2-digit', minute: '2-digit'})
@@ -15,9 +15,14 @@ export const createApptFragments = (appointments, pymes, professionals, isHistor
         listAppointmentsItems.push( 
             <div key={key}>
                 <ListAppt
+                    user={user}
+                    professionals={professionals}
+                    employees={pyme.employees}
                     appointment={appt}
                     id={appt.id}
+                    pymeId={pyme.id}
                     pyme={pyme.name}
+                    address={pyme.address}
                     reason={appt.reason}
                     responsable={`${responsable.name} ${responsable.last_name}`}
                     day={dayFormatter.format(apptDate)}

@@ -3,10 +3,10 @@ import '../styles/Appointments.css';
 import '../../common/styles/Card.css';
 import { createApptFragments } from '../createApptsCard';
 
-const CardAppts = ({date,month, appointments, professionals, pymes}) => {
+const CardAppts = ({date,month, appointments, professionals, pymes, user}) => {
     const [isLoading, setIsLoading] = useState(false);
     const notCompletedAppts = appointments.filter(el=> !el.completed);
-    const listAppointmentsItems = createApptFragments(notCompletedAppts, pymes, professionals, false);
+    const listAppointmentsItems = createApptFragments(notCompletedAppts, pymes, professionals, false, user);
     
 
     return (

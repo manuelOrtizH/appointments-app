@@ -19,7 +19,8 @@ const CustomModal = (props) => {
 	const [apptData, setApptData] = useState(props.apptForm)
     const listFormData = [];
 	const listOptions = [];
-
+	const buttonLabel = props.isEdit ? 'Editar' : 'Agendar'; 
+	const modalLabel = props.isEdit ? 'Edite los campos que desee' : 'Ingrese los siguientes campos';
     const onCustomFormChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 	const onApptFormChange = e => setApptData({ ...apptData, [e.target.name]: e.target.value });
         
@@ -76,7 +77,7 @@ const CustomModal = (props) => {
 				<p style={{fontSize: '65%'}}>{props.pymeAddress}</p>
 			</ModalHeader>
 			<ModalBody>
-				<p className='text-center'>Ingrese los datos que se le piden a continuación</p>
+				<p className='text-center'>{modalLabel}</p>
 				<Form>
 					<FormGroup>
 						<span className='card-text text-white'>
@@ -85,7 +86,7 @@ const CustomModal = (props) => {
 						<Input
 						 	className='form-control form-field' 
 							type="datetime-local" id="date"
-							name="date" value={apptData.date}
+							name="date" value={new Date(apptData.date).toISOString().slice(0,16)}
 							onChange={e=>onApptFormChange(e)}
 						/>
 					</FormGroup>
@@ -127,7 +128,7 @@ const CustomModal = (props) => {
 					color="warning"
 					onClick={() => onSave(formData, apptData)}
 				>
-					Agendar
+					{buttonLabel}
 				</Button>
 			</ModalFooter>
 		</Modal>

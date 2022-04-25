@@ -61,6 +61,7 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
                     professionals={professionals}
                     pymeEmployees={employees}
                     apptForm={apptForm}
+                    isEdit={false}
                 />
             ) : null}
         </div>
