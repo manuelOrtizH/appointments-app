@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import {Link, Navigate} from 'react-router-dom';
 
 export const getUser = async (uid, setUser, setAppointments) => {
     const config = {
@@ -9,10 +9,16 @@ export const getUser = async (uid, setUser, setAppointments) => {
         }
     };
 
-    await axios.get(`${process.env.REACT_APP_API_URL}/api/users_clients/`, {params: uid}, config)
+    await axios.get(`${process.env.REACT_APP_API_URL}/api/users_clients/`, config)
     .then((res) => {
-        setUser(res.data);
-        setAppointments(res.data[0].appointments)
+        const actualUser = res.data.filter(el=>el.uid == uid)
+        setUser(actualUser);
+        if (actualUser[0].appointments.length > 0){
+            setAppointments(actualUser[0].appointments);
+        }
+        
+        localStorage.setItem('userClientId', actualUser[0].id);
+        
     });   
 };
 
@@ -95,3 +101,29 @@ export const getAllPymes = async (setPymes) => {
     });
     
 };
+
+export const handleAppointment = async (user, body, appts) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+
+    if (body.id){
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/appointments/${body.id}/`, body,config);
+    } else {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/appointments/`, body,config)
+        .then((res)=>{
+            appts.push(res.data.id); 
+            user.appointments = appts;
+            axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user, config);
+        });
+    };
+
+    return (<Navigate to='/appointment' replace={true} />);
+};
+
+export const deleteAppointment = async (id) => {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/api/appointments/${id}/`)
+    .then((res) => console.log('Succesfully deleted: ', res));
+}
