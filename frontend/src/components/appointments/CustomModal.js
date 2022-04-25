@@ -86,7 +86,7 @@ const CustomModal = (props) => {
 						<Input
 						 	className='form-control form-field' 
 							type="datetime-local" id="date"
-							name="date" value={new Date(apptData.date).toISOString().slice(0,16)}
+							name="date" value={apptData.date ? new Date(apptData.date).toISOString().slice(0,16) : ''}
 							onChange={e=>onApptFormChange(e)}
 						/>
 					</FormGroup>

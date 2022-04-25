@@ -18,7 +18,7 @@ const Activate = ({ verify, props }) => {
     //Is the user authenticated
     //Redirect them to the home page
     if(verified){
-        return (<Navigate to='/home' replace={true} />);
+        return (<Navigate to='/login' replace={true} />);
     }
 
     return (

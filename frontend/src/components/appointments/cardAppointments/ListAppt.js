@@ -13,22 +13,18 @@ const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme,
     const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
     const [modalState, setModalState] = useState({viewCompleted: false, modal: false, apptForm: '' });
     
-    const toggle = () => {
-        setModalState({ modal: !modalState.modal })
-    }
+    const toggle = () => setModalState({ modal: !modalState.modal });
 
     const handleSubmit = (formData, apptData) => {
         toggle();
-        apptData.data = formData;
-        console.log(apptData);       
+        apptData.data = formData;     
         handleAppointment(user[0], apptData, []);
         
     };
 
     
-    const handleEdit = (item) => {
-        setModalState({ apptForm: apptForm, modal: !modalState.modal });
-    };
+    const handleEdit = (item) => setModalState({ apptForm: apptForm, modal: !modalState.modal });
+    
     let key = 0
     for (const [field,value] of Object.entries(customForm)){
         listInfoAppt.push(
@@ -42,6 +38,7 @@ const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme,
     };    
 
     const handleDelete = () => deleteAppointment(id);
+    
     const handleCompleted = async() => {
         appointment.completed = true;
         const crsf_token = `${document.cookie}`

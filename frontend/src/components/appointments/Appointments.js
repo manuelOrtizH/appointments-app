@@ -33,13 +33,11 @@ const Appointment = () => {
     }, []);
 
     
-    const filteredAppts = userAppts.filter(el=>appointments.includes(el.id))
-    console.log(professionals)
+    const filteredAppts = userAppts ? userAppts.filter(el=>appointments.includes(el.id)) : [];
+
 
     return(
         <div className='centered '>
-            
-            
             {!isLoading &&
                 <div>
                     <section className='cards' style={{display: 'flex', border: 'transparent'}}>
@@ -62,7 +60,7 @@ const Appointment = () => {
                     <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>
                 </div>
             }
-            {isLoading && <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>}
+            {/* {isLoading && <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>} */}
         </div>
     );
 };
