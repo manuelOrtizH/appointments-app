@@ -56,7 +56,7 @@ const Appointment = () => {
                             user={user}
                         />
                     </section>
-                    <h3 className='text-center'>Explora las diferentes PyMEs</h3>
+                    <h2 className='text-center mt-5'>Explora las diferentes PyMEs</h2>
                     <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>
                 </div>
             }

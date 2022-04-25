@@ -13,7 +13,7 @@ const CardHistoryAppts = ({appointments, professionals, pymes, user}) => {
         <article className='appt-data ml-5 card mr-5 mt-5' >
             <div>
                 <div className='card-body'>
-                    <div className='no-border text-center'>
+                    <div className=' text-center'>
                         <h1 className='card-title text-center'>Mi historial</h1>
                         <hr></hr>
                     </div>
