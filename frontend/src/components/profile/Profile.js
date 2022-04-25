@@ -11,6 +11,7 @@ const Profile = () => {
                             <img src='badbunny.jpeg' className='card-img-top img'></img>
                         </div>
                     </div>
+                    
                     <div className='card-body data'>
                         <div>
                             <h4>Nombre:</h4>
