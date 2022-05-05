@@ -31,7 +31,7 @@
 }
 .appt:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 5px 5px yellow;
+    box-shadow: 0 0 5px 5px rgb(3, 182, 3);
 }
 .appt-icon {
     max-width: 100%;
@@ -63,3 +63,7 @@
 }
 
 
+
+ 
+
+  
