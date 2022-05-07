@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'djoser',
     'reservame',
     'rest_framework_simplejwt.token_blacklist',
+
 ]
 
 MIDDLEWARE = [
@@ -163,11 +164,11 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000'
+    'http://localhost:3000', 'http://localhost:8000'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000'
+    'http://localhost:3000', 'http://localhost:8000'
 ]
 
 CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
@@ -186,14 +187,13 @@ CORS_ALLOW_HEADERS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
-
 CSRF_COOKIE_DOMAIN = 'http://192.168.56.1:3000' 
 
 CSRF_COOKIE_PATH = 'http://localhost:3000'
 
 SESSION_COOKIE_DOMAIN = 'http://localhost:3000'
 
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 REST_FRAMEWORK = {

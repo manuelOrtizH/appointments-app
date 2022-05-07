@@ -20,6 +20,7 @@ from reservame import views
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
 
+
 router = routers.DefaultRouter()
 router.register(r'pymes', views.PymeView, 'pyme')
 router.register(r'appointments', views.AppointmentView, 'appointment')
@@ -34,6 +35,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path('csrf_cookie', views.GetCSRFToken.as_view()),
 ]
 
 urlpatterns += [re_path(r'^.*', csrf_exempt(TemplateView.as_view(template_name='index.html')))]
