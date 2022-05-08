@@ -50,11 +50,11 @@ const Signup = ({ signup, isAuthenticated }) => {
                     <p></p>
                 </div>
                 <div className='card-body card-body-form'>
-                    <p class="card-text text-center">Crea tu cuenta para comenzar!</p>
+                    <p className="card-text text-center">Crea tu cuenta para comenzar!</p>
                     <form onSubmit={e => onSubmit(e)}>
 
                         <div className='form-group'>
-                            <span class="card-text text-white">
+                            <span className="card-text text-white">
                                 <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
                                 Nombre
                             </span>
@@ -70,7 +70,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
                         
                         <div className='form-group'>
-                            <span class="card-text text-white">
+                            <span className="card-text text-white">
                                 <FaEnvelope style={{color: 'white', marginRight: '5px'}}/>
                                 Correo Electrónico:
                             </span>
@@ -86,7 +86,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
                         
                         <div className='form-group '>
-                            <span class="card-text text-white mt-3">
+                            <span className="card-text text-white mt-3">
                                 <FaLock style={{color: 'white', marginRight: '5px'}}/>
                                 Contraseña:
                             </span>
@@ -104,7 +104,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
 
                         <div className='form-group '>
-                            <span class="card-text text-white mt-3">
+                            <span className="card-text text-white mt-3">
                                 <FaLock style={{color: 'white', marginRight: '5px'}}/>
                                 Confirma Contraseña:
                             </span>

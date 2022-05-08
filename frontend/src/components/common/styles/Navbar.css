@@ -11,6 +11,8 @@
     
   .ftco-navbar-light {
     
+    
+    width: 100%;
     background: #880808 !important;
     z-index: 3;
     padding: 0;

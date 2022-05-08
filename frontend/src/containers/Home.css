@@ -1,4 +1,91 @@
 .jumbotron{
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 100%), url(http://factorypyme.thestandardit.com/wp-content/uploads/sites/5/2016/05/Agenda-las-5.jpg);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.5) 100%), url(https://images.unsplash.com/photo-1606327054476-256fc9690fe2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
     background-size: cover;
+}
+
+.key-words-r{
+    color: gray;
+    font-weight: 350;
+    font-size: 22px;
+    text-align: right;
+    letter-spacing: 1.4em;
+    
+}
+
+.key-words-l{
+    color: gray;
+    font-weight: 350;
+    font-size: 22px;
+    text-align: left;
+    letter-spacing: 1.4em;
+    
+}
+
+.main-description{
+    font-weight: 750;
+}
+
+
+.dl-blurbs {
+    display: grid;
+}
+@media (min-width: 768px) {
+    .dl-blurbs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2vw;
+    }
+}
+/* LIST */
+dl {
+    counter-reset: count;
+    background: linear-gradient(90deg, #880808 20%, rgba(255, 255, 255, 0) 0%);
+    padding-left: 4vw;
+    padding-right: 4vw;
+    margin: 0;
+}
+@media (min-width: 768px) {
+    dl {
+        font-family: 'Spectral SC', cursive;
+        padding-left: 2vw;
+}
+}
+@media (min-width: 1024px) {
+    dl {
+        font-family: 'Spectral SC', cursive;
+        padding-top: 3vw;
+        padding-bottom: 3vw;
+}
+}
+
+dl + dl {
+    counter-reset: counter 4;
+}
+
+dt {
+    counter-increment: count;
+    color: black;
+    font-family: 'Spectral SC', cursive;
+    font-size: 4vw;
+    text-transform: uppercase;
+}
+
+dt::before {
+    content: counter(count,decimal-leading-zero) "  ";
+    font-family: 'Spectral SC', cursive;
+    color: white;
+    margin-left: -1vw;
+    padding-right: 12px;
+}
+
+dd {
+    margin-left: 5vw;
+    margin-bottom: 2vh;
+}
+
+.second-level{
+    background-color: #fafafa;
+}
+
+.header-landing-1{
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 100%), url(https://images.unsplash.com/photo-1606327054476-256fc9690fe2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
 }

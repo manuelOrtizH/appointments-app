@@ -37,11 +37,11 @@ const Login = ({ login, isAuthenticated }) => {
                     
                 </div>
                 <div className='card-body card-body-form'>
-                    <p class="card-text text-center">Ingresa con tus credenciales</p>
+                    <p className="card-text text-center">Ingresa con tus credenciales</p>
                     <form onSubmit={e => onSubmit(e)}>
                         
                         <div className='form-group'>
-                            <span class="card-text text-white">
+                            <span className="card-text text-white">
                                 <FaEnvelope style={{color: 'white', marginRight: '5px'}}/>
                                 Correo Electrónico:
                             </span>
@@ -57,7 +57,7 @@ const Login = ({ login, isAuthenticated }) => {
                         </div>
                         
                         <div className='form-group '>
-                            <span class="card-text text-white mt-3">
+                            <span className="card-text text-white mt-3">
                                 <FaLock style={{color: 'white', marginRight: '5px'}}/>
                                 Contraseña:
                             </span>
