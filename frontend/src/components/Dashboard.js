@@ -2,6 +2,7 @@ import React from 'react';
 import '../containers/Home.css';
 import { Link } from 'react-router-dom';
 import BusinessLine from './businessLine/BusinessLine';
+import NextAppts from './NextAppts';
 
 const Dashboard = () => {
     const userName = localStorage.getItem('userName');
@@ -15,9 +16,12 @@ const Dashboard = () => {
             <div className='container'>
                 <h2 className='text-black text-center'>Próximas citas</h2>
             </div>
+            {/* Desplegar citas */}
+            <NextAppts/>
             <div className='container'>
                 <h2 className='text-black text-center'>Explora los diferentes sectores que puedes encontrar.</h2>
             </div>
+            {/* Explora los difgerentes pymes */}
             <BusinessLine/>
      
         </div>
