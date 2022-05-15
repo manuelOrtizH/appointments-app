@@ -36,10 +36,3 @@ class ProfessionistSerializer(serializers.DocumentSerializer):
         model = Professionist
         fields = 'id','name', 'last_name', 'phone_number', 'profile_image', 'email', 'calendar'
 
-
-    # name = fields.StringField(max_length=50, required=True)
-    # last_name = fields.StringField(max_length=50, default='')
-    # phone_number = fields.StringField(max_length=50, default='')
-    # profile_image = fields.URLField(default=' ')
-    # email = fields.EmailField()
-    # calendar = fields.DictField()

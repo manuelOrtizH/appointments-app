@@ -13,9 +13,20 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import mongoengine
 from datetime import timedelta
-mongoengine.connect('reservamedb', 
-                    username='manuelortiz', password='test123')
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DB_SQL = os.getenv('LOCAL_SQL_DB')
+USER_SQL = os.getenv('USER_LOCAL_SQL_DB')
+PASSWORD_SQL = os.getenv('PASSWORD_LOCAL_SQL_DB')
+DB_MONGO = os.getenv('LOCAL_MONGO_DB')
+USER_MONGO = os.getenv('USER_LOCAL_MONGO_DB')
+PASSWORD_MONGO = os.getenv('PASSWORD_LOCAL_MONGO_DB')
+
+mongoengine.connect(DB_MONGO, 
+                    username=USER_MONGO, password=PASSWORD_MONGO)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -48,6 +59,7 @@ INSTALLED_APPS = [
     'djoser',
     'reservame',
     'rest_framework_simplejwt.token_blacklist',
+
 ]
 
 MIDDLEWARE = [
@@ -88,9 +100,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'reservame_db',
-        'USER': 'manuel',
-        'PASSWORD': 'mfkm03162212',
+        'NAME': DB_SQL,
+        'USER': USER_SQL,
+        'PASSWORD': PASSWORD_SQL,
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -170,23 +182,10 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000'
 ]
 
-CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
 
-CSRF_COOKIE_NAME = 'X-CSRFTOKEN'
 
-CORS_ALLOW_HEADERS = [
-    'X-CSRFTOKEN',
-    'csrftoken',
-    'X-XSRF-TOKEN',
-    'content-type',
-    'x-requested-with',
-    'Authorization',
-    'Set-Cookie'
-]
 
 CORS_ALLOW_CREDENTIALS = True
-
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 
 CSRF_COOKIE_DOMAIN = 'http://192.168.56.1:3000' 
 
@@ -194,7 +193,7 @@ CSRF_COOKIE_PATH = 'http://localhost:3000'
 
 SESSION_COOKIE_DOMAIN = 'http://localhost:3000'
 
-
+SESSION_COOKIE_SECURE = False
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSIONS_CLASSES': [
