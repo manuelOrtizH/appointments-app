@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { getPyme } from '../../actions/api';
 import Loading from '../common/Loading';
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import CustomModal from './CustomModal';
+import Wizard from './Wizard';
 import { handlePyme } from '../../actions/api';
 
 const PymeDashboard = () => {
     const { id } = useParams();
     const [modalState, setModalState] = useState({viewCompleted: false, modal: false, apptForm: '' });
+    const [modalWizard, setModalWizard] = useState({viewCompleted: false, modal: false, apptForm: '' });
     const [pyme, setPyme] = useState([])
     const [isLoading, setIsLoading] = useState(false);
     const customDataForm = [];
@@ -56,6 +58,7 @@ const PymeDashboard = () => {
     };
 
     const toggle = () => setModalState({ modal: !modalState.modal });
+    const wToggle = () => setModalWizard({ modal: !modalWizard.modal });
 
     const handleSubmit = (formData) => {
         toggle();
@@ -68,6 +71,7 @@ const PymeDashboard = () => {
     };
 
     const handleEdit = (item) => setModalState({ apptForm: pyme.custom_data_form, modal: !modalState.modal });
+    const handleWizard = (item) => setModalWizard({ apptForm: pyme.custom_data_form, modal: !modalState.modal });
 
 
     return (
@@ -104,7 +108,8 @@ const PymeDashboard = () => {
                                             <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                                             <div className='row'>
                                                 <div className='col text-right mr-5'>
-                                                    <button className='btn btn-warning' onClick={handleEdit} href='#'><FaEdit style={{color: 'black'}}/></button>
+                                                    <button className='btn btn-success mr-2' onClick={handleWizard} href='#'><FaPlus style={{color: 'white'}}/> Agregar Campo</button>
+                                                    <button className='btn btn-warning' onClick={handleEdit} href='#'><FaEdit style={{color: 'black'}}/> Editar</button>
                                                 </div>
                                             </div>
                                             
@@ -145,6 +150,13 @@ const PymeDashboard = () => {
                     onSave={handleSubmit}
                     customForm={invertedCustomDataForm}
                     isEdit={true}
+                />
+            ) : null}
+            {modalWizard.modal ? (
+                <Wizard
+                    activeItem={modalWizard.activeItem}
+                    toggle={wToggle}
+                    onSave={handleSubmit}
                 />
             ) : null}
         </div>

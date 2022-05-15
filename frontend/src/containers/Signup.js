@@ -16,15 +16,12 @@ const Signup = ({ signup, isAuthenticated }) => {
         email: '',
         password: '',
         re_password: '',
-        is_staff: false,
     });
 
-    const { name, email, password, re_password, is_staff } = formData;
+    const { name, email, password, re_password } = formData;
 
-    const onChange = e => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-        console.log(formData);
-    };
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    
 
     const onSubmit = e =>{
         e.preventDefault();
