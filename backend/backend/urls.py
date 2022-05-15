@@ -14,11 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include, re_path, reverse_lazy
 from rest_framework import routers
 from reservame import views
+from reservame.admin import reservame_site
 from django.views.generic import TemplateView
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.base import RedirectView
 
 
 router = routers.DefaultRouter()
@@ -31,13 +33,17 @@ router.register(r'professionists', views.ProfessionistView, 'professionist')
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(r'admin/', admin.site.urls),
+    path(r'reservame_admin/', reservame_site.urls),
     path('api/', include(router.urls)),
     path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
-    path('csrf_cookie', views.GetCSRFToken.as_view()),
+    path('auth/', include('djoser.urls.jwt')),    
 ]
 
-urlpatterns += [re_path(r'^.*', csrf_exempt(TemplateView.as_view(template_name='index.html')))]
+# urlpatterns += [re_path(r'^.*', csrf_exempt(TemplateView.as_view(template_name='index.html')))]
 
+
+# admin.site.index_title = 'Resérvame Admin'
+# admin.site.site_header = 'Resérvame Admin'
+# admin.site.site_title = 'Resérvame Admin'
 

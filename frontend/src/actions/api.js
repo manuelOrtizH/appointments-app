@@ -22,6 +22,30 @@ export const getUser = async (uid, setUser, setAppointments) => {
     });   
 };
 
+export const getUserClient = async (id, setUser) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }
+    };
+    await axios.get(`${process.env.REACT_APP_API_URL}/api/users_clients/${id}/`, config)
+    .then((res)=>{
+        setUser(res.data);
+    })
+};
+
+export const editUser = async (body) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }
+    };
+
+    await axios.put(`${process.env.REACT_APP_API_URL}/api/user_clients/${body.id}/`, body,config);
+};
+
 export const getAllBusinessLines = async (setBusinessLines) => {
     const config = {
         headers: {
@@ -102,6 +126,21 @@ export const getAllPymes = async (setPymes) => {
     
 };
 
+export const getPyme = async(id, setPyme)=>{
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+
+    await axios.get(`${process.env.REACT_APP_API_URL}/api/pymes/${id}/`, config)
+    .then((res)=>{
+        setPyme(res.data);
+    })
+
+
+};
+
 export const handleAppointment = async (user, body, appts) => {
     const config = {
         headers: {
@@ -127,3 +166,18 @@ export const deleteAppointment = async (id) => {
     await axios.delete(`${process.env.REACT_APP_API_URL}/api/appointments/${id}/`)
     .then((res) => console.log('Succesfully deleted: ', res));
 }
+
+export const handlePyme = async(body, setPyme) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+
+    if (body.id){
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/pymes/${body.id}/`, body,config)
+        .then((res)=> setPyme(res.data));
+    } else {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/pymes/`, body,config);
+    };
+};

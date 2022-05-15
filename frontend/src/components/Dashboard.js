@@ -17,7 +17,6 @@ const Dashboard = () => {
             </div>
             <div className='container'>
                 <h2 className='text-black text-center'>Explora los diferentes sectores que puedes encontrar.</h2>
-
             </div>
             <BusinessLine/>
      

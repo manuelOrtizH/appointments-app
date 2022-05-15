@@ -17,7 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Spectral+SC:wght@200&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -54,3 +56,17 @@
     -->
   </body>
 </html>
+<script>
+  $(document).ready(() => {
+    const $ddBtn = $('.my-jquery-collapse')
+    const $dd = $($ddBtn.data('my-target'))
+    $ddBtn.on('click', () => {
+      $dd.toggleClass('d-none')
+    })
+  })
+
+  
+</script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js referrerpolicy="no-referrer"></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+

@@ -7,14 +7,15 @@ import Login from './containers/Login';
 import Signup from './containers/Signup';
 import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
-import BusinessLine from './components/businessLine/BusinessLine';
 import Dashboard from './components/Dashboard';
 import Appointment from './components/appointments/Appointments';
 import { Provider } from 'react-redux';
 import store from './store';
-import PrivateRoute from './hocs/PrivateRoute';
+// import PrivateRoute from './hocs/PrivateRoute';
 import Layout from './hocs/Layout';
-
+import Profile from './components/profile/Profile';
+import EditProfile from './components/profile/EditProfile';
+import PymeDashboard from './components/pymeAdmin/PymeDashboard';
 
 const App = () => {
 	return (
@@ -24,16 +25,18 @@ const App = () => {
 					<Routes>
 						<Route path='/' element={<Home/>}/>
 						<Route path='/login' element={<Login/>}/>
-						<Route exact path='/' element={<PrivateRoute/>}>
-							<Route exact path='/home' element={<Dashboard/>}/>
-						</Route>
+						<Route path='/profile' element={<Profile/>}/>
+						<Route path='/profile/edit-profile/:id' element={<EditProfile/>}/>
+						{/* <Route exact path='/' element={<PrivateRoute/>}> */}
+						<Route exact path='/home' element={<Dashboard/>}/>
 						<Route path='/signup' element={<Signup/>}/>
 						<Route path='/reset-password' element={<ResetPassword/>}/>
 						<Route path='/password/reset/confirm/:uid/:token' element={<ResetPasswordConfirm/>}/>
 						<Route path='/activate/:uid/:token' element={<Activate/>}/>
-						<Route exact path='/' element={<PrivateRoute/>}>
-							<Route exact path='/appointment' element={<Appointment/>}/>
-						</Route>
+						<Route path='/pymeDashboard/:id' element={<PymeDashboard/>}/>
+						{/* <Route exact path='/' element={<PrivateRoute/>}> */}
+						<Route exact path='/appointment' element={<Appointment/>}/>
+						
 					</Routes>
 				</Layout>
 			</Router>

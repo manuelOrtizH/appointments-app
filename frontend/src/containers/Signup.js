@@ -3,7 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup } from '../actions/auth';
 import '../components/common/styles/Form.css';
-import { FaEnvelope, FaLock, FaUserAlt } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaUserAlt, FaUserTie } from "react-icons/fa";
 import '../components/common/styles/Card.css';
 
 
@@ -15,12 +15,16 @@ const Signup = ({ signup, isAuthenticated }) => {
         name: '',
         email: '',
         password: '',
-        re_password: ''
+        re_password: '',
+        is_staff: false,
     });
 
-    const { name, email, password, re_password } = formData;
+    const { name, email, password, re_password, is_staff } = formData;
 
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onChange = e => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        console.log(formData);
+    };
 
     const onSubmit = e =>{
         e.preventDefault();
@@ -52,7 +56,20 @@ const Signup = ({ signup, isAuthenticated }) => {
                 <div className='card-body card-body-form'>
                     <p className="card-text text-center">Crea tu cuenta para comenzar!</p>
                     <form onSubmit={e => onSubmit(e)}>
-
+                        <div className='form-group'>
+                            <span className="card-text text-white mr-5">
+                                <FaUserTie style={{color: 'white', marginRight: '5px'}}/>
+                                Tipo de usuario:
+                            </span>
+                            <div className="form-check form-check-inline mr-5">
+                                <input className="form-check-input" type="radio" name="is_staff" id="inlineRadio1" value= 'false' onChange={e=>onChange(e)}/>
+                                <label className="form-check-label">Soy cliente</label>
+                            </div>
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="is_staff" id="inlineRadio2" value='true' onChange={e=>onChange(e)}/>
+                                <label className="form-check-label">Soy admin de una PyME</label>
+                            </div>
+                        </div>
                         <div className='form-group'>
                             <span className="card-text text-white">
                                 <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>

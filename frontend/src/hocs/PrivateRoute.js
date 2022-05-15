@@ -5,7 +5,7 @@ import { Route, Link, Navigate, Outlet } from 'react-router-dom';
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest}) => {
     // <Fragment
         // {...rest}
-        return /*={props =>*/isAuthenticated ? <Outlet/> : <Navigate to='/' replace={true} /> 
+        return /*={props =>*/isAuthenticated ? <Outlet /> : <Navigate to='/' replace={true} /> 
     // />
 };
 

@@ -1,5 +1,5 @@
 .jumbotron{
-    background-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.5) 100%), url(https://images.unsplash.com/photo-1606327054476-256fc9690fe2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), url(https://images.unsplash.com/photo-1606327054476-256fc9690fe2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
     background-size: cover;
 }
 
@@ -70,10 +70,10 @@ dt {
 }
 
 dt::before {
-    content: counter(count,decimal-leading-zero) "  ";
+    content: counter(count,decimal-leading-zero) ".";
     font-family: 'Spectral SC', cursive;
     color: white;
-    margin-left: -1vw;
+    margin-left: -15%;
     padding-right: 12px;
 }
 

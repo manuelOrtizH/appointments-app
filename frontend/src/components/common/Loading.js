@@ -1,11 +1,12 @@
 import React from 'react';
+import { Loading } from "@nextui-org/react";
 
-const Loading = () => {
+const AppLoading = () => {
 
     return (
-        <p className='text-center'> Cargando...</p>
+        <Loading/>
         
     );
 };
 
-export default Loading;
+export default AppLoading;
