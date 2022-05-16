@@ -16,6 +16,7 @@ import Layout from './hocs/Layout';
 import Profile from './components/profile/Profile';
 import EditProfile from './components/profile/EditProfile';
 import PymeDashboard from './components/pymeAdmin/PymeDashboard';
+import EasterEgg from './components/EasterEgg';
 
 const App = () => {
 	return (
@@ -36,6 +37,7 @@ const App = () => {
 						<Route path='/pymeDashboard/:id' element={<PymeDashboard/>}/>
 						{/* <Route exact path='/' element={<PrivateRoute/>}> */}
 						<Route exact path='/appointment' element={<Appointment/>}/>
+						<Route exact path='/easterEgg' element={<EasterEgg/>}/>
 						
 					</Routes>
 				</Layout>

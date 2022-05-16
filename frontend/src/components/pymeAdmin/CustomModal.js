@@ -19,17 +19,12 @@ const CustomModal = (props) => {
         console.log(formData);
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };  
-    // let counter = 0;
-    // for(const[k,v] of Object.entries(props.customForm)){
-    //     counter+=1
-    //     formData[counter] = k;
-    // };    
     const listFormData = [];
 
     for (const[key,value] of Object.entries(formData)){
         listFormData.push( 
 			<FormGroup key={key}>
-				<span className="card-text text-white"><FaPenFancy/>Nombre Campo</span>
+				<span className="card-text text-white"><FaPenFancy/> Nombre Campo</span>
 				<Input
 					className='form-control form-field'
 					type='text'
@@ -47,7 +42,7 @@ const CustomModal = (props) => {
 
     return(
         <div>
-            <Modal isOpen={true} centered={true} toggle={toggle} fullscreen={'xl'}>
+            <Modal isOpen={true} size='lg' centered={true} show={true} toggle={toggle} fullscreen={'xl'} >
                 <ModalHeader  toggle={toggle} style={{backgroundColor: 'white', 
                                                     color: 'black', textAlign: 'center'}}>
                 Información de mi cita
