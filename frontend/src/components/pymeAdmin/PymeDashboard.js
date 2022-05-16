@@ -70,6 +70,29 @@ const PymeDashboard = () => {
         handlePyme(pymeInfo, setPyme);
     };
 
+    const handleSubmitWizard = (formData, customFormData) => {
+        wToggle();
+        const finalFormData = {};
+        if(formData){
+            for(const[k,v] of Object.entries(formData)){
+                finalFormData[v]= ' ';
+            };
+        };
+
+        if(customFormData){
+            for(const[k,v] of Object.entries(customFormData)){
+                finalFormData[v]= ' ';
+            };
+        };
+
+        
+        for(const[k,v] of Object.entries(pymeInfo.custom_data_form)){
+            finalFormData[k] = ' '
+        }
+        pymeInfo.custom_data_form = finalFormData;
+        handlePyme(pymeInfo, setPyme);
+    };
+
     const handleEdit = (item) => setModalState({ apptForm: pyme.custom_data_form, modal: !modalState.modal });
     const handleWizard = (item) => setModalWizard({ apptForm: pyme.custom_data_form, modal: !modalState.modal });
 
@@ -156,7 +179,7 @@ const PymeDashboard = () => {
                 <AddFieldModal
                     activeItem={modalWizard.activeItem}
                     toggle={wToggle}
-                    onSave={handleSubmit}
+                    onSave={handleSubmitWizard}
                 />
             ) : null}
         </div>

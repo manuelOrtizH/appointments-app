@@ -141,7 +141,7 @@ const AddFieldModal = (props) => {
                         <div className='col-lg text-right'>
                             <Button
                                 color="success"
-                                onClick={() => onSave(formData)}
+                                onClick={() => onSave(formData, customFormData)}
                             > 
                                 Guardar Cambios
                             </Button>
