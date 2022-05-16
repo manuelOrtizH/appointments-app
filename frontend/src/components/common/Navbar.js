@@ -41,7 +41,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
                 <Link to='/appointment' className="nav-link text-white">Citas</Link>
             </li>
             <li className="nav-item">
-                <a href="#" className="nav-link text-white">Calendario</a>
+                <Link to='/calendar' className="nav-link text-white">Calendario</Link>
             </li>
 
         </Fragment>

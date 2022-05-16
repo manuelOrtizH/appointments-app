@@ -4,7 +4,7 @@ import { getPyme } from '../../actions/api';
 import Loading from '../common/Loading';
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import CustomModal from './CustomModal';
-import Wizard from './Wizard';
+import AddFieldModal from './AddFieldModal';
 import { handlePyme } from '../../actions/api';
 
 const PymeDashboard = () => {
@@ -40,10 +40,10 @@ const PymeDashboard = () => {
             <div key={k}>
                 <div className='row'>
                     <div className='col text-center' key={k}>
-                        <button className='btn' onClick={() => deleteField(k)} ><FaTrash style={{color: 'red'}} /></button>
+                        <button className='btn' onClick={() => deleteField(k)} ><FaTrash style={{color: '#880808'}} /></button>
                     </div>
                     <div className='col text-center'>
-                        <h5 className='card-title text-center' style={{color: 'gray'}}><b>-- {k} --</b></h5>
+                        <h5 className='card-title text-center' style={{color: 'gray'}}><b>- {k} -</b></h5>
                     </div>
                     <div className='col'>
                         
@@ -66,6 +66,29 @@ const PymeDashboard = () => {
         for(const[k,v] of Object.entries(formData)){
             finalFormData[v]= ' '
         };
+        pymeInfo.custom_data_form = finalFormData;
+        handlePyme(pymeInfo, setPyme);
+    };
+
+    const handleSubmitWizard = (formData, customFormData) => {
+        wToggle();
+        const finalFormData = {};
+        if(formData){
+            for(const[k,v] of Object.entries(formData)){
+                finalFormData[v]= ' ';
+            };
+        };
+
+        if(customFormData){
+            for(const[k,v] of Object.entries(customFormData)){
+                finalFormData[v]= ' ';
+            };
+        };
+
+        
+        for(const[k,v] of Object.entries(pymeInfo.custom_data_form)){
+            finalFormData[k] = ' '
+        }
         pymeInfo.custom_data_form = finalFormData;
         handlePyme(pymeInfo, setPyme);
     };
@@ -108,7 +131,7 @@ const PymeDashboard = () => {
                                             <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                                             <div className='row'>
                                                 <div className='col text-right mr-5'>
-                                                    <button className='btn btn-success mr-2' onClick={handleWizard} href='#'><FaPlus style={{color: 'white'}}/> Agregar Campo</button>
+                                                    <button className='btn btn-success mr-2' onClick={handleWizard} href='#'><FaPlus style={{color: 'white'}}/> Agregar Campos</button>
                                                     <button className='btn btn-warning' onClick={handleEdit} href='#'><FaEdit style={{color: 'black'}}/> Editar</button>
                                                 </div>
                                             </div>
@@ -153,10 +176,10 @@ const PymeDashboard = () => {
                 />
             ) : null}
             {modalWizard.modal ? (
-                <Wizard
+                <AddFieldModal
                     activeItem={modalWizard.activeItem}
                     toggle={wToggle}
-                    onSave={handleSubmit}
+                    onSave={handleSubmitWizard}
                 />
             ) : null}
         </div>
