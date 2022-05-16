@@ -12,6 +12,8 @@ BUSINESS_LINE = (
     ('fast_food','Comida rápida'),
     ('restaurant','Restaurante'),
     ('club','Discoteca'),
+    ('medicine','Medicina'),
+    ('coding','Programacion'),
 )
 
 # Create your models here.
@@ -51,6 +53,7 @@ class BusinessLine(Document):
     description = fields.StringField(max_length=1000)
     pymes = fields.ListField(fields.ReferenceField(Pyme, reverse_delete_rule=CASCADE))
     image_description = fields.URLField()
+    static_forms = fields.DictField()
   
 class UserClient(Document):
     name = fields.StringField(max_length=50, required=True)
