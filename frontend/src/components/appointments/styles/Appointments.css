@@ -52,3 +52,32 @@
     font-size: 100%;
     text-transform: uppercase;
 }
+
+.nextAppts{
+    margin:15px;
+    margin-bottom: 30px;
+    transition: background-color 0.5s ease;
+}
+
+.owl-item{
+    border-left-style: solid;
+    border-left-width: 1.5px;
+    border-left-color: hsl(0, 89%, 28%);
+    border-right-style: solid;
+    border-right-width: 1.5px;
+    border-right-color: hsl(0, 89%, 28%);
+    
+}
+
+.nextAppts .owl-item:hover .nextApptsTitle, .nextAppts .owl-item:hover{
+    background-color: #880808;
+    color: white;
+    transition: background-color 0.5s ease;
+}
+
+.nextApptsTitle{
+    color: hsl(0, 89%, 28%);
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border-radius: 20px;
+}
