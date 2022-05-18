@@ -3,9 +3,11 @@ import { getAllProfessionals, getUser, getUserAppointments, getAllPymes } from '
 import CardHistoryAppts from './cardHistoryAppt/CardHistoryAppts';
 import CardAppts from './cardAppointments/CardAppts';
 import CarouselPymes from './pymesAppointments/CarouselPymes';
+import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Loading from '../common/Loading';
 
-const Appointment = () => {
+const Appointment = ({isAuthenticated}) => {
     const [professionals, setProfessionals] = useState([]);
     const [user, setUser] = useState([]);
     const [appointments, setAppointments] = useState([]);
@@ -21,7 +23,7 @@ const Appointment = () => {
     const [pymes, setPymes] = useState([])
     const listPymes = []
 
-  
+
 
     useEffect(async() => {
         setIsLoading(true);
@@ -60,9 +62,14 @@ const Appointment = () => {
                     <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>
                 </div>
             }
+            {isLoading && <div className='mt-5'><Loading/></div>}
             {/* {isLoading && <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>} */}
         </div>
     );
 };
 
-export default Appointment;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, {})(Appointment);

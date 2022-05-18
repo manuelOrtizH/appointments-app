@@ -47,7 +47,7 @@ const BusinessLine = () => {
             {!isLoading && <OwlCarousel className='slider-items owl-theme' {...options}>
                 {cardItems}
             </OwlCarousel>}
-            {isLoading && <Loading/>}
+            {isLoading && <p className='text-center'><Loading/></p>}
  
         </div>
     );

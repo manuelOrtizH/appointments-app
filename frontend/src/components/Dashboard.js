@@ -1,10 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
 import '../containers/Home.css';
 import BusinessLine from './businessLine/BusinessLine';
 import NextAppts from './NextAppts';
 
-const Dashboard = () => {
-    const userName = localStorage.getItem('userName');
+const Dashboard = ({isAuthenticated}) => {
+    let userName = '';
+
+    if(!isAuthenticated){
+        return (<Navigate to='/' replace={true} />);
+    }else{
+        userName = localStorage.getItem('userName');
+    }
+
     return(
         <div>
             <div className = 'jumbotron jumbotron-fluid text-white' >
@@ -27,4 +36,8 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, {})(Dashboard);

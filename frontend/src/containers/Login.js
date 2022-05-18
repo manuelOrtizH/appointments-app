@@ -5,6 +5,8 @@ import { login } from '../actions/auth';
 import '../components/common/styles/Form.css';
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import '../components/common/styles/Card.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
@@ -19,7 +21,7 @@ const Login = ({ login, isAuthenticated }) => {
     const onSubmit = e =>{
         e.preventDefault();
 
-        login(email,password);
+        login(email,password, toast);
     };
 
     //Is the user authenticated
@@ -30,6 +32,16 @@ const Login = ({ login, isAuthenticated }) => {
 
     return (
         <div className='container'>
+            <ToastContainer
+                toastClassName='text-center'
+                position='bottom-center'
+                autoClose={false}
+                closeOnClick
+                newestOnTop={false}
+                rtl={false}
+                hideProgressBar={true}
+                theme='colored'
+            />
             <div className='mt-5 card card-form mb-3'>
                 <div className='card-header card-header-form text-center text-white'>
 

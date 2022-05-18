@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react';
 import { getUser } from '../.././actions/api';
 import Loading from '../common/Loading';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Profile = () => {
     const [user, setUser] = useState([]);
     const [appointments, setAppointments] = useState([])
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);  
     
     useEffect(async () => {
         setIsLoading(true);
@@ -20,6 +21,16 @@ const Profile = () => {
         <div>
             
             <article className='profile card  mt-5 mb-5' style={{marginRight: '5vh', marginLeft: '5vh'}}>
+                <ToastContainer
+                    toastClassName='text-center'
+                    position='bottom-center'
+                    autoClose={false}
+                    closeOnClick
+                    newestOnTop={false}
+                    rtl={false}
+                    hideProgressBar={true}
+                    theme='colored'
+                />
                 <div>
                     <div className='card-body'>
                         <div className='no-border text-center'>

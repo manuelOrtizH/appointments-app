@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Appointments.css';
 import '../../common/styles/Card.css';
 import { createApptFragments } from '../createApptsCard';
+import Loading from '../../common/Loading';
 
 const CardAppts = ({date,month, appointments, professionals, pymes, user}) => {
     const [isLoading, setIsLoading] = useState(false);

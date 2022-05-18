@@ -162,6 +162,22 @@ export const handleAppointment = async (user, body, appts) => {
     return (<Navigate to='/appointment' replace={true} />);
 };
 
+export const handleUser = async (body, toast) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+
+    if (body.id){
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${body.id}/`, body,config);
+        toast.success('Bien hecho, los cambios se han hecho');
+    } else {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, body,config);
+    };
+
+};
+
 export const deleteAppointment = async (id) => {
     await axios.delete(`${process.env.REACT_APP_API_URL}/api/appointments/${id}/`)
     .then((res) => console.log('Succesfully deleted: ', res));

@@ -5,6 +5,8 @@ import { signup } from '../actions/auth';
 import '../components/common/styles/Form.css';
 import { FaEnvelope, FaLock, FaUserAlt, FaUserTie, FaPhoneAlt } from "react-icons/fa";
 import '../components/common/styles/Card.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 const Signup = ({ signup, isAuthenticated }) => {
@@ -25,19 +27,27 @@ const Signup = ({ signup, isAuthenticated }) => {
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
     
+    const phoneValidation = (phone) => {
+        const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
+        return !(!phone || regex.test(phone) === false || phone.length != 10);
+    }
 
     const onSubmit = e =>{
         e.preventDefault();
-        if (password === re_password){
-            signup(name, last_name, email, phone_number, password, re_password, is_admin === 'true');
-            setAccountCreated(true);
-        };
+        console.log(phoneValidation(phone_number));
+        if(password !== re_password){
+            toast.error('La contraseña no es igual. Asegúrate de escribir bien la contraseña.');
+        }else if(!phoneValidation(phone_number)){
+            toast.error('El número telefónico ingresado no es válido.');
+        }else{
+            signup(name, last_name, email, phone_number, password, re_password, is_admin === 'true', toast, setAccountCreated);
+        }   
     };
 
     //Is the user authenticated
     //Redirect them to the home page
     if(isAuthenticated){
-        return (<Navigate to='/' replace={true} />);
+        return (<Navigate to='/home' replace={true} />);
     }
 
     if (accountCreated){
@@ -47,6 +57,16 @@ const Signup = ({ signup, isAuthenticated }) => {
 
     return (
         <div className='container'>
+            <ToastContainer
+                toastClassName='text-center'
+                position='bottom-center'
+                autoClose={false}
+                closeOnClick
+                newestOnTop={false}
+                rtl={false}
+                hideProgressBar={true}
+                theme='colored'
+            />
             <div className='mt-5 card card-form mb-3'>
                 <div className='card-header card-header-form text-center text-white'>
                     <h1>Registro</h1>

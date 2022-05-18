@@ -1,9 +1,17 @@
 import React from 'react';
 import './Home.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { Card, Grid, Row, Text } from "@nextui-org/react";
+import { connect } from 'react-redux';
 
-const Home = () => (
+const Home = ({isAuthenticated}) => {
+
+    
+    if(isAuthenticated){
+        return (<Navigate to='/home' replace={true} />);
+    }
+
+    return (
     <div>
         <div className = 'jumbotron jumbotron-fluid text-white' >
             <div className='container'>
@@ -234,6 +242,12 @@ const Home = () => (
     
 
     </div>
-);
+    );
+};
 
-export default Home;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+
+export default connect(mapStateToProps, {})(Home);

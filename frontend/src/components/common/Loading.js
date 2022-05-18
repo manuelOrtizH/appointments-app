@@ -4,7 +4,10 @@ import { Loading } from "@nextui-org/react";
 const AppLoading = () => {
 
     return (
-        <Loading/>
+        <div className='text-center'>
+            <Loading/>
+        </div>
+        
         
     );
 };

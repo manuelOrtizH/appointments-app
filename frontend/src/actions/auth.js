@@ -13,6 +13,8 @@ import {
 } from './types';
 
 import axios from 'axios';
+import { css } from 'glamor';
+
 
 export const checkAuthenticated = () => async dispatch => {
     if (localStorage.getItem('access')){
@@ -84,7 +86,7 @@ export const load_user = () => async dispatch => {
 };
 
 
-export const login = (email,password) => async dispatch => {
+export const login = (email,password, toast) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -95,7 +97,7 @@ export const login = (email,password) => async dispatch => {
 
     try{
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/create/`, body,config);
-
+        
         dispatch({
             type: LOGIN_SUCCESS,
             payload: res.data
@@ -106,13 +108,11 @@ export const login = (email,password) => async dispatch => {
         dispatch(load_user());
 
     }catch (err) {
-        dispatch({
-            type: LOGIN_FAIL
-        });
+        toast.error('Las credenciales no son correctas');
     }
 };
 
-export const signup = (name, lastName ,email, phoneNumber, password, re_password, isAdmin) => async dispatch => {
+export const signup = (name, lastName ,email, phoneNumber, password, re_password, isAdmin, toast, setAccountCreated) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -130,23 +130,28 @@ export const signup = (name, lastName ,email, phoneNumber, password, re_password
     try{
         let user = {};
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body,config)
-                        .then((el)=> {
-                            user = {name: el.data.name,  last_name: lastName,  phone_number: phoneNumber, 
-                                profile_image: 'https://pngimg.com/uploads/letter_r/letter_r_PNG93904.png', 
-                                email: el.data.email, uid: el.data.id, appointments: [], calendar: {}, is_admin: isAdmin};
-                        });
-        
-        await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, user);
-        
- 
+  
+
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, 
+            {name: res.data.name,  last_name: lastName,  phone_number: phoneNumber, 
+            profile_image: 'https://pngimg.com/uploads/letter_r/letter_r_PNG93904.png', 
+            email: res.data.email, uid: res.data.id, appointments: [], calendar: {}, is_admin: isAdmin});
+
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: res.data
         });
 
+        toast.success('Cuenta creada exitosamente!');
+        
+        setAccountCreated(true);
+
         
 
     }catch (err) {
+        setAccountCreated(false);
+        toast.error('Hubo un error al crear la cuenta. Ya existe este correo.');
+        
         dispatch({
             type: SIGNUP_FAIL
         });

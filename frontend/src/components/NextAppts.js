@@ -41,9 +41,11 @@ const NextAppts = () => {
             listPymes.push(
                 <div className='card-body' key={key}>
                     <div className='no-border text-center'>
-                        <h5 className='card-title text-center nextApptsTitle'>{pyme.name}</h5>
+                        <h4 className='card-title text-center nextApptsTitle'>{pyme.name}</h4>
+                        <span><h5>{appt.date}</h5></span> <br></br>
+                        <span>{appt.reason}</span> <br></br>
                         <span>{responsable.name}</span> <span>{responsable.last_name}</span> <br></br>
-                        <span>{appt.date}</span>
+                        
                         
                     </div>
                 </div>
@@ -52,7 +54,7 @@ const NextAppts = () => {
     };
 
     return(
-        <div class="nextAppts">
+        <div className="nextAppts">
             {!isLoading && notCompletedAppts && 
             <div>
                 <OwlCarousel className='slider-items owl-theme' {...options}>
@@ -60,7 +62,7 @@ const NextAppts = () => {
                 </OwlCarousel>
             </div>
             }
-            {isLoading && <Loading/>}
+            {isLoading && <p className='text-center'><Loading/></p>}
             {!isLoading && notCompletedAppts.length == 0 && 
                 <div className='text-center mt-3 mb-5'>
                     <h4 style={{color:'red'}}>No se encontraron citas proximas</h4>

@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import { getUser } from '../.././actions/api';
 import Loading from '../common/Loading';
-import { Link, useParams, useLocation } from 'react-router-dom';
-import { FaEnvelope, FaLock, FaUserAlt, FaUserTie } from "react-icons/fa";
+import { Link, useParams, useNavigate, Route } from 'react-router-dom';
+import { FaEnvelope, FaLock, FaUserAlt, FaUserTie, FaPhoneAlt } from "react-icons/fa";
 import { getUserClient } from '../.././actions/api';
+import './styles/Profile.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { handleUser } from '../.././actions/api';
 
 const EditProfile = () => {
     const { id } = useParams();
+    let navigate = useNavigate();
     
     const [user, setUser] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +22,8 @@ const EditProfile = () => {
     }, []);
 
     const profile = user;
-
+    console.log(profile)
+    
     const [formData, setFormData] = useState({
         name: profile.name,
         last_name: profile.last_name,
@@ -33,19 +38,41 @@ const EditProfile = () => {
         console.log(formData);
     };
 
-    const onSubmit = e =>{
+    const phoneValidation = (phone) => {
+        const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
+        return !(!phone || regex.test(phone) === false || phone.length != 10);
+    }
+
+    const onSubmit = async(e) =>{
         e.preventDefault();
-        // if (password === re_password){
-        //     signup(name, email, password, re_password);
-        //     setAccountCreated(true);
-        // }
-        
+        console.log(phoneValidation(phone_number));
+        if(!phoneValidation(phone_number)){
+            toast.error('El número telefónico ingresado no es válido.');
+        }else{
+            profile.name = name;
+            profile.last_name = last_name;
+            profile.phone_number = phone_number;
+            await handleUser(profile, toast);
+            //signup(name, last_name, email, phone_number, password, re_password, is_admin === 'true', toast, setAccountCreated);
+            await navigate("/profile", { replace: true });
+            
+        }   
     };
 
     return(
         <div>
             
             <article className='profile card  mt-5 mb-5' style={{marginRight: '5vh', marginLeft: '5vh'}}>
+            <ToastContainer
+                toastClassName='text-center'
+                position='bottom-center'
+                autoClose={false}
+                closeOnClick
+                newestOnTop={false}
+                rtl={false}
+                hideProgressBar={true}
+                theme='colored'
+            />
                     <div className='card-header mb-4'>
 
                     <h1 className='card-title  text-center'>Editar mi perfil</h1>
@@ -61,9 +88,9 @@ const EditProfile = () => {
                                         Nombre(s)
                                     </span>
                                     <input
-                                        className='form-control form-field'
+                                        className='form-control form-field edit-profile'
                                         type='text'
-                                        placeholder={name}
+                                        
                                         name='name'
                                         value={name}
                                         onChange={e=>onChange(e)}
@@ -76,41 +103,39 @@ const EditProfile = () => {
                                         Apellidos
                                     </span>
                                     <input
-                                        className='form-control form-field'
+                                        className='form-control form-field edit-profile'
                                         type='text'
-                                        placeholder={last_name}
                                         name='last_name'
                                         value={last_name}
                                         onChange={e=>onChange(e)}
                                         required
                                     />
                                 </div>
-                                
+{/*                                 
                                 <div className='form-group'>
                                     <span className="card-text text-white">
                                         <FaEnvelope style={{color: 'white', marginRight: '5px'}}/>
                                         Correo Electrónico:
                                     </span>
                                     <input
-                                        className='form-control form-field'
+                                        className='form-control form-field edit-profile'
                                         type='email'
-                                        placeholder={email}
+                                        placeholder={profile.email}
                                         name='email'
                                         value={email}
                                         onChange={e=>onChange(e)}
                                         required
                                     />
-                                </div>
+                                </div> */}
                                 
                                 <div className='form-group'>
                                     <span className="card-text text-white">
-                                        <FaEnvelope style={{color: 'white', marginRight: '5px'}}/>
+                                        <FaPhoneAlt style={{color: 'white', marginRight: '5px'}}/>
                                         Telefono
                                     </span>
                                     <input
-                                        className='form-control form-field'
+                                        className='form-control form-field edit-profile'
                                         type='text'
-                                        placeholder={phone_number}
                                         name='phone_number'
                                         value={phone_number}
                                         onChange={e=>onChange(e)}

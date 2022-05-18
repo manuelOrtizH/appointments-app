@@ -19,6 +19,8 @@ import PymeDashboard from './components/pymeAdmin/PymeDashboard';
 import EasterEgg from './components/EasterEgg';
 import Calendar from './components/calendar/Calendar';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
 	return (
 		<Provider store={store}>
