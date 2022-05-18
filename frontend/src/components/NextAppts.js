@@ -4,6 +4,7 @@ import Loading from '../components/common/Loading';
 import OwlCarousel from 'react-owl-carousel';
 import { getAllProfessionals, getAllPymes} from '../actions/api';
 import './/appointments/styles/Appointments.css';
+import { Link } from 'react-router-dom';
 
 const NextAppts = () => {
     const [user, setUser] = useState([]);
@@ -61,8 +62,9 @@ const NextAppts = () => {
             }
             {isLoading && <Loading/>}
             {!isLoading && notCompletedAppts.length == 0 && 
-                <div className='text-center mb-5'>
-                    No se encontraron citas proximas
+                <div className='text-center mt-3 mb-5'>
+                    <h4 style={{color:'red'}}>No se encontraron citas proximas</h4>
+                    <Link style={{color: 'blue'}} to='/appointment'>Agendar citas</Link>
                 </div>
             }
         </div>

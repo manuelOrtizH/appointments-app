@@ -11,10 +11,9 @@ import { getAllBusinessLines } from '../../actions/api';
 const BusinessLine = () => {
 
     const options = {
-        items: 2,
+        items: 1,
         nav: true,
         loop: true,
-        center: true,
         fluidSpeed: true,
         animateIn: true,
         autoplay: true,
@@ -42,8 +41,6 @@ const BusinessLine = () => {
                         />
                        </div>)
     };
-
-    console.log(cardItems)
 
     return (
         <div>

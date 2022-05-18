@@ -73,7 +73,7 @@ dt::before {
     content: counter(count,decimal-leading-zero) ".";
     font-family: 'Spectral SC', cursive;
     color: white;
-    margin-left: -15%;
+    margin-left: -17%;
     padding-right: 12px;
 }
 

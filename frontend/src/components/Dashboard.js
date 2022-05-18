@@ -1,6 +1,5 @@
 import React from 'react';
 import '../containers/Home.css';
-import { Link } from 'react-router-dom';
 import BusinessLine from './businessLine/BusinessLine';
 import NextAppts from './NextAppts';
 

@@ -101,6 +101,8 @@ export const login = (email,password) => async dispatch => {
             payload: res.data
         });
 
+        
+
         dispatch(load_user());
 
     }catch (err) {
@@ -110,7 +112,7 @@ export const login = (email,password) => async dispatch => {
     }
 };
 
-export const signup = (name, email,password, re_password) => async dispatch => {
+export const signup = (name, lastName ,email, phoneNumber, password, re_password, isAdmin) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -126,10 +128,14 @@ export const signup = (name, email,password, re_password) => async dispatch => {
     const body = JSON.stringify({ name, email, password, re_password });
 
     try{
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body,config);
-        const user = {name: res.data.name,  last_name: 'Apellido',  phone_number: '0000000', 
-                      profile_image: 'https://pngimg.com/uploads/letter_r/letter_r_PNG93904.png', 
-                      email: res.data.email, uid: res.data.id, appointments: [], calendar: {}}
+        let user = {};
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body,config)
+                        .then((el)=> {
+                            user = {name: el.data.name,  last_name: lastName,  phone_number: phoneNumber, 
+                                profile_image: 'https://pngimg.com/uploads/letter_r/letter_r_PNG93904.png', 
+                                email: el.data.email, uid: el.data.id, appointments: [], calendar: {}, is_admin: isAdmin};
+                        });
+        
         await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, user);
         
  

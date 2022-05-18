@@ -139,7 +139,8 @@ const PymeDashboard = () => {
                                                 <div className="accordion-body">
                                                 <strong>                                    
                                                     
-                                                    {customDataForm}
+                                                    {customDataForm.length > 0 && customDataForm}
+                                                    {customDataForm.length <= 0 && <p style={{color: 'red'}}>Agrega datos a tu cita</p>}
                                                 </strong> 
                                                 
                                                 </div>
@@ -180,6 +181,7 @@ const PymeDashboard = () => {
                     activeItem={modalWizard.activeItem}
                     toggle={wToggle}
                     onSave={handleSubmitWizard}
+                    businessLine={pymeInfo.business_line}
                 />
             ) : null}
         </div>

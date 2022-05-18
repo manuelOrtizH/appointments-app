@@ -64,6 +64,7 @@ class UserClient(Document):
     uid = fields.IntField()
     appointments = fields.ListField(fields.ReferenceField(Appointment))
     calendar = fields.DictField()
+    is_admin = fields.BooleanField(default = False)
 
     def __str__(self):
         return f'{self.name} \n {self.email}'
@@ -79,6 +80,7 @@ class UserAccountManager(BaseUserManager):
 
         user.set_password(password)
         user.save()
+        
 
         return user
     

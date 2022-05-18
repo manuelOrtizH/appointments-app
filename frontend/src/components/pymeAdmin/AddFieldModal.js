@@ -18,8 +18,15 @@ import { FaPenFancy } from 'react-icons/fa';
 const AddFieldModal = (props) => {
     const [formData, setFormData] = useState({});
     const [customFormData, setCustomFormData] = useState();
-    const myForm = {'Sangre': ' ', 'Medicinas': ' '}
-    const options = [];
+    const myForm = {'Salud': {'Tipo Sangre': ' ', 'Medicamentos': ' ', 'Historial Medico': ' ', 'Tratamiento': ' '},
+                    'Comida': {'Acompañantes': ' ', 'Reservacion': ' ', 'Duracion': ' '},
+                    'Educacion': {'Nivel Academico': ' ', 'Materia': ' ', 'Tema': ' ', },
+                    'Musica': {'Instrumento': ' ', 'Nivel': ' ', 'Genero Musical': ' '},
+                    'Derecho' : {'Asesoria Legal': ' ', 'Demanda': ' ', 'Tipo de Asesoria': ' ', 'Antecedentes Penales': ' ', 'Acompañantes': ' '},
+                    'Entretenimiento': {'Acompañantes': ' ', 'Duracion': ' ', 'Actividad': ' '},
+                    'Belleza': {'Tratamiento': ' ', 'Productos': ' ', 'Reservacion': ''},
+                    };
+    const options = [{}];
     const [fieldsCustom, setFieldsCustom] = useState([]);
     const [isManual, setIsManual] = useState(false);
     const [isUpdated, setIsUpdated] = useState(false);
@@ -31,10 +38,17 @@ const AddFieldModal = (props) => {
     };
 
     for(const[k,v] of Object.entries(myForm)){
-        options.push(<option key={k} value={k}>{k}</option>);
+        console.log(k);
+        for(const[sector,value] of Object.entries(myForm[k])){
+            if(options[k]){
+                options[k].push(<option key={k} value={sector}>{sector}</option>);
+            }else{
+                options[k] = [<option key={k} value={sector}>{sector}</option>];
+            }
+            
+        }
+        
     }
-
-
     const onCustomFormChange = (e) => {
         console.log(customFormData);
         setCustomFormData({ ...customFormData, [e.target.name]: e.target.value });
@@ -126,7 +140,7 @@ const AddFieldModal = (props) => {
                                 onChange={e=>onCustomFormChange(e)}
 						    >
 							<option value='' hidden></option>
-							{options}
+							{options[props.businessLine]}
 						</Input>
                         </FormGroup>
                             

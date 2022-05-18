@@ -3,7 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup } from '../actions/auth';
 import '../components/common/styles/Form.css';
-import { FaEnvelope, FaLock, FaUserAlt, FaUserTie } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaUserAlt, FaUserTie, FaPhoneAlt } from "react-icons/fa";
 import '../components/common/styles/Card.css';
 
 
@@ -13,12 +13,15 @@ const Signup = ({ signup, isAuthenticated }) => {
 
     const [formData, setFormData] = useState({
         name: '',
+        last_name: '',
         email: '',
+        phone_number: '',
         password: '',
         re_password: '',
+        is_admin: false,
     });
 
-    const { name, email, password, re_password } = formData;
+    const { name, last_name ,email, phone_number, password, re_password, is_admin } = formData;
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
     
@@ -26,10 +29,9 @@ const Signup = ({ signup, isAuthenticated }) => {
     const onSubmit = e =>{
         e.preventDefault();
         if (password === re_password){
-            signup(name, email, password, re_password);
+            signup(name, last_name, email, phone_number, password, re_password, is_admin === 'true');
             setAccountCreated(true);
-        }
-        
+        };
     };
 
     //Is the user authenticated
@@ -59,25 +61,40 @@ const Signup = ({ signup, isAuthenticated }) => {
                                 Tipo de usuario:
                             </span>
                             <div className="form-check form-check-inline mr-5">
-                                <input className="form-check-input" type="radio" name="is_staff" id="inlineRadio1" value= 'false' onChange={e=>onChange(e)}/>
+                                <input className="form-check-input" type="radio" name="is_admin" id="inlineRadio1" value= 'false' onChange={e=>onChange(e)}/>
                                 <label className="form-check-label">Soy cliente</label>
                             </div>
                             <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="is_staff" id="inlineRadio2" value='true' onChange={e=>onChange(e)}/>
+                                <input className="form-check-input" type="radio" name="is_admin" id="inlineRadio2" value='true' onChange={e=>onChange(e)}/>
                                 <label className="form-check-label">Soy admin de una PyME</label>
                             </div>
                         </div>
                         <div className='form-group'>
                             <span className="card-text text-white">
                                 <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
-                                Nombre
+                                Nombre(s)
                             </span>
                             <input
                                 className='form-control form-field'
                                 type='text'
-                                placeholder='Juan Camaney'
+                                placeholder='Nombre'
                                 name='name'
                                 value={name}
+                                onChange={e=>onChange(e)}
+                                required
+                            />
+                        </div>
+                        <div className='form-group'>
+                            <span className="card-text text-white">
+                                <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
+                                Apellidos
+                            </span>
+                            <input
+                                className='form-control form-field'
+                                type='text'
+                                placeholder='Apellidos'
+                                name='last_name'
+                                value={last_name}
                                 onChange={e=>onChange(e)}
                                 required
                             />
@@ -94,6 +111,21 @@ const Signup = ({ signup, isAuthenticated }) => {
                                 placeholder='micorreo@dominio.com'
                                 name='email'
                                 value={email}
+                                onChange={e=>onChange(e)}
+                                required
+                            />
+                        </div>
+                        <div className='form-group'>
+                            <span className="card-text text-white">
+                                <FaPhoneAlt style={{color: 'white', marginRight: '5px'}}/>
+                                Numero Telefónico:
+                            </span>
+                            <input
+                                className='form-control form-field'
+                                type='text'
+                                placeholder='551122334455'
+                                name='phone_number'
+                                value={phone_number}
                                 onChange={e=>onChange(e)}
                                 required
                             />

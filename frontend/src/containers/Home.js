@@ -25,22 +25,23 @@ const Home = () => (
                     sus clientes.
                 </h1>
                 
-                <h3 className='second-description mt-5'>
-                    Nunca había sido tan fácil agendar una cita
+                <h3 className='second-description mt-5 text-left'>
+                    Entérate de lo que hacemos, adéntrate y organiza mejor la forma en la que organizas tus citas.
+                    Interactúa con los diferentes usuarios.
                 </h3>
             </div>
             <section className="dl-blurbs text-center mb-5">
                 <dl>
-                    <dt>Clave 1</dt>
-                    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</dd>
-                    <dt>Clave 2</dt>
-                    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</dd>
+                    <dt className='mr-3'> Flexible</dt>
+                    <dd>Crea tus citas y extiendes los campos que contendrán tu cita, dependiendo el giro de tu empresa.</dd>
+                    <dt className='ml-4'>  Accesible</dt>
+                    <dd>Registra tu Empresa Pequeña o Mediana, registralos junto a tus profesionales y empleados.</dd>
                 </dl>
                 <dl>
-                    <dt>Clave 3</dt>
-                    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</dd>
-                    <dt>Clave 4</dt>
-                    <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</dd>                
+                    <dt className='ml-2'>Amigable</dt>
+                    <dd>Una interfaz amigable y en dond el usuario puede encontrar lo que necesite.</dd>
+                    <dt style={{marginRight: '85px'}}> Simple</dt>
+                    <dd>Con su simpleza ayuda a los usuarios al entendimiento del proceso de citas.</dd>                
                 </dl>
             </section>
         </div>
@@ -54,7 +55,7 @@ const Home = () => (
                 </h1>
                 
                 <h3 className='second-description mt-5'>
-                    Nunca había sido tan fácil agendar una cita
+                    En unos sencillos pasos, agenda tu cita con la PyME de tu preferencia.
                 </h3>
             </div>
             <div className="container mb-5">
@@ -127,8 +128,8 @@ const Home = () => (
                 </h1>
                 
                 <h3 className='second-description mt-5'>
-                    Estudiantes del <b>Tecnonlógico de Monterrey</b> dedicados al amor por el América.
-                    Se viene la 14 perros!!!!
+                    Proyecto Integrador de Estudiantes del <b>Tecnonlógico de Monterrey, Campus Ciudad de México</b>.
+
                 </h3>
             </div>
             <div className="container mb-5">
@@ -144,7 +145,7 @@ const Home = () => (
                         </Card.Body>
                         <Card.Footer style={{backgroundColor: 'yellow'}}>
                         <Row wrap="wrap" justify="space-between">
-                            <Text b style={{fontSize: '15px', color: 'black', textAlign:'center'}}>Arquitecto de Software y Desarrollador</Text>
+                            <Text b style={{fontSize: '15px', color: 'black', textAlign:'center'}}>Diseñador de Arquitectura de Software</Text>
                         </Row>
                         </Card.Footer>
                     </Card>
@@ -165,11 +166,11 @@ const Home = () => (
                     <div className="col align-self-start">                   
                         <Card hoverable className='mb-3 text-center' style={{width: '60%', margin: 'auto'}}>
                             <Card.Body >
-                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Manuel Ortiz</Text>
+                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Raúl Cardona</Text>
                             </Card.Body>
                             <Card.Footer style={{backgroundColor: 'blue'}}>
                             <Row wrap="wrap" justify="space-between">
-                                <Text b style={{fontSize: '15px', color: 'white', textAlign:'center'}}>Modelado de Base de Datos y Desarrollador</Text>
+                                <Text b style={{fontSize: '15px', color: 'white', textAlign:'center'}}>Desarrollador Frontend</Text>
                             </Row>
                             </Card.Footer>
                         </Card>
@@ -177,11 +178,11 @@ const Home = () => (
                     <div className="col align-self-center">
                         <Card hoverable className='mb-3 text-center' style={{width: '60%', margin: 'auto'}}>
                             <Card.Body >
-                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Manuel Ortiz</Text>
+                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Omar Robledo</Text>
                             </Card.Body>
                             <Card.Footer style={{backgroundColor: 'green'}}>
                             <Row wrap="wrap" justify="space-between">
-                                <Text b style={{fontSize: '15px', color: 'white', textAlign:'center'}}>Diseño Frontend y Desarrollador</Text>
+                                <Text b style={{fontSize: '15px', color: 'white', textAlign:'center'}}>Desarrollador Backend</Text>
                             </Row>
                             </Card.Footer>
                         </Card>
@@ -203,11 +204,11 @@ const Home = () => (
                     <div className="col align-self-start">                   
                         <Card hoverable className='mb-3 text-center' style={{width: '60%', margin: 'auto'}}>
                             <Card.Body >
-                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Manuel Ortiz</Text>
+                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Diego Levy</Text>
                             </Card.Body>
                             <Card.Footer style={{backgroundColor: 'orange'}}>
                             <Row wrap="wrap" justify="space-between">
-                                <Text b style={{fontSize: '15px', color: 'white', textAlign:'center'}}>Desarrollador</Text>
+                                <Text b style={{fontSize: '15px', color: 'white', textAlign:'center'}}>Desarrollador Fullstack</Text>
                             </Row>
                             </Card.Footer>
                         </Card>
@@ -215,11 +216,11 @@ const Home = () => (
                     <div className="col align-self-center">
                         <Card hoverable className='mb-3 text-center' style={{width: '60%', margin: 'auto'}}>
                             <Card.Body >
-                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Manuel Ortiz</Text>
+                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Victor Godínez</Text>
                             </Card.Body>
                             <Card.Footer style={{backgroundColor: 'pink'}}>
                             <Row wrap="wrap" justify="space-between" >
-                                <Text b style={{fontSize: '15px', color: 'black', textAlign:'center'}}>Desarrollador</Text>
+                                <Text b style={{fontSize: '15px', color: 'black', textAlign:'center'}}>Modelado de Base de Datos</Text>
                             </Row>
                             </Card.Footer>
                         </Card>

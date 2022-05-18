@@ -74,7 +74,7 @@
     --input-color: black;
     --input-border: #880808;
     --input-background: #fff;
-    --input-placeholder: #808080;
+    --input-placeholder: #b3b1b1;
     --input-border-focus: #c52828;
     --group-color: var(--input-color);
     --group-border: var(--input-border);
