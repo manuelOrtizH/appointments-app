@@ -13,13 +13,22 @@ const CardAppts = ({date,month, appointments, professionals, pymes, user}) => {
     return (
         <article className='appt-list mr-5 card  mt-5 mb-5'>
             <div>
+
                 <div className='card-body'>
                     <div className='no-border text-center'>
                         <div className='calendar-badge'>
                                 <span className='badge-day'>{date}</span>
                                 <span className='badge-month'>{month}</span>
                         </div>
-                        <h1 className='card-title text-center'>Mis citas</h1>
+                        <div className='row'>
+                            <div className='col text-left mt-5 mr-5'>
+                                <h1 className='card-title text-center'>Mis Próximas Citas</h1>
+                            </div>
+                            <div className='col text-right mt-5 mr-3'>
+                                <button className='btn btn-warning btn-lg' type='button' > Agendar Más Citas</button>
+                            </div>
+                        </div>
+                        
                         <hr></hr>
                     </div>
                     <div>
@@ -31,7 +40,7 @@ const CardAppts = ({date,month, appointments, professionals, pymes, user}) => {
                     <div className='container'>
                         <div className='row'>
                             <div className='col text-center mt-2 mb-2'>
-                                <button className='btn btn-warning btn-lg d-none' type='button' > Agendar Más Citas</button>
+                                <button className='btn btn-warning btn-lg' type='button' > Agendar Más Citas</button>
                             </div>
                         </div>
                     </div>

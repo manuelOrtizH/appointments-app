@@ -42,7 +42,7 @@ const Appointment = ({isAuthenticated}) => {
         <div className='centered '>
             {!isLoading &&
                 <div>
-                    <section className='cards' style={{display: 'flex', border: 'transparent'}}>
+                    <section className='cards ' style={{display:'flex', border: 'transparent'}}>
                         <CardHistoryAppts
                             appointments={filteredAppts}
                             professionals={professionals}
@@ -57,9 +57,11 @@ const Appointment = ({isAuthenticated}) => {
                             pymes={pymes}
                             user={user}
                         />
+
                     </section>
-                    <h2 className='text-center mt-5'>Explora las diferentes PyMEs</h2>
-                    <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>
+
+                    {/* <h2 className='text-center mt-5'>Explora las diferentes PyMEs</h2> */}
+                    {/* <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/> */}
                 </div>
             }
             {isLoading && <div className='mt-5'><Loading/></div>}

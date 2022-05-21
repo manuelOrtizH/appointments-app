@@ -14,7 +14,7 @@ class UserCreateSerializer(UserCreateSerializer):
 class PymeSerializer(serializers.DocumentSerializer):
     class Meta:
         model = Pyme
-        fields = 'id', 'name', 'address', 'employees', 'business_line', 'custom_data_form', 'image_url'  
+        fields = 'id', 'name', 'address', 'slogan','employees', 'business_line', 'description' ,'custom_data_form', 'image_url'  
 
 class AppointmentSerializer(serializers.DocumentSerializer):
     class Meta:

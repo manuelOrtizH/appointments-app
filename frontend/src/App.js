@@ -17,7 +17,8 @@ import Profile from './components/profile/Profile';
 import EditProfile from './components/profile/EditProfile';
 import PymeDashboard from './components/pymeAdmin/PymeDashboard';
 import EasterEgg from './components/EasterEgg';
-import Calendar from './components/calendar/Calendar';
+import UserCalendar from './components/calendar/UserCalendar';
+import Pyme from './components/pymes/Pyme';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -31,18 +32,16 @@ const App = () => {
 						<Route path='/login' element={<Login/>}/>
 						<Route path='/profile' element={<Profile/>}/>
 						<Route path='/profile/edit-profile/:id' element={<EditProfile/>}/>
-						{/* <Route exact path='/' element={<PrivateRoute/>}> */}
 						<Route exact path='/home' element={<Dashboard/>}/>
 						<Route path='/signup' element={<Signup/>}/>
 						<Route path='/reset-password' element={<ResetPassword/>}/>
 						<Route path='/password/reset/confirm/:uid/:token' element={<ResetPasswordConfirm/>}/>
 						<Route path='/activate/:uid/:token' element={<Activate/>}/>
-						<Route path='/pymeDashboard/:id' element={<PymeDashboard/>}/>
-						{/* <Route exact path='/' element={<PrivateRoute/>}> */}
+						<Route path='/pyme/edit-pyme/:id' element={<PymeDashboard/>}/>
 						<Route exact path='/appointment' element={<Appointment/>}/>
 						<Route exact path='/jlm_el_mejor_profe' element={<EasterEgg/>}/>
-						<Route exact path='/calendar' element={<Calendar/>}/>
-						
+						<Route exact path='/calendar' element={<UserCalendar/>}/>
+						<Route path='/pyme/:id' element={<Pyme/>}/>
 					</Routes>
 				</Layout>
 			</Router>

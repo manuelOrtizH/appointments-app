@@ -23,10 +23,8 @@ const Postcard = ({name, description, pymes, imageUrl}) => {
                         <div className='postcard__bar'></div>
                         <div className='postcard__preview-txt'>{description}</div>
                         <ul className='postcard__tagbox'>
-                            <li className='tag__item'><i className='fas fa-tag mr-2'></i>Pyme 1</li>
-                            <li className='tag__item'><i className='fas fa-clock mr-2'></i>Pyme 2</li>
                             <li className='tag__item play blue'>
-                                <a href='#'><i className='fas fa-play mr-2'></i>Buscar PyMEs</a>
+                                <a href='#'><i className='fas fa-play mr-2'></i>PyMEs en este sector</a>
                             </li>
                         </ul>
                     </div>

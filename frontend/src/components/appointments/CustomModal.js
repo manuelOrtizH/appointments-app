@@ -68,7 +68,7 @@ const CustomModal = (props) => {
 
     return (
       <div className=''>
-		<Modal isOpen={true} centered={true} toggle={toggle} fullscreen={'xl'}>
+		<Modal isOpen={true} size='lg' centered={true} toggle={toggle} fullscreen={'xl'}>
 			<ModalHeader  toggle={toggle} style={{backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 20%), url(${props.pymeImage})`, 
 												backgroundSize: 'cover',
 												color: 'white'}}>

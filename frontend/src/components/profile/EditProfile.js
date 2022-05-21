@@ -11,6 +11,7 @@ import { handleUser } from '../.././actions/api';
 const EditProfile = () => {
     const { id } = useParams();
     let navigate = useNavigate();
+    const profilePictureRef = React.createRef();
     
     const [user, setUser] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -45,6 +46,7 @@ const EditProfile = () => {
 
     const onSubmit = async(e) =>{
         e.preventDefault();
+        
         console.log(phoneValidation(phone_number));
         if(!phoneValidation(phone_number)){
             toast.error('El número telefónico ingresado no es válido.');

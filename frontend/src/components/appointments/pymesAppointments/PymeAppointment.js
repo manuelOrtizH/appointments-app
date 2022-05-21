@@ -34,11 +34,11 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
             <section className='dark '>
                 <div className='container py-4'>
                     <article className='postcard dark blue shadow-lg'>
-                        <Link className='postcard__img_link' to={{ pathname: `/pymeDashboard/${id}`}}>
+                        <Link className='postcard__img_link' to={{ pathname: `/pyme/edit-pyme/${id}`}}>
                             <img className='postcard__img' src={imageUrl} alt='Image Title' />
                         </Link>
                         <div className='postcard__text'>
-                            <h1 className='postcard__title blue'><Link to={{ pathname: `/pymeDashboard/${id}`}}>{name}</Link></h1>
+                            <h1 className='postcard__title blue'><Link to={{ pathname: `/pyme/edit-pyme/${id}`}}>{name}</Link></h1>
                             <div className='postcard__bar'></div>
     
                             <div className='postcard__preview-txt '>{address}</div>

@@ -5,6 +5,8 @@ import OwlCarousel from 'react-owl-carousel';
 import { getAllProfessionals, getAllPymes} from '../actions/api';
 import './/appointments/styles/Appointments.css';
 import { Link } from 'react-router-dom';
+import { getDate } from './getDate';
+import './Pymes.css';
 
 const NextAppts = () => {
     const [user, setUser] = useState([]);
@@ -13,15 +15,14 @@ const NextAppts = () => {
     const [pymes, setPymes] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [userAppts, setUserAppts] = useState([]);
-    const dayFormatter = new Intl.DateTimeFormat('es', {day: '2-digit'});
-    const monthFormatter = new Intl.DateTimeFormat('es', {month: 'long'});
-    const hourFormatter = new Intl.DateTimeFormat('es', {hour: '2-digit', minute: '2-digit'})
+
     const options = {
         items: 3,
         nav: true,
-        loop: true,
+        loop: false,
     };
-    const listPymes = []
+
+    const listAppts = []
     
     useEffect(async() => {
         setIsLoading(true);
@@ -38,15 +39,22 @@ const NextAppts = () => {
         for (const [key,appt] of Object.entries(notCompletedAppts)){
             const responsable = professionals.filter(el=> appt.responsable==el.id)[0];
             const pyme = pymes.filter(el=> appt.pyme==el.id)[0];
-            listPymes.push(
-                <div className='card-body' key={key}>
-                    <div className='no-border text-center'>
-                        <h4 className='card-title text-center nextApptsTitle'>{pyme.name}</h4>
-                        <span><h5>{appt.date}</h5></span> <br></br>
-                        <span>{appt.reason}</span> <br></br>
-                        <span>{responsable.name}</span> <span>{responsable.last_name}</span> <br></br>
-                        
-                        
+            const [day,month,hour] = [...getDate(new Date(appt.date))];
+            listAppts.push(
+                <div className="container bootstrap snippets bootdeys" key={key} >
+                    <div className="row">
+                        <div className="col content-card">
+                            <div className="card-big-shadow">
+                                <div className="card-pyme card-just-text" data-background="color" data-color="yellow" data-radius="none">
+                                    <div className="content text-center">
+                                        <h6 className="category">{responsable.name + ' ' + responsable.last_name}</h6>
+                                        <h4 className="title"><a href="#">{pyme.name}</a></h4>
+                                        <p className="description"><h4><b>{day}</b> de <b>{month}</b> a las <b>{hour}</b></h4></p>
+                                        <p className='description'> <h5>{appt.reason}</h5></p>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
@@ -54,11 +62,12 @@ const NextAppts = () => {
     };
 
     return(
-        <div className="nextAppts">
+        
+        <div >
             {!isLoading && notCompletedAppts && 
             <div>
-                <OwlCarousel className='slider-items owl-theme' {...options}>
-                    {listPymes}
+                <OwlCarousel style={{marginBottom: '10px'}} className='slider-items owl-theme' {...options}>
+                    {listAppts}
                 </OwlCarousel>
             </div>
             }

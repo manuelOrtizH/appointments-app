@@ -28,8 +28,10 @@ class Professionist(Document):
 class Pyme(Document):
     name = fields.StringField(max_length=50, required=True)
     address = fields.StringField(max_length=255)
+    slogan = fields.StringField(max_length=255, default='')
     employees = fields.ListField(fields.ReferenceField(Professionist))
     business_line = fields.StringField(max_length=50)
+    description = fields.StringField(max_length=500, default='No existe descripcion de la PyME')
     custom_data_form = fields.DictField()
     image_url = fields.URLField()
 

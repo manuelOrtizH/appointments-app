@@ -170,8 +170,9 @@ export const handleUser = async (body, toast) => {
     };
 
     if (body.id){
-        await axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${body.id}/`, body,config);
-        toast.success('Bien hecho, los cambios se han hecho');
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${body.id}/`, body,config)
+            .then(async (res) => await toast.success('Los cambios se han hecho con exito'));
+        
     } else {
         await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, body,config);
     };
