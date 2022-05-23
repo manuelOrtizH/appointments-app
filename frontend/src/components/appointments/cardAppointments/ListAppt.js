@@ -3,7 +3,7 @@ import '../styles/Appointments.css';
 import '../../common/styles/Card.css';
 import '../styles/ListAppts.css';
 import useCollapse from 'react-collapsed';
-import { deleteAppointment, handleAppointment } from '../../../actions/api';
+import { deleteAppointment, handleAppointment, getUserAppointments } from '../../../actions/api';
 import axios from 'axios';
 import CustomModal from '../CustomModal';
 import { Card } from '@nextui-org/react';
@@ -13,12 +13,15 @@ const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme,
     const listInfoAppt = [];
     const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
     const [modalState, setModalState] = useState({viewCompleted: false, modal: false, apptForm: '' });
-    
+    const [userAppts, setUserAppts] = useState([]);
     const toggle = () => setModalState({ modal: !modalState.modal });
-
+    
     const handleSubmit = (formData, apptData) => {
         toggle();
         apptData.data = formData;
+        //apptData.date = fecha
+        // user[0].appointments 
+        
         handleAppointment(user[0], apptData, []);
         
     };

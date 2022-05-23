@@ -36,7 +36,10 @@ const Appointment = ({isAuthenticated}) => {
 
     
     const filteredAppts = userAppts ? userAppts.filter(el=>appointments.includes(el.id)) : [];
+    
+    const notCompletedAppts = userAppts.filter(el=>!el.completed);
 
+    console.log(notCompletedAppts);
 
     return(
         <div className='centered '>
@@ -56,12 +59,13 @@ const Appointment = ({isAuthenticated}) => {
                             professionals={professionals}
                             pymes={pymes}
                             user={user}
+                            allAppointments={appointments}
                         />
 
                     </section>
 
                     {/* <h2 className='text-center mt-5'>Explora las diferentes PyMEs</h2> */}
-                    {/* <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/> */}
+                    <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>
                 </div>
             }
             {isLoading && <div className='mt-5'><Loading/></div>}

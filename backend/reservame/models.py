@@ -25,6 +25,8 @@ class Professionist(Document):
     email = fields.EmailField()
     calendar = fields.DictField()
 
+    
+
 class Pyme(Document):
     name = fields.StringField(max_length=50, required=True)
     address = fields.StringField(max_length=255)

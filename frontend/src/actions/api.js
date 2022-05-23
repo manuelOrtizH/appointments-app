@@ -22,6 +22,8 @@ export const getUser = async (uid, setUser, setAppointments) => {
     });   
 };
 
+
+
 export const getUserClient = async (id, setUser) => {
     const config = {
         headers: {

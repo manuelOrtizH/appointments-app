@@ -4,7 +4,7 @@ import '../../common/styles/Card.css';
 import { createApptFragments } from '../createApptsCard';
 import Loading from '../../common/Loading';
 
-const CardAppts = ({date,month, appointments, professionals, pymes, user}) => {
+const CardAppts = ({date,month, appointments, professionals, pymes, user, allAppointments}) => {
     const [isLoading, setIsLoading] = useState(false);
     const notCompletedAppts = appointments.filter(el=> !el.completed);
     const listAppointmentsItems = createApptFragments(notCompletedAppts, pymes, professionals, false, user);
