@@ -4,10 +4,11 @@ import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from "@fullcalendar/timegrid";
 import esLocale from '@fullcalendar/core/locales/es'
-import { getUser, getUserAppointments, getAllProfessionals, getAllPymes } from '../../actions/api';
+import { getUser, getUserAppointments, getAllProfessionals, getAllPymes, deleteAppointment } from '../../actions/api';
 import Alert from "sweetalert2";
 import Loading from '../common/Loading';
 import { getDate } from '../getDate';
+
 
 const UserCalendar = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -35,15 +36,17 @@ const UserCalendar = () => {
             const pyme = pymes.filter(py => py.id === el.pyme)[0];
             const namePyme = pyme.name;
             const nameResponsable = `${responsable.name} ${responsable.last_name}`
-            userEvents.push({id: el.id, title: el.reason, date: el.date});
+            const eventColor = new Date(el.date) < new Date() ? 'red' : 'blue'
+            userEvents.push({id: el.id, title: el.reason, date: el.date, color: eventColor});
         });
     }
 
     const handleDateClick = eventClick => { // bind with an arrow function
         const eventAppointment = filteredAppts.filter(el => el.id === eventClick.event.id)[0];
         const pyme = pymes.filter(el => el.id === eventAppointment.pyme)[0];
-        const responsable = professionals.filter(el => el.id === eventAppointment.responsable)[0];
-        const [day, month, hour] = [...getDate(eventClick.event.date)];
+        const responsable = professionals.filter(el => el.id === eventAppointment.responsable)[0]; 
+        const [day, month, hour] = [...getDate(new Date(eventAppointment.date))];
+        const isCancelable = new Date(eventAppointment.date) < new Date() ? false : true;
         console.log(pyme.name);
         Alert.fire({
             title: pyme.name,
@@ -78,15 +81,17 @@ const UserCalendar = () => {
             showCancelButton: true,
             confirmButtonColor: "#d33",
             cancelButtonColor: "#3085d6",
-            confirmButtonText: "Eliminar Cita",
-            cancelButtonText: "Cerrar"
-        })
-        //   .then(result => {
-        //     if (result.value) {
-        //       eventClick.event.remove(); // It will remove event from the calendar
-        //       Alert.fire("Deleted!", "Your Event has been deleted.", "success");
-        //     }
-        //   });
+            confirmButtonText: "Cancelar Cita",
+            cancelButtonText: "Cerrar",
+            showConfirmButton: isCancelable,
+
+        }).then(async (result) => {
+            if (result.value) {
+                eventClick.event.remove(); // It will remove event from the calendar
+                Alert.fire("Cita cancelada!", "Tu cita ha sido cancelada con éxito", "success");
+                await deleteAppointment(eventClick.event.id);
+            }
+        });
         
     }
     

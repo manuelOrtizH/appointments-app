@@ -25,7 +25,7 @@ const CardAppts = ({date,month, appointments, professionals, pymes, user}) => {
                                 <h1 className='card-title text-center'>Mis Próximas Citas</h1>
                             </div>
                             <div className='col text-right mt-5 mr-3'>
-                                <button className='btn btn-warning btn-lg' type='button' > Agendar Más Citas</button>
+                                <button className='btn btn-warning btn-lg d-none' type='button' > Agendar Más Citas</button>
                             </div>
                         </div>
                         
@@ -40,7 +40,7 @@ const CardAppts = ({date,month, appointments, professionals, pymes, user}) => {
                     <div className='container'>
                         <div className='row'>
                             <div className='col text-center mt-2 mb-2'>
-                                <button className='btn btn-warning btn-lg' type='button' > Agendar Más Citas</button>
+                                <button className='btn btn-warning btn-lg d-none' type='button' > Agendar Más Citas</button>
                             </div>
                         </div>
                     </div>
