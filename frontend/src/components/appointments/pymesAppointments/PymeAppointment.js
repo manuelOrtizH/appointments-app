@@ -3,12 +3,14 @@ import '../../../components/businessLine/Postcard.css';
 import CustomModal from '../CustomModal';
 import { handleAppointment } from '../../../actions/api';
 import { Link, Navigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, employees, appointments, user}) => {
     
     const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
     const [modalState, setModalState] = useState({viewCompleted: false, modal: false, apptForm: '' });
     const [appointmentsId, setAppointmentsId] = useState(appointments.map(el=>el.id))
+    const userAppts = user[0].appointments;
     
     const toggle = () => {
         setModalState({ modal: !modalState.modal })
@@ -18,7 +20,11 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
         toggle();
         apptData.data = formData;
         console.log(apptData);       
+        var dateCollision = false;
         handleAppointment(user[0], apptData, appointmentsId);
+        console.log("holi2");
+        const filteredAppts = userAppts ? userAppts.filter(el=>appointments.includes(el.id)) : [];
+        console.log(filteredAppts)
         return (<Navigate to='/appointment' replace={true} />);
     };
 
@@ -31,6 +37,7 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
     
     return(
         <div>
+            
             <section className='dark '>
                 <div className='container py-4'>
                     <article className='postcard dark blue shadow-lg'>
@@ -48,7 +55,6 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
                     </article>
                 </div>
             </section>
-
             {modalState.modal ? (
                 <CustomModal
                     activeItem={modalState.activeItem}
@@ -63,7 +69,9 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
                     apptForm={apptForm}
                     isEdit={false}
                 />
+                
             ) : null}
+            
         </div>
     );
 };

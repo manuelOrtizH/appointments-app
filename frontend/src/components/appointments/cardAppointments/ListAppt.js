@@ -8,6 +8,7 @@ import axios from 'axios';
 import CustomModal from '../CustomModal';
 import { Card } from '@nextui-org/react';
 
+
 const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme, address,reason,responsable,day,month,hour, imageUrl, customForm, isHistorial}) => {
     const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
     const listInfoAppt = [];
@@ -21,9 +22,7 @@ const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme,
         apptData.data = formData;
         //apptData.date = fecha
         // user[0].appointments 
-        
-        handleAppointment(user[0], apptData, []);
-        
+        handleAppointment(user[0], apptData, []);        
     };
 
     
