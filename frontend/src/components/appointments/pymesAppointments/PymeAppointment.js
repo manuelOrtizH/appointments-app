@@ -20,17 +20,28 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
         toggle();
         apptData.data = formData;
         console.log(apptData);       
-        var dateCollision = false;
+        var dateCollision = 0;
         handleAppointment(user[0], apptData, appointmentsId);
-        console.log("holi2");
-        const filteredAppts = userAppts ? userAppts.filter(el=>appointments.includes(el.id)) : [];
-        console.log(filteredAppts)
+
+        console.log(apptData.date);
+        console.log("--v--")
+
+        for (let i = 0; i < appointments.length; i++) {
+            console.log("----")
+            console.log(appointments[i].date);
+            
+            if (apptData.date===appointments[i].date && apptData.id!==appointments[i].id){
+                dateCollision=1;
+                //break;
+            };
+        };
+        console.log(dateCollision);
         return (<Navigate to='/appointment' replace={true} />);
     };
 
     
     const scheduleAppointment = (item) => {
-        setModalState({ apptForm: apptForm, modal: !modalState.modal });
+        setModalState({ apptForm: apptForm, modal: !modalState.modal});
     };
 
 
