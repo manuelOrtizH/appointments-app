@@ -7,8 +7,23 @@ import { getUserClient } from '../.././actions/api';
 import './styles/Profile.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { handleUser } from '../.././actions/api';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+
+/*
+const imageCol = collection(db, 'image');
+const imageSnapshot = await getDocs(imageCol);
+const imageList = imageSnapshot.docs.map(doc => doc.data());
+return imageList;
+ */
 
 const EditProfile = () => {
+
+   
+    async function uploadImage() {
+        
+    }
+
     const { id } = useParams();
     let navigate = useNavigate();
     const profilePictureRef = React.createRef();
@@ -84,6 +99,10 @@ const EditProfile = () => {
                             {!isLoading && user && 
                             <div>
                             <form onSubmit={e => onSubmit(e)}>
+                                <div className='form-group'>
+                                    <button style={{marginLeft: '20%'}} id="getImage">Seleccionar imagen</button>
+                                    <button style={{marginLeft: '40%'}} onclick='uploadImage()'>Cambiar imagen</button>
+                                </div>
                                 <div className='form-group'>
                                     <span className="card-text text-white">
                                         <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>

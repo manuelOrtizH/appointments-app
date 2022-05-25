@@ -19,7 +19,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.21.4",
     "bootstrap": "^4.6.0",
-    "firebase": "^9.6.10",
+    "firebase": "^9.8.1",
     "glamor": "^2.20.40",
     "mdb-react-ui-kit": "^3.0.0",
     "object-mapper": "^6.2.0",
