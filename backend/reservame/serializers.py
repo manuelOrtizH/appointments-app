@@ -24,7 +24,7 @@ class AppointmentSerializer(serializers.DocumentSerializer):
 class UserClientSerializer(serializers.DocumentSerializer):
     class Meta:
         model = UserClient
-        fields = 'id', 'name', 'last_name', 'phone_number', 'profile_image', 'email', 'uid', 'appointments', 'calendar', 'is_admin'
+        fields = 'id', 'name', 'last_name', 'phone_number', 'profile_image', 'email', 'uid', 'appointments', 'calendar', 'is_admin', 'owned_pyme'
 
 class BusinessLineSerializer(serializers.DocumentSerializer):
     class Meta: 

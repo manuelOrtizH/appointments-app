@@ -3,37 +3,29 @@ import {getUser, getUserAppointments} from '../actions/api';
 import Loading from '../components/common/Loading';
 import OwlCarousel from 'react-owl-carousel';
 import { getAllProfessionals, getAllPymes} from '../actions/api';
-import './/appointments/styles/Appointments.css';
+import './appointments/styles/Appointments.css';
 import { Link } from 'react-router-dom';
 import { getDate } from './getDate';
 import './Pymes.css';
 
-const NextAppts = () => {
-    const [user, setUser] = useState([]);
-    const [appointments, setAppointments] = useState([]);
-    const [professionals, setProfessionals] = useState([]);
-    const [pymes, setPymes] = useState([]);
+const NextAppts = ({userAppts, professionals, appointments, pymes}) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [userAppts, setUserAppts] = useState([]);
+    
 
     const options = {
-        items: 3,
+        items: 1,
         nav: true,
         loop: false,
     };
 
     const listAppts = []
     
-    useEffect(async() => {
+    useEffect(() => {
         setIsLoading(true);
-        await getUser(localStorage.getItem('userId'),setUser, setAppointments); 
-        await getUserAppointments(setUserAppts);
-        await getAllProfessionals(setProfessionals);
-        await getAllPymes(setPymes);
         setIsLoading(false);
     }, []);
 
-    const notCompletedAppts = userAppts ? userAppts.filter(el => !el.completed && appointments.includes(el.id)) : [];
+    const notCompletedAppts = userAppts.filter(el => !el.completed && appointments.includes(el.id));
 
     if (!isLoading){
         for (const [key,appt] of Object.entries(notCompletedAppts)){
@@ -49,8 +41,8 @@ const NextAppts = () => {
                                     <div className="content text-center">
                                         <h6 className="category">{responsable.name + ' ' + responsable.last_name}</h6>
                                         <h4 className="title"><a href="#">{pyme.name}</a></h4>
-                                        <p className="description"><h4><b>{day}</b> de <b>{month}</b> a las <b>{hour}</b></h4></p>
-                                        <p className='description'> <h5>{appt.reason}</h5></p>
+                                        <h4 className='description'><b>{day}</b> de <b>{month}</b> a las <b>{hour}</b></h4>
+                                        <h5 className='description'>{appt.reason}</h5>
                                     </div>
                                 </div> 
                             </div>
@@ -71,7 +63,7 @@ const NextAppts = () => {
                 </OwlCarousel>
             </div>
             }
-            {isLoading && <p className='text-center'><Loading/></p>}
+            {isLoading && <div className='text-center'><Loading/></div>}
             {!isLoading && notCompletedAppts.length == 0 && 
                 <div className='text-center mt-3 mb-5'>
                     <h4 style={{color:'red'}}>No se encontraron citas proximas</h4>

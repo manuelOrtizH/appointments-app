@@ -69,6 +69,7 @@ class UserClient(Document):
     appointments = fields.ListField(fields.ReferenceField(Appointment))
     calendar = fields.DictField()
     is_admin = fields.BooleanField(default = False)
+    owned_pyme = fields.ReferenceField(Pyme, reverse_delete_rule=CASCADE)
 
     def __str__(self):
         return f'{self.name} \n {self.email}'

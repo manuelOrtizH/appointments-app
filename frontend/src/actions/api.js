@@ -154,10 +154,10 @@ export const handleAppointment = async (user, body, appts) => {
         await axios.put(`${process.env.REACT_APP_API_URL}/api/appointments/${body.id}/`, body,config);
     } else {
         await axios.post(`${process.env.REACT_APP_API_URL}/api/appointments/`, body,config)
-        .then((res)=>{
+        .then(async(res)=>{
             appts.push(res.data.id); 
             user.appointments = appts;
-            axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user, config);
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user, config);
         });
     };
 
@@ -199,4 +199,19 @@ export const handlePyme = async(body, setPyme) => {
     } else {
         await axios.post(`${process.env.REACT_APP_API_URL}/api/pymes/`, body,config);
     };
+};
+
+export const registerPyme = async(body,user) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/pymes/`, body,config)
+    .then(async(res) => {
+        user.owned_pyme = res.data.id;
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user,config);        
+    });
+
 };
