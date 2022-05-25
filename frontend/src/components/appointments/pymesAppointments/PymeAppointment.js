@@ -16,27 +16,35 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
         setModalState({ modal: !modalState.modal })
     }
 
-    const handleSubmit = (formData, apptData) => {
-        toggle();
+    const handleSubmit = (formData, apptData, toast) => {
+        
         apptData.data = formData;
         console.log(apptData);       
-        var dateCollision = 0;
-        handleAppointment(user[0], apptData, appointmentsId);
+        var dateCollision = false;
+        
 
-        console.log(apptData.date);
-        console.log("--v--")
+        const aD = new Date(apptData.date);
 
         for (let i = 0; i < appointments.length; i++) {
             console.log("----")
-            console.log(appointments[i].date);
             
-            if (apptData.date===appointments[i].date && apptData.id!==appointments[i].id){
-                dateCollision=1;
-                //break;
+            const date = new Date(appointments[i].date);
+            const correctedDate = new Date(date.toISOString().slice(0, -1));
+            
+            if (aD.getTime()===correctedDate.getTime()){
+                dateCollision=true;
+                break;
             };
         };
-        console.log(dateCollision);
-        return (<Navigate to='/appointment' replace={true} />);
+
+        if (dateCollision===true){
+            toast.error('Horario no disponible, selecciona otro porfavor.');
+        }else{
+            handleAppointment(user[0], apptData, appointmentsId);
+            toggle();
+            return (<Navigate to='/appointment' replace={true} />);
+        }
+        
     };
 
     
@@ -80,7 +88,6 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
                     apptForm={apptForm}
                     isEdit={false}
                 />
-                
             ) : null}
             
         </div>

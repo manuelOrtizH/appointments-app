@@ -10,6 +10,7 @@ import {
     Input,
     Label,
   } from "reactstrap";
+  import { ToastContainer, toast } from 'react-toastify';
 
 
 const CustomModal = (props) => {
@@ -68,6 +69,7 @@ const CustomModal = (props) => {
 
     return (
       <div className=''>
+
 		<Modal isOpen={true} size='lg' centered={true} toggle={toggle} fullscreen={'xl'}>
 			<ModalHeader  toggle={toggle} style={{backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 20%), url(${props.pymeImage})`, 
 												backgroundSize: 'cover',
@@ -122,11 +124,21 @@ const CustomModal = (props) => {
 						</Input>
 					</FormGroup>
 				</Form>
+				<ToastContainer
+					toastClassName='text-center'
+					position='bottom-center'
+					autoClose={false}
+					closeOnClick
+					newestOnTop={false}
+					rtl={false}
+					hideProgressBar={true}
+					theme='colored'
+            	/>
 			</ModalBody>
 			<ModalFooter style={{background: '#880808'}}>
 				<Button
 					color="warning"
-					onClick={() => onSave(formData, apptData)}
+					onClick={() => onSave(formData, apptData, toast)}
 				>
 					{buttonLabel}
 				</Button>
