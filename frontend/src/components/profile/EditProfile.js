@@ -9,16 +9,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { handleUser } from '../.././actions/api';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import './styles/EditProfile.css';
-
-/*
-const imageCol = collection(db, 'image');
-const imageSnapshot = await getDocs(imageCol);
-const imageList = imageSnapshot.docs.map(doc => doc.data());
-return imageList;
-input src='https://pngimg.com/uploads/letter_r/letter_r_PNG93904.png'  id="userImage"/>
- */
 
 const EditProfile = () => {
 
@@ -60,15 +52,36 @@ const EditProfile = () => {
         //Lo que ahorita de diga poner
         let img = e.target.files[0];
         setImage(URL.createObjectURL(img));
-        console.log(image);
         setFormData({...formData,[e.target.name]: img });
         console.log('form', formData);
         uploadBytes(storageRef, img).then((snapshot) => {
             console.log('Uploaded a blob or file!');
         });
+
+        getDownloadURL(storageRef).then(url => {
+            console.log('Download URL', url);
+            const img = document.getElementsByClassName('profile_image');
+            img.setAttribute('src', url);
+        }).catch((error) => {
+            console.log('error: ', error);
+        });
+
+        /*getDownloadURL(
+            ref(storage, profile.id)
+                .then((url) => {
+                // Or inserted into an <img> element
+                
+                console.log('Url download!');
+        }).catch((error) => {
+            console.log('error: ', error);
+        }));*/
     };
 
-    
+    function testStorage (){
+        //const img = document.getElementsByClassName('profile_image');
+        //img.setAttribute('src', 'url');
+        
+    }
 
     const phoneValidation = (phone) => {
         const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
@@ -107,7 +120,6 @@ const EditProfile = () => {
                 theme='colored'
             />
                     <div className='card-header mb-4'>
-
                     <h1 className='card-title  text-center'>Editar mi perfil</h1>
                     </div>
                     <div className='card-body'>
@@ -118,14 +130,12 @@ const EditProfile = () => {
                                 <div className='form-group text-center'>
                                     <div className='row'>
                                         <div className='col'>
-                                            <img className='profile-image' src={image} style={{borderRadius: '50%', width: '20%'}}/>
+                                            <input type="image" className='profile_image' src={image} style={{borderRadius: '50%', width: '20%'}}/>
                                         </div>
                                         <div>
                                             <input value='' type='file' name='profile_image' onChange={e=>onImageChange(e)}></input>
                                         </div>
-
                                     </div>
-
                                 </div>
                                 <div className='form-group'>
                                     <span className="card-text text-white">
@@ -172,7 +182,6 @@ const EditProfile = () => {
                                         required
                                     />
                                 </div> */}
-                                
                                 <div className='form-group'>
                                     <span className="card-text text-white">
                                         <FaPhoneAlt style={{color: 'white', marginRight: '5px'}}/>
@@ -187,7 +196,6 @@ const EditProfile = () => {
                                         required
                                     />
                                 </div>
-
                                 <hr></hr>
                                 <div className='row'>
                                     <div className='col text-center mt-2 mb-2'>
@@ -205,20 +213,13 @@ const EditProfile = () => {
                                         </Link>
                                     </div>
                                 </div>
-
-                            </form>
-                            
-                                         
+                            </form>         
                         </div>
                         }
                         <script src="EditProfile.js"></script>
                         {isLoading && <Loading/>}
                     </div>
-                    
-                   
                 </div>
-
-                
             </article>
         </div>
     );
