@@ -3,34 +3,60 @@ import '../../../components/businessLine/Postcard.css';
 import CustomModal from '../CustomModal';
 import { handleAppointment } from '../../../actions/api';
 import { Link, Navigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, employees, appointments, user}) => {
     
     const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
     const [modalState, setModalState] = useState({viewCompleted: false, modal: false, apptForm: '' });
     const [appointmentsId, setAppointmentsId] = useState(appointments.map(el=>el.id))
+    const userAppts = user[0].appointments;
     
     const toggle = () => {
         setModalState({ modal: !modalState.modal })
     }
 
-    const handleSubmit = (formData, apptData) => {
-        toggle();
+    const handleSubmit = (formData, apptData, toast) => {
+        
         apptData.data = formData;
         console.log(apptData);       
-        handleAppointment(user[0], apptData, appointmentsId);
-        return (<Navigate to='/appointment' replace={true} />);
+        var dateCollision = false;
+        
+
+        const aD = new Date(apptData.date);
+
+        for (let i = 0; i < appointments.length; i++) {
+            console.log("----")
+            
+            const date = new Date(appointments[i].date);
+            const correctedDate = new Date(date.toISOString().slice(0, -1));
+            
+            if (aD.getTime()===correctedDate.getTime()){
+                dateCollision=true;
+                break;
+            };
+        };
+
+        if (dateCollision===true){
+            toast.error('Horario no disponible, selecciona otro porfavor.');
+        }else{
+            handleAppointment(user[0], apptData, appointmentsId);
+            toggle();
+            return (<Navigate to='/appointment' replace={true} />);
+        }
+        
     };
 
     
     const scheduleAppointment = (item) => {
-        setModalState({ apptForm: apptForm, modal: !modalState.modal });
+        setModalState({ apptForm: apptForm, modal: !modalState.modal});
     };
 
 
     
     return(
         <div>
+            
             <section className='dark '>
                 <div className='container py-4'>
                     <article className='postcard dark blue shadow-lg'>
@@ -48,7 +74,6 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
                     </article>
                 </div>
             </section>
-
             {modalState.modal ? (
                 <CustomModal
                     activeItem={modalState.activeItem}
@@ -64,6 +89,7 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
                     isEdit={false}
                 />
             ) : null}
+            
         </div>
     );
 };
