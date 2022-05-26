@@ -19,3 +19,10 @@ input{
   color: black;
   font-weight: 500 !important;
 }
+
+textarea{
+  font-family: 'Roboto';
+  letter-spacing: 0.14vh;
+  color: black;
+  font-weight: 500 !important;
+}
