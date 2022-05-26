@@ -9,20 +9,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import { handleUser } from '../.././actions/api';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import './styles/EditProfile.css';
 
 /*
 const imageCol = collection(db, 'image');
 const imageSnapshot = await getDocs(imageCol);
 const imageList = imageSnapshot.docs.map(doc => doc.data());
 return imageList;
+input src='https://pngimg.com/uploads/letter_r/letter_r_PNG93904.png'  id="userImage"/>
  */
 
 const EditProfile = () => {
-
-   
-    async function uploadImage() {
-        
-    }
 
     const { id } = useParams();
     let navigate = useNavigate();
@@ -30,29 +28,47 @@ const EditProfile = () => {
     
     const [user, setUser] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    
+
     useEffect(async () => {
         setIsLoading(true);
         await getUserClient(id,setUser);
+        
         setIsLoading(false);
     }, []);
 
-    const profile = user;
-    console.log(profile)
-    
-    const [formData, setFormData] = useState({
-        name: profile.name,
-        last_name: profile.last_name,
-        email: profile.email,
-        phone_number: profile.phone_number,
-    });
+    const profile = user ? user :[];
+    const [image, setImage] = useState(profile ? profile:'')
+    const [formData, setFormData ] = useState(profile ?{
+        name: '',
+        last_name: '',
+        email: '',
+        phone_number: '',
+        profile_image:''
+    } : {})
 
-    const { name, last_name, email, phone_number } = formData;
+    const { name, last_name, email, phone_number, profile_image} = formData;
 
     const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-        console.log(formData);
+        console.log('form', formData);
     };
+
+    const storage = getStorage();
+    const storageRef = ref(storage, profile.id);
+
+    const onImageChange = e => {
+        //Lo que ahorita de diga poner
+        let img = e.target.files[0];
+        setImage(URL.createObjectURL(img));
+        console.log(image);
+        setFormData({...formData,[e.target.name]: img });
+        console.log('form', formData);
+        uploadBytes(storageRef, img).then((snapshot) => {
+            console.log('Uploaded a blob or file!');
+        });
+    };
+
+    
 
     const phoneValidation = (phone) => {
         const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
@@ -99,9 +115,17 @@ const EditProfile = () => {
                             {!isLoading && user && 
                             <div>
                             <form onSubmit={e => onSubmit(e)}>
-                                <div className='form-group'>
-                                    <button style={{marginLeft: '20%'}} id="getImage">Seleccionar imagen</button>
-                                    <button style={{marginLeft: '40%'}} onclick='uploadImage()'>Cambiar imagen</button>
+                                <div className='form-group text-center'>
+                                    <div className='row'>
+                                        <div className='col'>
+                                            <img className='profile-image' src={image} style={{borderRadius: '50%', width: '20%'}}/>
+                                        </div>
+                                        <div>
+                                            <input value='' type='file' name='profile_image' onChange={e=>onImageChange(e)}></input>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                                 <div className='form-group'>
                                     <span className="card-text text-white">
@@ -187,6 +211,7 @@ const EditProfile = () => {
                                          
                         </div>
                         }
+                        <script src="EditProfile.js"></script>
                         {isLoading && <Loading/>}
                     </div>
                     
