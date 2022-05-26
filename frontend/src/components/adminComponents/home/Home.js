@@ -3,19 +3,16 @@ import { Link } from 'react-router-dom';
 import NextAppts from '../../common/NextAppts';
 import CreatePyme from '../pyme/CreatePyme';
 
-const Home = ({admin, user, pymes, userAppts, professionals, appointments, businessLines}) => {
-    // const isNewAdmin = user[0].owned_pyme === null ? true : false;
+const Home = ({admin, user, clients, pymes, userAppts, professionals, appointments, businessLines}) => {
     const pyme = pymes.filter(el=>el.admin === admin.id);
     const isNewAdmin = pyme.length > 0 ? false : true;
-    const [isLoading, setIsLoading] = useState(false);
-    // const [pyme, setPyme] = useState([]);
-    const newAppointments = userAppts.map(el => el.id);
+    const pymeAppointments = userAppts.map(el => el.id);
     let filteredAppts = [];
     const id = pyme.length > 0 ? pyme[0].id : '';
     if(!isNewAdmin){
         filteredAppts = userAppts.filter(el => el.pyme === id);
-        // pyme = pymes.filter(el => el.id === id)[0];
-    }
+    };
+    
 
     return(
         <div>
@@ -25,9 +22,10 @@ const Home = ({admin, user, pymes, userAppts, professionals, appointments, busin
                     <NextAppts
                         userAppts={filteredAppts}
                         professionals={professionals} 
-                        appointments={newAppointments}
+                        appointments={pymeAppointments}
                         pymes={pymes}
                         isAdmin={true}
+                        clients={clients}
                     />
                     <h1 style={{fontWeight: 'bold'}} className='text-black text-center'>Dale un vistazo a tu PyME</h1>
 

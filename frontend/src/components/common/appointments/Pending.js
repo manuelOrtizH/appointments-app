@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Appointments.css';
-import '../../../common/styles/Card.css';
-import { createApptFragments } from '../../../../actions/createApptsCard';
-import Loading from '../../../common/Loading';
+import '../styles/Card.css';
+import { createApptFragments } from '../../../actions/createApptsCard';
 
-const CardNextAppts = ({date,month, appointments, professionals, pymes, user, allAppointments}) => {
+
+const Pending = ({date,month, appointments, professionals, pymes, user, allAppointments, isAdmin}) => {
     const [isLoading, setIsLoading] = useState(false);
     const notCompletedAppts = appointments.filter(el=> !el.completed);
-    const listAppointmentsItems = createApptFragments(notCompletedAppts, pymes, professionals, false, user);
+    const listAppointmentsItems = createApptFragments(notCompletedAppts, pymes, professionals, false, user, isAdmin);
     
 
     return (
@@ -52,4 +52,4 @@ const CardNextAppts = ({date,month, appointments, professionals, pymes, user, al
     );
 };
 
-export default CardNextAppts;
+export default Pending;

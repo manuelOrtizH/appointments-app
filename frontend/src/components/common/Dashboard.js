@@ -10,7 +10,7 @@ import {
     getAllProfessionals, 
     getAllPymes, 
     getAllBusinessLines, 
-    getAllAdmins } from '../../actions/api';
+    getAllAdmins, getAllUserClients } from '../../actions/api';
 import Loading from './Loading';
 
 const Dashboard = ({isAuthenticated}) => {
@@ -23,6 +23,7 @@ const Dashboard = ({isAuthenticated}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [userAppts, setUserAppts] = useState([]);
     const [admins, setAdmins] = useState([]);
+    const [userClients, setUserClients] = useState([]);
     
     useEffect(async () => {
         setIsLoading(true);
@@ -32,15 +33,17 @@ const Dashboard = ({isAuthenticated}) => {
         await getAllPymes(setPymes);
         await getAllBusinessLines(setBusinessLines);
         await getAllAdmins(setAdmins);
+        await getAllUserClients(setUserClients);
         setIsLoading(false);
     }, []);
     
-    
     const isAdmin = user.length > 0 ? user[0].is_admin : false;
-
     let username = localStorage.getItem('userName');
+    
+    const adminFiltered = admins.length > 0 ? admins.filter(el=> el.uid == localStorage.getItem('userId')) : [];
 
-    const adminFiltered = admins.length > 0 ? admins.filter(el=> el.uid === 39) : [];
+    
+    
 
     if(!isAuthenticated) return (<Navigate to='/' replace={true} />);
 
@@ -67,6 +70,7 @@ const Dashboard = ({isAuthenticated}) => {
                     <HomeAdmin
                         admin={adminFiltered[0]}
                         user={user}
+                        clients={userClients}
                         pymes={pymes}
                         userAppts={userAppts}
                         professionals={professionals}

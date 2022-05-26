@@ -1,8 +1,8 @@
 import React from "react";
-import NextApptsInfo from '../components/userComponents/appointments/cardNextAppointments/NextApptsInfo';
+import Info from '../components/common/appointments/Info';
 import { getDate } from "./getDate";
 
-export const createApptFragments = (appointments, pymes, professionals, isHistorial, user) => {
+export const createApptFragments = (appointments, pymes, professionals, isHistorial, user, isAdmin) => {
     const dayFormatter = new Intl.DateTimeFormat('es', {day: '2-digit'});
     const monthFormatter = new Intl.DateTimeFormat('es', {month: 'long'});
     const hourFormatter = new Intl.DateTimeFormat('es', {hour: '2-digit', minute: '2-digit'})
@@ -16,7 +16,7 @@ export const createApptFragments = (appointments, pymes, professionals, isHistor
         const [day,month,hour] = [...getDate(new Date(appt.date))]
         listAppointmentsItems.push( 
             <div key={key}>
-                <NextApptsInfo
+                <Info
                     user={user}
                     professionals={professionals}
                     employees={pyme.employees}
@@ -33,6 +33,7 @@ export const createApptFragments = (appointments, pymes, professionals, isHistor
                     imageUrl={pyme.image_url}
                     customForm={appt.data}
                     isHistorial={isHistorial}
+                    isAdmin={isAdmin}
                 />
             </div>
         );

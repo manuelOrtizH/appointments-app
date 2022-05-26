@@ -8,7 +8,7 @@ import Signup from './containers/Signup';
 import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
 import Dashboard from './components/common/Dashboard';
-import Appointment from './components/userComponents/appointments/Appointments';
+import Appointment from './components/common/appointments/Appointments';
 import { Provider } from 'react-redux';
 import store from './store';
 // import PrivateRoute from './hocs/PrivateRoute';
@@ -17,7 +17,7 @@ import Profile from './components/profile/Profile';
 import EditProfile from './components/profile/EditProfile';
 import PymeDashboard from './components/adminComponents/pyme/PymeDashboard';
 import EasterEgg from './components/EasterEgg';
-import Calendar from './components/userComponents/calendar/Calendar';
+import Calendar from './components/common/Calendar';
 import Pyme from './components/userComponents/pyme/InfoPyme';
 
 import 'react-toastify/dist/ReactToastify.css';

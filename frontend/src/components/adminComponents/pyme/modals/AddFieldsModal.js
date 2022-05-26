@@ -15,7 +15,7 @@ import { FaPlus, FaTrash } from "react-icons/fa";
 
 import { FaPenFancy } from 'react-icons/fa';
 
-const AddFieldModal = (props) => {
+const AddFieldsModal = (props) => {
     const [formData, setFormData] = useState({});
     const [customFormData, setCustomFormData] = useState();
     const myForm = {'Salud': {'Tipo Sangre': ' ', 'Medicamentos': ' ', 'Historial Medico': ' ', 'Tratamiento': ' '},
@@ -140,9 +140,9 @@ const AddFieldModal = (props) => {
                                 value={field[field]}
                                 onChange={e=>onCustomFormChange(e)}
 						    >
-							<option value='' hidden></option>
-							{options[props.businessLine]}
-						</Input>
+                                <option value='' hidden></option>
+                                {options[props.businessLine]}
+						    </Input>
                         </FormGroup>
                             
                         
@@ -168,4 +168,4 @@ const AddFieldModal = (props) => {
         </div>
     );
 };
-export default AddFieldModal;
+export default AddFieldsModal;

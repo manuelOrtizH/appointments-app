@@ -13,7 +13,7 @@ import {
 
 import { FaPenFancy } from 'react-icons/fa';
 
-const CustomModal = (props) => {
+const EditFieldsModal = (props) => {
     const [formData, setFormData] = useState(props.customForm);
     const onCustomFormChange = (e) => {
         console.log(formData);
@@ -65,4 +65,4 @@ const CustomModal = (props) => {
         </div>
     );
 };
-export default CustomModal;
+export default EditFieldsModal;

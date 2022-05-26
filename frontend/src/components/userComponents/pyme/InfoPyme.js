@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { FaCalendarCheck } from 'react-icons/fa'
-import InfoApptModal from '../../common/ModalAppt';
+import ModalAppt from '../../common/ModalAppt';
 import { getAllProfessionals, getPyme, getUser, handleAppointment, getUserAppointments } from '../../../actions/api';
 import CalendarPyme from './CalendarPyme';
 import Alert from "sweetalert2";
@@ -36,7 +36,7 @@ const InfoPyme = () => {
     const filteredAppts = userAppts.length > 0 ? userAppts.filter(el=>appointments.includes(el.id)) : [];
     const appointmentsId = filteredAppts.length > 0 ? filteredAppts.map(el=>el.id) : [];
     const pymeAppts = userAppts.length > 0 ? userAppts.filter(el=>el.pyme === id): [];
-
+    
     const handleSubmit = async(formData, apptData, toast) => {
         
         apptData.data = formData;
@@ -64,7 +64,6 @@ const InfoPyme = () => {
             toggle();
             await Alert.fire("Cita creada!", `Tu cita con ${pyme.name} ha sido registrada con éxito`, "success");
             window.location.reload();
-            // return (<Navigate to='/appointment' replace={true} />);
         }
         
     };
@@ -106,14 +105,14 @@ const InfoPyme = () => {
                 
             
                 {modalState.modal ? (
-                    <InfoApptModal
+                    <ModalAppt
                         activeItem={modalState.activeItem}
                         toggle={toggle}
                         onSave={handleSubmit}
                         pymeName={pyme.name}
                         pymeAddress={pyme.address}
                         pymeImage={pyme.image_url}
-                        customForm={{...pyme.custom_data_from}}
+                        customForm={pyme.custom_data_form}
                         professionals={professionals}
                         pymeEmployees={pyme.employees}
                         apptForm={apptForm}

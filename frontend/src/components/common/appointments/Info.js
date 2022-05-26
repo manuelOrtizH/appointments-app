@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import '../styles/Appointments.css';
-import '../../../common/styles/Card.css';
+import '../styles/Card.css';
 import '../styles/ListAppts.css';
 import useCollapse from 'react-collapsed';
-import { deleteAppointment, handleAppointment, getUserAppointments } from '../../../../actions/api';
-import InfoApptModal from '../../../common/ModalAppt';
+import { deleteAppointment, handleAppointment, getUserAppointments } from '../../../actions/api';
+import InfoApptModal from '../ModalAppt';
 import Alert from "sweetalert2";
 
 
-const NextApptsInfo = ({user, professionals, employees, appointment, id, pymeId,pyme, address,reason,responsable,day,month,hour, imageUrl, customForm, isHistorial}) => {
+const Info = ({user, professionals, employees, appointment, id, pymeId,pyme, address,reason,responsable,day,month,hour, imageUrl, customForm, isHistorial, isAdmin}) => {
     const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
     const listInfoAppt = [];
     const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
@@ -124,4 +124,4 @@ const NextApptsInfo = ({user, professionals, employees, appointment, id, pymeId,
 
 };
 
-export default NextApptsInfo;
+export default Info;

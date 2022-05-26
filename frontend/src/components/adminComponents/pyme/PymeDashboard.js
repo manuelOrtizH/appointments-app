@@ -3,18 +3,31 @@ import { useParams } from 'react-router-dom';
 import { getPyme } from '../../../actions/api';
 import Loading from '../../common/Loading';
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import CustomModal from './CustomModal';
-import AddFieldModal from './AddFieldModal';
-import { handlePyme } from '../../../actions/api';
+import EditFieldsModal from './modals/EditFieldsModal';
+import AddFieldModal from './modals/AddFieldsModal';
+import { handlePyme, handleProfessional } from '../../../actions/api';
+import Alert from 'sweetalert2';
+import AddProModal from './modals/AddProModal';
+import EditPymeModal from './modals/EditPymeModal';
 
 const PymeDashboard = () => {
     const { id } = useParams();
-    const [modalState, setModalState] = useState({viewCompleted: false, modal: false, apptForm: '' });
-    const [modalWizard, setModalWizard] = useState({viewCompleted: false, modal: false, apptForm: '' });
-    const [pyme, setPyme] = useState([])
+    const [modalEditField, setModalEditField] = useState({viewCompleted: false, modal: false, apptForm: '' });
+    const [modalAddField, setModalAddField] = useState({viewCompleted: false, modal: false, apptForm: '' });
+    const [modalAddPro, setModalAddPro] = useState({viewCompleted: false, modal: false, apptForm: '' });
+    const [modalEditPyme, setModalEditPyme] = useState({viewCompleted: false, modal: false, apptForm: '' });
+    const [pyme, setPyme] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const customDataForm = [];
     const invertedCustomDataForm = {}
+    const [professionalForm, setProfessionalForm] = useState({
+        name: '',
+        last_name: '',
+        phone_number: '',
+        email: '',
+        calendar: {},
+        profile_image: 'https://i0.wp.com/researchictafrica.net/wp/wp-content/uploads/2016/10/default-profile-pic.jpg?ssl=1'
+    });
     
     useEffect(async () => {
         setIsLoading(true);
@@ -22,14 +35,14 @@ const PymeDashboard = () => {
         setIsLoading(false);
     }, []);
 
-    const pymeInfo = pyme;
+    const pymeInfo = pyme ? pyme : [];
+    const numEmployees = pymeInfo.length > 0 ? pymeInfo.employees.length : 0;
 
     const deleteField = k => {
         const tempInfo = pyme.custom_data_form;
         delete tempInfo[k];
         pymeInfo.custom_data_form = tempInfo;
         handlePyme(pymeInfo, setPyme);
-        
     };
 
     
@@ -57,21 +70,42 @@ const PymeDashboard = () => {
         
     };
 
-    const toggle = () => setModalState({ modal: !modalState.modal });
-    const wToggle = () => setModalWizard({ modal: !modalWizard.modal });
+    const phoneValidation = (phone) => {
+        const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
+        return !(!phone || regex.test(phone) === false || phone.length != 10);
+    }
 
-    const handleSubmit = (formData) => {
-        toggle();
+    const editFieldModalToggle = () => setModalEditField({ modal: !modalEditField.modal });
+    const addFieldModalToggle = () => setModalAddField({ modal: !modalAddField.modal });
+    const addProModalToggle = () => setModalAddPro({modal: !modalAddPro.modal});
+    const editPymeModalToggle = () => setModalEditPyme({modal: !modalEditPyme.modal});
+
+    const handleSubmitEditField = (formData) => {
+        editFieldModalToggle();
         const finalFormData = {}
         for(const[k,v] of Object.entries(formData)){
             finalFormData[v]= ' '
         };
         pymeInfo.custom_data_form = finalFormData;
         handlePyme(pymeInfo, setPyme);
+        Alert.fire("Campos Editados!", `Tus cambios se han hecho con éxito`, "success");
     };
 
-    const handleSubmitWizard = (formData, customFormData) => {
-        wToggle();
+    const handleSubmitAddPro = (formData, toast) => {
+        
+        if(!phoneValidation(formData.phone_number)){
+            toast.error('El número telefónico ingresado no es válido.');
+        }else{
+            handleProfessional(formData, pyme);
+            addProModalToggle();
+            Alert.fire("Colaborador registrado!", `Has registrado con éxito a un colaborador`, "success");
+            
+            
+        }
+    };
+
+    const handleSubmitAddField = (formData, customFormData) => {
+        addFieldModalToggle();
         const finalFormData = {};
         if(formData){
             for(const[k,v] of Object.entries(formData)){
@@ -84,18 +118,25 @@ const PymeDashboard = () => {
                 finalFormData[v]= ' ';
             };
         };
-
         
         for(const[k,v] of Object.entries(pymeInfo.custom_data_form)){
             finalFormData[k] = ' '
         }
         pymeInfo.custom_data_form = finalFormData;
         handlePyme(pymeInfo, setPyme);
+        Alert.fire("Campos agregados!", `Has registrado con éxito más campos`, "success");
     };
 
-    const handleEdit = (item) => setModalState({ apptForm: pyme.custom_data_form, modal: !modalState.modal });
-    const handleWizard = (item) => setModalWizard({ apptForm: pyme.custom_data_form, modal: !modalState.modal });
+    const handleSubmitEditPyme = (formData) => {
+        handlePyme(formData, setPyme);
+        editPymeModalToggle();
+        Alert.fire("PyME Editada!", `Tus cambios se han hecho con éxito`, "success");
+    }
 
+    const handleEditField = (item) => setModalEditField({ apptForm: pyme.custom_data_form, modal: !modalEditField.modal });
+    const handleAddField = (item) => setModalAddField({ apptForm: pyme.custom_data_form, modal: !modalEditField.modal });
+    const handleAddPro = (item) => setModalAddPro({ apptForm: pyme.custom_data_form, modal: !modalEditField.modal });
+    const handleEditPyme = (item) => setModalEditPyme({ apptForm: pyme.custom_data_form, modal: !modalEditPyme.modal });
 
     return (
         <div>
@@ -103,27 +144,39 @@ const PymeDashboard = () => {
                 <div>
                     <div className='card-body'>
                         <div className='no-border text-center'>
-                            {!isLoading && pyme &&
+                            {!isLoading && pymeInfo &&
                                 <div>
-                                    <h1 className='card-title text-center' style={{color: '#880808'}}><b>{pyme.name}</b></h1>
+                                    <h1 className='card-title text-center' style={{color: '#880808'}}><b>{pymeInfo.name}</b></h1>
                                     <hr></hr>
-                                    
                                     <a className='card-title text-center'>
-                                        <img src={pyme.image_url} style={{borderRadius: '50%', width: '20%'}}/>
+                                        <img src={pymeInfo.image_url} style={{borderRadius: '50%', width: '20%'}}/>
                                     </a>
                                     <br></br>
-                                    <h5 className='card-title text-center mt-5'><b>{pyme.address}</b></h5>
+                                    <h5 className='card-title text-center mt-5'>Dirección</h5>
+                                    <h5 className='card-title text-center '><b>{pymeInfo.address}</b></h5>
                                     <hr></hr>
-                                    <h5 className='card-title text-center'><b>Giro: {pyme.business_line}</b></h5>
+                                    <h5 className='card-title text-center mt-5'>Slogan</h5>
+                                    <h5 className='card-title text-center '><b>{pymeInfo.slogan}</b></h5>
                                     <hr></hr>
+                                    <h5 className='card-title text-center mt-5'>Descripción</h5>
+                                    <h5 className='card-title text-center '><b>{pymeInfo.description}</b></h5>
+                                    <hr></hr>
+                                    <h5 className='card-title text-center mt-5'>Número de colaboradores</h5>
 
-
-
+                                    <h5 className='card-title text-center '><b>{numEmployees}</b></h5>
+                                    <button className='btn btn-success' onClick={handleAddPro} href='#'><FaPlus style={{color: 'white'}}/> Agregar Colaboardor</button>
+                                    <hr></hr>
+                                    <h5 className='card-title text-center'>Giro</h5>
+                                    <h5 className='text-center'><b>{pymeInfo.business_line}</b></h5>
+                                    <hr></hr>
+                                    <h6 className='mt-5 mb-3'><i style={{fontWeight: '800'}}>Crea los campos que necesite llevar tu cita para llevarla a cabo</i></h6>
                                     <div className="accordion" id="accordionPanelsStayOpenExample" >
+
                                         <div className="accordion-item">
                                             <h2 className="accordion-header" id="panelsStayOpen-headingOne">
                                                 <button className="btn btn-block accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" >
                                                 <h2 className='mb-4'>Datos de mi cita  </h2>
+                                                
                                                 </button>
                                                 
                                             </h2>
@@ -131,8 +184,8 @@ const PymeDashboard = () => {
                                             <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                                             <div className='row'>
                                                 <div className='col text-right mr-5'>
-                                                    <button className='btn btn-success mr-2' onClick={handleWizard} href='#'><FaPlus style={{color: 'white'}}/> Agregar Campos</button>
-                                                    <button className='btn btn-warning' onClick={handleEdit} href='#'><FaEdit style={{color: 'black'}}/> Editar</button>
+                                                    <button className='btn btn-success mr-2' onClick={handleAddField} href='#'><FaPlus style={{color: 'white'}}/> Agregar Campos</button>
+                                                    <button className='btn btn-warning' onClick={handleEditField} href='#'><FaEdit style={{color: 'black'}}/> Editar</button>
                                                 </div>
                                             </div>
                                             
@@ -157,7 +210,7 @@ const PymeDashboard = () => {
                         <div className='container'>
                             <div className='row'>
                                 <div className='col text-center'>
-                                    <button className='btn btn-warning'>Editar <b>{pyme.name}</b></button>
+                                    <button onClick={ handleEditPyme } className='btn btn-warning'>Editar <b>{pyme.name}</b></button>
                                 </div>
                             </div>
                         </div>
@@ -167,23 +220,40 @@ const PymeDashboard = () => {
                 
             </article>
                                         
-            {modalState.modal ? (
-                <CustomModal
-                    activeItem={modalState.activeItem}
-                    toggle={toggle}
-                    onSave={handleSubmit}
+            {modalEditField.modal ? (
+                <EditFieldsModal
+                    activeItem={modalEditField.activeItem}
+                    toggle={editFieldModalToggle}
+                    onSave={handleSubmitEditField}
                     customForm={invertedCustomDataForm}
                     isEdit={true}
                 />
             ) : null}
-            {modalWizard.modal ? (
+            {modalAddField.modal ? (
                 <AddFieldModal
-                    activeItem={modalWizard.activeItem}
-                    toggle={wToggle}
-                    onSave={handleSubmitWizard}
+                    activeItem={modalAddField.activeItem}
+                    toggle={addFieldModalToggle}
+                    onSave={handleSubmitAddField}
                     businessLine={pymeInfo.business_line}
                 />
             ) : null}
+            {modalAddPro.modal ? (
+                <AddProModal
+                    activeItem={modalAddPro.activeItem}
+                    toggle={addProModalToggle}
+                    onSave={handleSubmitAddPro}
+                    customForm={professionalForm}
+                />
+            ) : null}
+            {modalEditPyme.modal ? (
+                <EditPymeModal
+                    activeItem={modalEditPyme.activeItem}
+                    toggle={editPymeModalToggle}
+                    onSave={handleSubmitEditPyme}
+                    customForm={pyme}
+                />
+            ) : null}
+
         </div>
     );
 };

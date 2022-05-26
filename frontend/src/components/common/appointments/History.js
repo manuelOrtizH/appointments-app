@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../styles/Appointments.css';
-import { createApptFragments } from '../../../../actions/createApptsCard';
-import { handleAppointment } from '../../../../actions/api';
+import { createApptFragments } from '../../../actions/createApptsCard';
 
-const CardHistoryAppts = ({appointments, professionals, pymes, user}) => {
+const History = ({appointments, professionals, pymes, user, isAdmin}) => {
     
     const completedAppointments = appointments.filter(el=>el.completed);
     const listAppointmentsItems = createApptFragments(completedAppointments, pymes, professionals, true, user);
@@ -41,4 +40,4 @@ const CardHistoryAppts = ({appointments, professionals, pymes, user}) => {
 
 };
 
-export default CardHistoryAppts;
+export default History;
