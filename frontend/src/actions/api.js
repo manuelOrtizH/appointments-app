@@ -48,19 +48,6 @@ export const editUser = async (body) => {
     await axios.put(`${process.env.REACT_APP_API_URL}/api/user_clients/${body.id}/`, body,config);
 };
 
-export const getAllUserClients = async (setUserClients) => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        }
-    };
-    await axios.get(`${process.env.REACT_APP_API_URL}/api/users_clients/`, config)
-    .then((res)=>{
-        setUserClients(res.data);
-    });
-};
-
 export const getAllBusinessLines = async (setBusinessLines) => {
     const config = {
         headers: {
@@ -167,10 +154,10 @@ export const handleAppointment = async (user, body, appts) => {
         await axios.put(`${process.env.REACT_APP_API_URL}/api/appointments/${body.id}/`, body,config);
     } else {
         await axios.post(`${process.env.REACT_APP_API_URL}/api/appointments/`, body,config)
-        .then(async(res)=>{
+        .then((res)=>{
             appts.push(res.data.id); 
             user.appointments = appts;
-            await axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user, config);
+            axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user, config);
         });
     };
 
@@ -211,46 +198,5 @@ export const handlePyme = async(body, setPyme) => {
         .then((res)=> setPyme(res.data));
     } else {
         await axios.post(`${process.env.REACT_APP_API_URL}/api/pymes/`, body,config);
-    };
-};
-
-export const registerPyme = async(body,user) => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    };
-
-    await axios.post(`${process.env.REACT_APP_API_URL}/api/pymes/`, body,config);
-
-};
-
-export const getAllAdmins = async(setAdmins) => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    };
-    await axios.get(`${process.env.REACT_APP_API_URL}/api/admins/`,config)
-    .then(res => setAdmins(res.data));
-
-};
-
-export const handleProfessional = async(body, pyme) => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    };
-
-    if (body.id){
-        await axios.put(`${process.env.REACT_APP_API_URL}/api/professionists/${body.id}/`, body,config);
-    } else {
-        await axios.post(`${process.env.REACT_APP_API_URL}/api/professionists/`, body,config)
-        .then(async(res) => {
-            pyme.employees.push(res.data.id);
-            console.log(pyme);
-            await axios.put(`${process.env.REACT_APP_API_URL}/api/pymes/${pyme.id}/`, pyme, config);
-        });
     };
 };

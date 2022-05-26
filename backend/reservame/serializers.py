@@ -6,11 +6,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-
-class AdminSerializer(serializers.DocumentSerializer):
-    class Meta:
-        model = Admin
-        fields = 'id','name', 'last_name', 'phone_number', 'profile_image', 'email', 'uid',
 class UserCreateSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = User
@@ -19,7 +14,7 @@ class UserCreateSerializer(UserCreateSerializer):
 class PymeSerializer(serializers.DocumentSerializer):
     class Meta:
         model = Pyme
-        fields = 'id', 'name', 'address', 'slogan','employees', 'business_line', 'description' ,'custom_data_form', 'image_url', 'admin'  
+        fields = 'id', 'name', 'address', 'slogan','employees', 'business_line', 'description' ,'custom_data_form', 'image_url'  
 
 class AppointmentSerializer(serializers.DocumentSerializer):
     class Meta:
@@ -34,7 +29,7 @@ class UserClientSerializer(serializers.DocumentSerializer):
 class BusinessLineSerializer(serializers.DocumentSerializer):
     class Meta: 
         model = BusinessLine
-        fields = 'id', 'name', 'description', 'image_description', 'static_forms'
+        fields = 'id', 'name', 'description', 'pymes', 'image_description', 'static_forms'
 
 class ProfessionistSerializer(serializers.DocumentSerializer):
     class Meta: 

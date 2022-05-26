@@ -9,12 +9,6 @@ from reservame.models import *
 from django.utils.decorators import method_decorator
 # Create your views here.
 
-class AdminView(viewsets.ModelViewSet):
-    lookup_field = 'id'
-    serializer_class = AdminSerializer
-
-    def get_queryset(self):
-        return Admin.objects.all()
 class UserAccountView(viewsets.ModelViewSet):
     lookup_field = 'id'
     serializer_class = UserCreateSerializer

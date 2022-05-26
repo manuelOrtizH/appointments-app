@@ -7,18 +7,18 @@ import Login from './containers/Login';
 import Signup from './containers/Signup';
 import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
-import Dashboard from './components/common/Dashboard';
-import Appointment from './components/common/appointments/Appointments';
+import Dashboard from './components/Dashboard';
+import Appointment from './components/appointments/Appointments';
 import { Provider } from 'react-redux';
 import store from './store';
 // import PrivateRoute from './hocs/PrivateRoute';
 import Layout from './hocs/Layout';
 import Profile from './components/profile/Profile';
 import EditProfile from './components/profile/EditProfile';
-import PymeDashboard from './components/adminComponents/pyme/PymeDashboard';
+import PymeDashboard from './components/pymeAdmin/PymeDashboard';
 import EasterEgg from './components/EasterEgg';
-import Calendar from './components/common/Calendar';
-import Pyme from './components/userComponents/pyme/InfoPyme';
+import UserCalendar from './components/calendar/UserCalendar';
+import Pyme from './components/pymes/Pyme';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -40,7 +40,7 @@ const App = () => {
 						<Route path='/pyme/edit-pyme/:id' element={<PymeDashboard/>}/>
 						<Route exact path='/appointment' element={<Appointment/>}/>
 						<Route exact path='/jlm_el_mejor_profe' element={<EasterEgg/>}/>
-						<Route exact path='/calendar' element={<Calendar/>}/>
+						<Route exact path='/calendar' element={<UserCalendar/>}/>
 						<Route path='/pyme/:id' element={<Pyme/>}/>
 					</Routes>
 				</Layout>
