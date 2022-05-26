@@ -41,7 +41,7 @@ const Profile = () => {
                                     <hr></hr>
                                     
                                     <a className='card-title text-center'>
-                                        <Avatar alt="Remy Sharp" src={profile.profile_image} style={{marginLeft: '46%', alignSelf: 'center'}} sx={{ width: 90, height: 90 }}/>
+                                        <Avatar alt="Remy Sharp" src={profile.profile_image} style={{marginLeft: '47%', alignSelf: 'center'}} sx={{ width: 90, height: 90 }}/>
                                     </a>
                                     <hr></hr>
                                     <h5 className='card-title text-center'><b>Nombre(s)</b></h5>
