@@ -4,7 +4,8 @@ import NextAppts from '../.././NextAppts';
 import CreatePyme from '../pyme/CreatePyme';
 
 const Home = ({user, pymes, userAppts, professionals, appointments, businessLines}) => {
-    const isNewAdmin = user[0].owned_pyme === null ? true : false;
+    // const isNewAdmin = user[0].owned_pyme === null ? true : false;
+    const isNewAdmin = true;
     const [isLoading, setIsLoading] = useState(false);
     // const [pyme, setPyme] = useState([]);
     const newAppointments = userAppts.map(el => el.id);
