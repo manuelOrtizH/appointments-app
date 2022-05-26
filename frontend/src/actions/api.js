@@ -208,10 +208,17 @@ export const registerPyme = async(body,user) => {
         }
     };
 
-    await axios.post(`${process.env.REACT_APP_API_URL}/api/pymes/`, body,config)
-    .then(async(res) => {
-        user.owned_pyme = res.data.id;
-        await axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user,config);        
-    });
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/pymes/`, body,config);
+
+};
+
+export const getAllAdmins = async(setAdmins) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+    await axios.get(`${process.env.REACT_APP_API_URL}/api/admins/`,config)
+    .then(res => setAdmins(res.data));
 
 };

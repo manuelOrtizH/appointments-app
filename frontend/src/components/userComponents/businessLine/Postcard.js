@@ -1,5 +1,5 @@
 import React from 'react';
-import './Postcard.css'
+import './styles/Postcard.css'
 
 const Postcard = ({name, description, pymes, imageUrl}) => {
 

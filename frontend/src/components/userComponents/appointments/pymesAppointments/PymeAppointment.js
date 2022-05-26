@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import '../../../components/businessLine/Postcard.css';
-import CustomModal from '../CustomModal';
-import { handleAppointment } from '../../../actions/api';
+import '../.././businessLine/styles/Postcard.css'
+import InfoApptModal from '../InfoApptModal';
+import { handleAppointment } from '../../../../actions/api';
 import { Link, Navigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -75,7 +75,7 @@ const PymeAppointment = ({id,name,imageUrl, address, customForm, professionals, 
                 </div>
             </section>
             {modalState.modal ? (
-                <CustomModal
+                <InfoApptModal
                     activeItem={modalState.activeItem}
                     toggle={toggle}
                     onSave={handleSubmit}

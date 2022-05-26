@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import '../styles/Appointments.css';
-import '../../common/styles/Card.css';
+import '../../../common/styles/Card.css';
 import '../styles/ListAppts.css';
 import useCollapse from 'react-collapsed';
-import { deleteAppointment, handleAppointment, getUserAppointments } from '../../../actions/api';
+import { deleteAppointment, handleAppointment, getUserAppointments } from '../../../../actions/api';
 import axios from 'axios';
-import CustomModal from '../CustomModal';
+import InfoApptModal from '../InfoApptModal';
 import { Card } from '@nextui-org/react';
 
 
@@ -100,7 +100,7 @@ const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme,
 
             </section>
             {modalState.modal ? (
-                <CustomModal
+                <InfoApptModal
                     activeItem={modalState.activeItem}
                     toggle={toggle}
                     onSave={handleSubmit}

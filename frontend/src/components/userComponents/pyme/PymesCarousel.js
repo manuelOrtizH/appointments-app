@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import './Pymes.css';
+import './styles/Pymes.css';
 import { useNavigate } from 'react-router-dom';
-import { getAllPymes } from '../actions/api';
+import { getAllPymes } from '../../../actions/api';
 import OwlCarousel from 'react-owl-carousel';
-import Loading from '../components/common/Loading';
+import Loading from '../../common/Loading';
 import Avatar from '@mui/material/Avatar';
 
 const Pymes = ({pymes}) => {
@@ -13,7 +13,7 @@ const Pymes = ({pymes}) => {
     const listPymes = [];
 
     const options = {
-        items: 3,
+        items: 1,
         nav: true,
         loop: true,
     };

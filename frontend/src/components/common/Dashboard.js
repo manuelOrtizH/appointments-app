@@ -1,11 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
-import '../containers/Home.css';
-import HomeUser from './userComponents/home/Home';
-import HomeAdmin from './adminComponents/home/Home'
-import { getUser, getUserAppointments, getAllProfessionals, getAllPymes, getAllBusinessLines } from '../actions/api';
-import Loading from './common/Loading';
+import '../../containers/Home';
+import HomeUser from '../userComponents/home/Home';
+import HomeAdmin from '../adminComponents/home/Home'
+import { 
+    getUser, 
+    getUserAppointments, 
+    getAllProfessionals, 
+    getAllPymes, 
+    getAllBusinessLines, 
+    getAllAdmins } from '../../actions/api';
+import Loading from './Loading';
 
 const Dashboard = ({isAuthenticated}) => {
     let userName = '';
@@ -16,7 +22,7 @@ const Dashboard = ({isAuthenticated}) => {
     const [pymes, setPymes] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [userAppts, setUserAppts] = useState([]);
-    
+    const [admins, setAdmins] = useState([]);
     
     useEffect(async () => {
         setIsLoading(true);
@@ -25,6 +31,7 @@ const Dashboard = ({isAuthenticated}) => {
         await getAllProfessionals(setProfessionals);
         await getAllPymes(setPymes);
         await getAllBusinessLines(setBusinessLines);
+        await getAllAdmins(setAdmins);
         setIsLoading(false);
     }, []);
     
@@ -32,6 +39,8 @@ const Dashboard = ({isAuthenticated}) => {
     const isAdmin = user.length > 0 ? user[0].is_admin : false;
 
     let username = localStorage.getItem('userName');
+
+    const adminFiltered = admins.length > 0 ? admins.filter(el=> el.uid === 39) : [];
 
     if(!isAuthenticated) return (<Navigate to='/' replace={true} />);
 
@@ -56,6 +65,7 @@ const Dashboard = ({isAuthenticated}) => {
                 }
                 {isAdmin && 
                     <HomeAdmin
+                        admin={adminFiltered[0]}
                         user={user}
                         pymes={pymes}
                         userAppts={userAppts}

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getAllProfessionals, getUser, getUserAppointments, getAllPymes } from '../../actions/api';
-import CardHistoryAppts from './cardHistoryAppt/CardHistoryAppts';
-import CardAppts from './cardAppointments/CardAppts';
+import { getAllProfessionals, getUser, getUserAppointments, getAllPymes } from '../../../actions/api';
+import CardHistoryAppts from './cardHistoryAppointments/CardHistoryAppts';
+import CardNextAppts from './cardNextAppointments/CardNextAppts';
 import CarouselPymes from './pymesAppointments/CarouselPymes';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Loading from '../common/Loading';
+import Loading from '../../common/Loading';
 
 const Appointment = ({isAuthenticated}) => {
     const [professionals, setProfessionals] = useState([]);
@@ -52,7 +52,7 @@ const Appointment = ({isAuthenticated}) => {
                             pymes={pymes}
                             user={user}
                         />
-                        <CardAppts 
+                        <CardNextAppts 
                             date={date}
                             month={month}
                             appointments={filteredAppts}

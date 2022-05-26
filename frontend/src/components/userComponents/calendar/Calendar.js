@@ -4,13 +4,13 @@ import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin from "@fullcalendar/interaction"
 import timeGridPlugin from "@fullcalendar/timegrid";
 import esLocale from '@fullcalendar/core/locales/es'
-import { getUser, getUserAppointments, getAllProfessionals, getAllPymes, deleteAppointment } from '../../actions/api';
+import { getUser, getUserAppointments, getAllProfessionals, getAllPymes, deleteAppointment } from '../../../actions/api';
 import Alert from "sweetalert2";
-import Loading from '../common/Loading';
-import { getDate } from '../getDate';
+import Loading from '../../common/Loading';
+import { getDate } from '../../../actions/getDate';
 
 
-const UserCalendar = () => {
+const Calendar = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [appointments, setAppointments] = useState([]);
     const [userAppts, setUserAppts] = useState([]);
@@ -125,4 +125,4 @@ const UserCalendar = () => {
         </div>
     );
 };
-export default UserCalendar;
+export default Calendar;

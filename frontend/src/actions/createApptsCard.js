@@ -1,6 +1,6 @@
 import React from "react";
-import ListAppt from "./cardAppointments/ListAppt";
-import { getDate } from "../getDate";
+import NextApptsInfo from '../components/userComponents/appointments/cardNextAppointments/NextApptsInfo';
+import { getDate } from "./getDate";
 
 export const createApptFragments = (appointments, pymes, professionals, isHistorial, user) => {
     const dayFormatter = new Intl.DateTimeFormat('es', {day: '2-digit'});
@@ -17,7 +17,7 @@ export const createApptFragments = (appointments, pymes, professionals, isHistor
         console.log(new Date(appt.date).toISOString().slice(0,16))
         listAppointmentsItems.push( 
             <div key={key}>
-                <ListAppt
+                <NextApptsInfo
                     user={user}
                     professionals={professionals}
                     employees={pyme.employees}

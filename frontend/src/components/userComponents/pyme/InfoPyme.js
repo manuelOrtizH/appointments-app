@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import { getPyme } from '../../actions/api';
-import './styles/Pyme.css';
+import { getPyme } from '../../../actions/api';
 
-const Pyme = () => {
+
+const InfoPyme = () => {
     const { id } = useParams();
 
     
@@ -33,4 +33,4 @@ const Pyme = () => {
         </div>
     );
 };
-export default Pyme;
+export default InfoPyme;

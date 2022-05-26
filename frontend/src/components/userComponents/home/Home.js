@@ -1,7 +1,7 @@
 import React from 'react';
-import BusinessLine from '../../businessLine/BusinessLine';
-import NextAppts from '../../NextAppts';
-import Pymes from '../../Pymes';
+import BusinessLine from '../businessLine/BusinessLine';
+import NextAppts from '../../common/NextAppts';
+import Pymes from '../pyme/PymesCarousel';
 
 const Home = ({username, pymes, userAppts, professionals, appointments, businessLines}) => {
     return(
@@ -15,6 +15,7 @@ const Home = ({username, pymes, userAppts, professionals, appointments, business
                 professionals={professionals} 
                 appointments={appointments}
                 pymes={pymes}
+                isAdmin={false}
             />
             <hr></hr>
             {/* Agendar Citas con distintas PyMEs */}

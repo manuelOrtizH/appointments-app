@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import { FaBuilding, FaLocationArrow, FaQuoteLeft, FaBook, FaSplotch } from "react-icons/fa";
-import './styles/Pyme.css';
 import '../../common/styles/Form.css';
 import { registerPyme } from '../../../actions/api';
 import { Link, useParams, useNavigate, Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
-const CreatePyme = ({user}) => {
+const CreatePyme = ({admin}) => {
     let navigate = useNavigate();
     const [pyme, setPyme] = useState([]);
     const [formData, setFormData] = useState({
@@ -17,9 +16,10 @@ const CreatePyme = ({user}) => {
         business_line: '',
         custom_data_form: {},
         employees: [],
-        image_url: 'https://i0.wp.com/researchictafrica.net/wp/wp-content/uploads/2016/10/default-profile-pic.jpg?ssl=1',
+        image_url: 'https://pngimg.com/uploads/letter_r/letter_r_PNG93904.png',
+        admin: admin.id,
     });
-
+    
     const listOptions = [];
 
     const businesLines = ['Entretenimiento', 'Salud', 'Comida', 'Derecho', 'Educación', 'Belleza', 'Música']
@@ -39,7 +39,7 @@ const CreatePyme = ({user}) => {
 
     const onSubmit = async (e) =>{
         e.preventDefault();
-        registerPyme(formData, user[0]);
+        registerPyme(formData, admin);
         // navigate("/home", { replace: true });
         window.location.reload();
     };

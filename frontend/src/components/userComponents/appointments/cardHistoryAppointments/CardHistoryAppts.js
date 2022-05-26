@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Appointments.css';
-import { createApptFragments } from '../createApptsCard';
-import { handleAppointment } from '../../../actions/api';
+import { createApptFragments } from '../../../../actions/createApptsCard';
+import { handleAppointment } from '../../../../actions/api';
 
 const CardHistoryAppts = ({appointments, professionals, pymes, user}) => {
     

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { getPyme } from '../../actions/api';
-import Loading from '../common/Loading';
+import { getPyme } from '../../../actions/api';
+import Loading from '../../common/Loading';
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import CustomModal from './CustomModal';
 import AddFieldModal from './AddFieldModal';
-import { handlePyme } from '../../actions/api';
+import { handlePyme } from '../../../actions/api';
 
 const PymeDashboard = () => {
     const { id } = useParams();

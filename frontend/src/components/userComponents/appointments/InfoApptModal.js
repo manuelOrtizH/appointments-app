@@ -90,6 +90,7 @@ const CustomModal = (props) => {
 							type="datetime-local" id="date"
 							name="date" value={props.isEdit ? new Date(apptData.date).toISOString().slice(0,-1) : apptData.date}
 							onChange={e=>onApptFormChange(e)}
+							required
 						/>
 					</FormGroup>
 					{listFormData}
@@ -118,6 +119,7 @@ const CustomModal = (props) => {
 							name='responsable'
 							value={apptData.responsable}
 							onChange={e=>onApptFormChange(e)}
+							required
 						>
 							<option value='' hidden></option>
 							{listOptions}

@@ -1,33 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import NextAppts from '../.././NextAppts';
+import NextAppts from '../../common/NextAppts';
 import CreatePyme from '../pyme/CreatePyme';
 
-const Home = ({user, pymes, userAppts, professionals, appointments, businessLines}) => {
+const Home = ({admin, user, pymes, userAppts, professionals, appointments, businessLines}) => {
     // const isNewAdmin = user[0].owned_pyme === null ? true : false;
-    const isNewAdmin = true;
+    const pyme = pymes.filter(el=>el.admin === admin.id);
+    const isNewAdmin = pyme.length > 0 ? false : true;
     const [isLoading, setIsLoading] = useState(false);
     // const [pyme, setPyme] = useState([]);
     const newAppointments = userAppts.map(el => el.id);
     let filteredAppts = [];
-    let pyme = '';
-    let id = '';
+    const id = pyme.length > 0 ? pyme[0].id : '';
     if(!isNewAdmin){
-        id = user[0].owned_pyme;
         filteredAppts = userAppts.filter(el => el.pyme === id);
-        pyme = pymes.filter(el => el.id === id)[0];
+        // pyme = pymes.filter(el => el.id === id)[0];
     }
 
     return(
         <div>
             {!isNewAdmin && 
                 <div>
-                    <h1 style={{fontWeight: 'bold'}} className='text-black text-center'>Próximas citas de: <i style={{color: '#880808'}}>{pyme.name}</i></h1>
+                    <h1 style={{fontWeight: 'bold'}} className='text-black text-center'>Próximas citas de <br></br>  <i style={{color: '#880808'}}>{pyme[0].name}</i></h1>
                     <NextAppts
                         userAppts={filteredAppts}
                         professionals={professionals} 
                         appointments={newAppointments}
                         pymes={pymes}
+                        isAdmin={true}
                     />
                     <h1 style={{fontWeight: 'bold'}} className='text-black text-center'>Dale un vistazo a tu PyME</h1>
 
@@ -42,13 +42,14 @@ const Home = ({user, pymes, userAppts, professionals, appointments, businessLine
                             </Link>
                         </div>
                     </div>
+                    
 
                 </div>
             }
 
             {isNewAdmin && 
                 <CreatePyme
-                    user={user}
+                    admin={admin}
                 />
             }
 

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import {getUser, getUserAppointments} from '../actions/api';
-import Loading from '../components/common/Loading';
+import {getUser, getUserAppointments, getAllProfessionals, getAllPymes} from '../../actions/api';
+import Loading from '../common/Loading';
 import OwlCarousel from 'react-owl-carousel';
-import { getAllProfessionals, getAllPymes} from '../actions/api';
-import './appointments/styles/Appointments.css';
+import '../userComponents/appointments/styles/Appointments.css';
 import { Link } from 'react-router-dom';
-import { getDate } from './getDate';
-import './Pymes.css';
+import { getDate } from '../../actions/getDate';
+import '../userComponents/pyme/styles/Pymes.css';
 
-const NextAppts = ({userAppts, professionals, appointments, pymes}) => {
+const NextAppts = ({userAppts, professionals, appointments, pymes, isAdmin}) => {
     const [isLoading, setIsLoading] = useState(false);
     
 
@@ -67,7 +66,7 @@ const NextAppts = ({userAppts, professionals, appointments, pymes}) => {
             {!isLoading && notCompletedAppts.length == 0 && 
                 <div className='text-center mt-3 mb-5'>
                     <h4 style={{color:'red'}}>No se encontraron citas proximas</h4>
-                    <Link style={{color: 'blue'}} to='/appointment'>Agendar citas</Link>
+                    {!isAdmin && <Link style={{color: 'blue'}} to='/appointment'>Ver citas</Link>}
                 </div>
             }
         </div>
