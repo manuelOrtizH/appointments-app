@@ -3,7 +3,7 @@ import './Postcard.css'
 
 const Postcard = ({name, description, pymes, imageUrl}) => {
 
-    const totalPymes = pymes.length 
+    
 
     return(
         <section className='dark '>
@@ -17,7 +17,7 @@ const Postcard = ({name, description, pymes, imageUrl}) => {
                         <div className='postcard__subtitle small'>
                             
                             <i className='fas fa-calendar-alt mr-2'></i>
-                            Disponibilidad de PyMES:  <b>{totalPymes}</b>
+                            Disponibilidad de PyMES:  <b>0</b>
                             
                         </div>
                         <div className='postcard__bar'></div>

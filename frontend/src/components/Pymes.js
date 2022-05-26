@@ -6,9 +6,9 @@ import OwlCarousel from 'react-owl-carousel';
 import Loading from '../components/common/Loading';
 import Avatar from '@mui/material/Avatar';
 
-const Pymes = () => {
+const Pymes = ({pymes}) => {
     let navigate = useNavigate();
-    const [pymes, setPymes] = useState();
+    // const [pymes, setPymes] = useState();
     const [isLoading, setIsLoading] = useState();
     const listPymes = [];
 
@@ -18,9 +18,9 @@ const Pymes = () => {
         loop: true,
     };
     
-    useEffect(async() => {
+    useEffect(() => {
         setIsLoading(true);
-        await getAllPymes(setPymes);
+        // await getAllPymes(setPymes);
         setIsLoading(false);
     }, []);
 

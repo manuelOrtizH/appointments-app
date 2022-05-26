@@ -20,6 +20,7 @@ const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme,
     const handleSubmit = (formData, apptData) => {
         toggle();
         apptData.data = formData;
+        apptData.date = new Date(apptData.date);
         //apptData.date = fecha
         // user[0].appointments 
         handleAppointment(user[0], apptData, []);        

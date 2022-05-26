@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import '../containers/Home.css';
-import BusinessLine from './businessLine/BusinessLine';
-import NextAppts from './NextAppts';
-import Pymes from './Pymes';
+import HomeUser from './userComponents/home/Home';
+import HomeAdmin from './adminComponents/home/Home'
 import { getUser, getUserAppointments, getAllProfessionals, getAllPymes, getAllBusinessLines } from '../actions/api';
+import Loading from './common/Loading';
 
 const Dashboard = ({isAuthenticated}) => {
     let userName = '';
@@ -16,60 +16,58 @@ const Dashboard = ({isAuthenticated}) => {
     const [pymes, setPymes] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [userAppts, setUserAppts] = useState([]);
-
-
-
-    useEffect(async() => {
+    
+    
+    useEffect(async () => {
         setIsLoading(true);
-        await getUser(localStorage.getItem('userId'),setUser, setAppointments); 
+        await getUser(localStorage.getItem('userId'),setUser, setAppointments);
         await getUserAppointments(setUserAppts);
         await getAllProfessionals(setProfessionals);
         await getAllPymes(setPymes);
         await getAllBusinessLines(setBusinessLines);
         setIsLoading(false);
     }, []);
-
     
+    
+    const isAdmin = user.length > 0 ? user[0].is_admin : false;
 
-    if(!isAuthenticated){
-        return (<Navigate to='/' replace={true} />);
-    }else{
-        userName = localStorage.getItem('userName');
-    };
+    let username = localStorage.getItem('userName');
+
+    if(!isAuthenticated) return (<Navigate to='/' replace={true} />);
 
     return(
         <div>
             <div className = 'jumbotron jumbotron-fluid text-white' >
                 <div className='container'>
-                    <h1 className='display-4 text-white'>Hola, {userName} !</h1>                
+                    <h1 className='display-4 text-white'>Hola, {username} !</h1>                
                 </div>
             </div>
-            {/* Desplegar citas */}
-            <div className='container'>
-                <h1 style={{fontWeight: 'bold'}} className='text-black text-center'>Próximas citas</h1>
-            </div>
-            <NextAppts
-                userAppts={userAppts}
-                appointments={appointments} 
-                professionals={professionals} 
-                pymes={pymes}
-            />
-            <hr></hr>
-            {/* Agendar Citas con distintas PyMEs */}
-            <div className='container'>
-                <h1 style={{fontWeight: 'bold'}} className='text-black text-center mb-5'>Busca PyMEs de conveniencia para agendar citas</h1>
-            </div>           
-            <Pymes
-                pymes={pymes}
-            />
-            <hr></hr>
-            {/* Explora los difgerentes pymes */}
-            <div className='container'>
-                <h1 style={{fontWeight: 'bold'}} className='text-black text-center mt-5'>Explora los diferentes sectores que puedes encontrar</h1>
-            </div>           
-            <BusinessLine
-                businessLines={businessLines}
-            />
+            {!isLoading && user.length > 0 && 
+                <div>
+                {!isAdmin && 
+                    <HomeUser 
+                        username={username}
+                        pymes={pymes}
+                        userAppts={userAppts}
+                        professionals={professionals}
+                        appointments={appointments}
+                        businessLines={businessLines}
+                    />
+                }
+                {isAdmin && 
+                    <HomeAdmin
+                        user={user}
+                        pymes={pymes}
+                        userAppts={userAppts}
+                        professionals={professionals}
+                        appointments={appointments}
+                        businessLines={businessLines}
+                    />
+                }
+                </div>
+            }
+            {isLoading && <div className='mt-5'><Loading></Loading></div>}
+
         </div>
     );
 };
