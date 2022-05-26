@@ -131,11 +131,18 @@ export const signup = (name, lastName ,email, phoneNumber, password, re_password
         let user = {};
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/users/`, body,config)
   
-
-        await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, 
+        if(isAdmin){
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/admins/`, 
             {name: res.data.name,  last_name: lastName,  phone_number: phoneNumber, 
             profile_image: 'https://pngimg.com/uploads/letter_r/letter_r_PNG93904.png', 
-            email: res.data.email, uid: res.data.id, appointments: [], calendar: {}, is_admin: isAdmin});
+            email: res.data.email, uid: res.data.id});
+        }
+
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/users_clients/`, 
+        {name: res.data.name,  last_name: lastName,  phone_number: phoneNumber, 
+        profile_image: 'https://pngimg.com/uploads/letter_r/letter_r_PNG93904.png', 
+        email: res.data.email, uid: res.data.id, appointments: [], calendar: {}, is_admin: isAdmin});
+
 
         dispatch({
             type: SIGNUP_SUCCESS,

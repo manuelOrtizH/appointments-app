@@ -8,7 +8,7 @@ import Loading from '../common/Loading';
 import { getAllBusinessLines } from '../../actions/api';
 
 
-const BusinessLine = () => {
+const BusinessLine = ({businessLines}) => {
 
     const options = {
         items: 1,
@@ -19,14 +19,14 @@ const BusinessLine = () => {
         autoplay: true,
     };
 
-    const [businessLines, setBusinessLines] = useState({});
+    // const [businessLines, setBusinessLines] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
     const cardItems = [];
 
     useEffect(async () => {
         setIsLoading(true);
-        await getAllBusinessLines(setBusinessLines);
+        // await getAllBusinessLines(setBusinessLines);
         setIsLoading(false);
 
     }, []);
@@ -47,7 +47,7 @@ const BusinessLine = () => {
             {!isLoading && <OwlCarousel className='slider-items owl-theme' {...options}>
                 {cardItems}
             </OwlCarousel>}
-            {isLoading && <p className='text-center'><Loading/></p>}
+            {isLoading && <div className='text-center'><Loading/></div>}
  
         </div>
     );

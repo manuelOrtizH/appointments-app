@@ -25,6 +25,7 @@ const AddFieldModal = (props) => {
                     'Derecho' : {'Asesoria Legal': ' ', 'Demanda': ' ', 'Tipo de Asesoria': ' ', 'Antecedentes Penales': ' ', 'Acompañantes': ' '},
                     'Entretenimiento': {'Acompañantes': ' ', 'Duracion': ' ', 'Actividad': ' '},
                     'Belleza': {'Tratamiento': ' ', 'Productos': ' ', 'Reservacion': ''},
+                    'Otro': {},
                     };
     const options = [{}];
     const [fieldsCustom, setFieldsCustom] = useState([]);
