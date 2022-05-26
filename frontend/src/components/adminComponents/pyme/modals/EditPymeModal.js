@@ -14,6 +14,8 @@ import {
 import { FaBuilding, FaLocationArrow, FaQuoteLeft, FaBook, FaSplotch } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import { businesLinesOptions } from '../../../../actions/businessLines';
+import Avatar from '@mui/material/Avatar';
+
 
 const EditPymeModal = (props) => {
     const [formData, setFormData] = useState(props.customForm);
@@ -36,6 +38,25 @@ const EditPymeModal = (props) => {
                 <ModalBody>
                     <p className='text-center'>Completa los datos para agregar a un profesional</p>
                     <Form>
+                        <FormGroup>
+
+                            <Avatar
+                                alt="image-pyme"
+                                src={formData.image_url}
+                                style={{alignSelf: 'center'}}
+                                sx={{ width: 90, height: 90 }}
+                            />
+
+
+                            <Input
+                                className='form-control form-field'
+                                type='file'
+                                name='image_url'
+                                
+                            />
+                            
+
+                        </FormGroup>
                         <FormGroup>
                             <span className="card-text text-white">
                                 <FaBuilding style={{color: 'white', marginRight: '5px'}}/>
