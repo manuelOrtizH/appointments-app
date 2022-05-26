@@ -4,12 +4,11 @@ import '../../../common/styles/Card.css';
 import '../styles/ListAppts.css';
 import useCollapse from 'react-collapsed';
 import { deleteAppointment, handleAppointment, getUserAppointments } from '../../../../actions/api';
-import axios from 'axios';
-import InfoApptModal from '../InfoApptModal';
-import { Card } from '@nextui-org/react';
+import InfoApptModal from '../../../common/ModalAppt';
+import Alert from "sweetalert2";
 
 
-const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme, address,reason,responsable,day,month,hour, imageUrl, customForm, isHistorial}) => {
+const NextApptsInfo = ({user, professionals, employees, appointment, id, pymeId,pyme, address,reason,responsable,day,month,hour, imageUrl, customForm, isHistorial}) => {
     const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
     const listInfoAppt = [];
     const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
@@ -17,17 +16,16 @@ const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme,
     const [userAppts, setUserAppts] = useState([]);
     const toggle = () => setModalState({ modal: !modalState.modal });
     
-    const handleSubmit = (formData, apptData) => {
-        toggle();
+    const handleSubmit = async(formData, apptData) => {
         apptData.data = formData;
-        apptData.date = new Date(apptData.date);
-        //apptData.date = fecha
-        // user[0].appointments 
-        handleAppointment(user[0], apptData, []);        
+        handleAppointment(user[0], apptData, []);
+        await Alert.fire("Cita editada!", `Tu cita ha sido editada`, "success");
+        window.location.reload();
+        toggle();        
     };
 
     
-    const handleEdit = (item) => setModalState({ apptForm: apptForm, modal: !modalState.modal });
+    const handleEdit = item => setModalState({ apptForm: apptForm, modal: !modalState.modal });
     
     let key = 0
     for (const [field,value] of Object.entries(customForm)){
@@ -41,12 +39,18 @@ const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme,
         key+=1;
     };    
 
-    const handleDelete = () => deleteAppointment(id);
+    const handleDelete = async() => {
+        deleteAppointment(id);
+        await Alert.fire("Cita eliminada!", `Tu cita ha sido eliminada`, "success");
+        window.location.reload();
+    };
     
     const handleCompleted = async() => {
         appointment.completed = true;
         const crsf_token = `${document.cookie}`
         handleAppointment(crsf_token,appointment,[]);
+        await Alert.fire("Cita completada!", `Tu cita ha sido completada`, "success");
+        window.location.reload();
     };
     
 
@@ -120,4 +124,4 @@ const ListAppt = ({user, professionals, employees, appointment, id, pymeId,pyme,
 
 };
 
-export default ListAppt;
+export default NextApptsInfo;

@@ -13,7 +13,7 @@ const Pymes = ({pymes}) => {
     const listPymes = [];
 
     const options = {
-        items: 1,
+        items: 3,
         nav: true,
         loop: true,
     };
@@ -27,7 +27,8 @@ const Pymes = ({pymes}) => {
     const pymesInfo = pymes;
     
     const handleMoreInfo = (id) =>{
-        navigate(`/pyme/${id}`, { replace: true});
+        console.log(id);
+        navigate(`/pyme/${id}`, { replace: true });
     }
     
     if(pymes){
@@ -47,7 +48,7 @@ const Pymes = ({pymes}) => {
                         {pyme.name}</h3>
                         <span><h6><i>{slogan}</i></h6></span> <br></br>
                         <span><h5>{pyme.address}</h5></span> <br></br>
-                        <span><button className='btn btn-info' onClick={()=>handleMoreInfo(pyme.id)}>Ver mas Información</button> <button className='btn btn-success ml-3' >Disponibilidad</button></span> <br></br>
+                        <span><button className='btn btn-info' onClick={()=>handleMoreInfo(pyme.id)}>Ver mas Información</button> </span> <br></br>
                         <span></span> <br></br>
                     </div>
                 </div>

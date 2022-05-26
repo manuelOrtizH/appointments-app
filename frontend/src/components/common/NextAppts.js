@@ -12,7 +12,7 @@ const NextAppts = ({userAppts, professionals, appointments, pymes, isAdmin}) => 
     
 
     const options = {
-        items: 1,
+        items: 3,
         nav: true,
         loop: false,
     };

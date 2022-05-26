@@ -36,8 +36,8 @@ const Calendar = () => {
             const pyme = pymes.filter(py => py.id === el.pyme)[0];
             const namePyme = pyme.name;
             const nameResponsable = `${responsable.name} ${responsable.last_name}`
-            const eventColor = new Date(el.date) < new Date() ? 'red' : 'blue'
-            userEvents.push({id: el.id, title: el.reason, date: el.date, color: eventColor});
+            const eventColor = new Date(el.date).toISOString().slice(0,16) < new Date().toISOString().slice(0,16) ? 'red' : 'blue'
+            userEvents.push({id: el.id, title: el.reason, date: new Date(el.date).toISOString().slice(0,16), color: eventColor});
         });
     }
 
@@ -46,7 +46,7 @@ const Calendar = () => {
         const pyme = pymes.filter(el => el.id === eventAppointment.pyme)[0];
         const responsable = professionals.filter(el => el.id === eventAppointment.responsable)[0]; 
         const [day, month, hour] = [...getDate(new Date(eventAppointment.date))];
-        const isCancelable = new Date(eventAppointment.date) < new Date() ? false : true;
+        const isCancelable = new Date(eventAppointment.date).toISOString().slice(0,16) < new Date().toISOString().slice(0,16) ? false : true;
         console.log(pyme.name);
         Alert.fire({
             title: pyme.name,

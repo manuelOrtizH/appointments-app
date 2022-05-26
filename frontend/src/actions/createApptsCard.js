@@ -14,7 +14,6 @@ export const createApptFragments = (appointments, pymes, professionals, isHistor
         const pyme = pymes.filter(el=> el.id === appt.pyme)[0]
         const responsable = professionals.filter(el=>el.id === appt.responsable)[0]
         const [day,month,hour] = [...getDate(new Date(appt.date))]
-        console.log(new Date(appt.date).toISOString().slice(0,16))
         listAppointmentsItems.push( 
             <div key={key}>
                 <NextApptsInfo

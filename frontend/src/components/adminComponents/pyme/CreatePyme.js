@@ -40,7 +40,6 @@ const CreatePyme = ({admin}) => {
     const onSubmit = async (e) =>{
         e.preventDefault();
         registerPyme(formData, admin);
-        // navigate("/home", { replace: true });
         window.location.reload();
     };
 

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { getAllProfessionals, getUser, getUserAppointments, getAllPymes } from '../../../actions/api';
 import CardHistoryAppts from './cardHistoryAppointments/CardHistoryAppts';
 import CardNextAppts from './cardNextAppointments/CardNextAppts';
-import CarouselPymes from './pymesAppointments/CarouselPymes';
-import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Loading from '../../common/Loading';
 
@@ -39,8 +37,6 @@ const Appointment = ({isAuthenticated}) => {
     
     const notCompletedAppts = userAppts.filter(el=>!el.completed);
 
-    console.log(notCompletedAppts);
-
     return(
         <div className='centered '>
             {!isLoading &&
@@ -64,8 +60,6 @@ const Appointment = ({isAuthenticated}) => {
 
                     </section>
 
-                    {/* <h2 className='text-center mt-5'>Explora las diferentes PyMEs</h2> */}
-                    <CarouselPymes pymes={pymes} professionals={professionals} appointments={filteredAppts} user={user}/>
                 </div>
             }
             {isLoading && <div className='mt-5'><Loading/></div>}

@@ -13,7 +13,7 @@ import {
   import { ToastContainer, toast } from 'react-toastify';
 
 
-const CustomModal = (props) => {
+const ModalAppt = (props) => {
 
     const [formData, setFormData] = useState(props.customForm);
 	const [professionals, setProfessionals] = useState(props.professionals);
@@ -66,7 +66,7 @@ const CustomModal = (props) => {
 	}
 
     const { toggle, onSave } = props;
-
+	
     return (
       <div className=''>
 
@@ -88,7 +88,8 @@ const CustomModal = (props) => {
 						<Input
 						 	className='form-control form-field' 
 							type="datetime-local" id="date"
-							name="date" value={props.isEdit ? new Date(apptData.date).toISOString().slice(0,-1) : apptData.date}
+							min={new Date().toISOString().slice(0,16)}
+							name="date" value={props.isEdit ? new Date(apptData.date).toISOString().slice(0,16) : apptData.date}
 							onChange={e=>onApptFormChange(e)}
 							required
 						/>
@@ -150,7 +151,7 @@ const CustomModal = (props) => {
     );
 };
 
-export default CustomModal;
+export default ModalAppt;
 
 
 
