@@ -11,6 +11,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import './styles/EditProfile.css';
+import Avatar from '@mui/material/Avatar';
 
 const EditProfile = () => {
 
@@ -40,11 +41,6 @@ const EditProfile = () => {
 
     const { name, last_name, email, phone_number, profile_image} = formData;
 
-    const onChange = e => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-        console.log('form', formData);
-    };
-
     const storage = getStorage();
     const storageRef = ref(storage, profile.id);
 
@@ -52,36 +48,27 @@ const EditProfile = () => {
         //Lo que ahorita de diga poner
         let img = e.target.files[0];
         setImage(URL.createObjectURL(img));
-        setFormData({...formData,[e.target.name]: img });
         console.log('form', formData);
         uploadBytes(storageRef, img).then((snapshot) => {
-            console.log('Uploaded a blob or file!');
+            console.log('Uploaded the image!');
         });
 
-        getDownloadURL(storageRef).then(url => {
-            console.log('Download URL', url);
-            const img = document.getElementsByClassName('profile_image');
-            img.setAttribute('src', url);
-        }).catch((error) => {
-            console.log('error: ', error);
-        });
+        console.log('formdata', formData);
 
-        /*getDownloadURL(
-            ref(storage, profile.id)
-                .then((url) => {
-                // Or inserted into an <img> element
-                
-                console.log('Url download!');
-        }).catch((error) => {
-            console.log('error: ', error);
-        }));*/
+        setTimeout(() => {
+            getDownloadURL(storageRef).then(url => {
+                console.log('Download URL', url);
+                setFormData({...formData, profile_image: url });
+            }).catch((error) => {
+                console.log('error: ', error);
+            });
+          }, 500);
     };
 
-    function testStorage (){
-        //const img = document.getElementsByClassName('profile_image');
-        //img.setAttribute('src', 'url');
-        
-    }
+    const onChange = e => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        console.log('form', formData);
+    };
 
     const phoneValidation = (phone) => {
         const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
@@ -98,6 +85,8 @@ const EditProfile = () => {
             profile.name = name;
             profile.last_name = last_name;
             profile.phone_number = phone_number;
+            profile.profile_image = profile_image;
+
             await handleUser(profile, toast);
             //signup(name, last_name, email, phone_number, password, re_password, is_admin === 'true', toast, setAccountCreated);
             await navigate("/profile", { replace: true });
@@ -128,12 +117,13 @@ const EditProfile = () => {
                             <div>
                             <form onSubmit={e => onSubmit(e)}>
                                 <div className='form-group text-center'>
-                                    <div className='row'>
-                                        <div className='col'>
-                                            <input type="image" className='profile_image' src={image} style={{borderRadius: '50%', width: '20%'}}/>
+                                    <div className='row text-center'>
+                                        <div className='col text-center'>
+                                            <Avatar alt="Remy Sharp" src={profile_image} style={{marginLeft: '50%', alignSelf: 'center'}} sx={{ width: 90, height: 90 }}/>
                                         </div>
-                                        <div>
-                                            <input value='' type='file' name='profile_image' onChange={e=>onImageChange(e)}></input>
+                                        <div className='col text-center'>
+                                        <label className='btn btn-success btn-lg mr-5' htmlFor="img_id" style={{marginLeft: '10%', marginTop: '5%', padding:"1px 10px" }}>Seleccionar imagen</label>
+                                            <input id='img_id' style={{marginLeft: '20vh', visibility:"hidden"}} type='file' name='profile_image' onChange={e=>onImageChange(e)} ></input>
                                         </div>
                                     </div>
                                 </div>
