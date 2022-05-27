@@ -17,6 +17,8 @@ BUSINESS_LINE = (
 )
 
 # Create your models here.
+
+
 class Professionist(Document):
     name = fields.StringField(max_length=50, required=True)
     last_name = fields.StringField(max_length=50, default='')
@@ -25,7 +27,22 @@ class Professionist(Document):
     email = fields.EmailField()
     calendar = fields.DictField()
 
-    
+
+
+class BusinessLine(Document):
+    name = fields.StringField(max_length=50, required=True)
+    description = fields.StringField(max_length=1000)
+    #pymes = fields.ListField(fields.ReferenceField(Pyme, reverse_delete_rule=CASCADE))
+    image_description = fields.URLField()
+    static_forms = fields.DictField()
+
+class Admin(Document):
+    name = fields.StringField(max_length=50, required=True)
+    last_name = fields.StringField(max_length=50, default='')
+    phone_number = fields.StringField(max_length=50, default='')
+    profile_image = fields.URLField(default=' ')
+    email = fields.EmailField()
+    uid = fields.IntField()
 
 class Pyme(Document):
     name = fields.StringField(max_length=50, required=True)
@@ -36,6 +53,8 @@ class Pyme(Document):
     description = fields.StringField(max_length=500, default='No existe descripcion de la PyME')
     custom_data_form = fields.DictField()
     image_url = fields.URLField()
+    admin = fields.ReferenceField(Admin)
+    
 
     def __str__(self):
         return f'{self.name}'
@@ -52,12 +71,6 @@ class Appointment(Document):
     def __str__(self):
         return f'Fecha: {self.date} \n Razon: {self.reason}'
 
-class BusinessLine(Document):
-    name = fields.StringField(max_length=50, required=True)
-    description = fields.StringField(max_length=1000)
-    pymes = fields.ListField(fields.ReferenceField(Pyme, reverse_delete_rule=CASCADE))
-    image_description = fields.URLField()
-    static_forms = fields.DictField()
   
 class UserClient(Document):
     name = fields.StringField(max_length=50, required=True)
@@ -69,6 +82,7 @@ class UserClient(Document):
     appointments = fields.ListField(fields.ReferenceField(Appointment))
     calendar = fields.DictField()
     is_admin = fields.BooleanField(default = False)
+    
 
     def __str__(self):
         return f'{self.name} \n {self.email}'

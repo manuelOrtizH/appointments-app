@@ -30,6 +30,7 @@ router.register(r'user_accounts', views.UserAccountView, 'user_account')
 router.register(r'users_clients', views.UserClientView, 'user_client')
 router.register(r'business_lines', views.BusinessLineView, 'business_line')
 router.register(r'professionists', views.ProfessionistView, 'professionist')
+router.register(r'admins', views.AdminView, 'admin')
 
 
 urlpatterns = [
@@ -40,10 +41,6 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),    
 ]
 
-urlpatterns += [re_path(r'^.*', csrf_exempt(TemplateView.as_view(template_name='index.html')))]
+# urlpatterns += [re_path(r'^.*', csrf_exempt(TemplateView.as_view(template_name='index.html')))]
 
-
-# admin.site.index_title = 'Resérvame Admin'
-# admin.site.site_header = 'Resérvame Admin'
-# admin.site.site_title = 'Resérvame Admin'
 

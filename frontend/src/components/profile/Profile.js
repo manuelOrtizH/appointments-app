@@ -3,7 +3,6 @@ import { getUser } from '../.././actions/api';
 import Loading from '../common/Loading';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import Avatar from '@mui/material/Avatar';
 
 const Profile = () => {
     const [user, setUser] = useState([]);
@@ -41,7 +40,7 @@ const Profile = () => {
                                     <hr></hr>
                                     
                                     <a className='card-title text-center'>
-                                        <Avatar alt="Remy Sharp" src={profile.profile_image} style={{marginLeft: '47%', alignSelf: 'center'}} sx={{ width: 90, height: 90 }}/>
+                                        <img src={profile.profile_image} style={{borderRadius: '50%', width: '20%'}}/>
                                     </a>
                                     <hr></hr>
                                     <h5 className='card-title text-center'><b>Nombre(s)</b></h5>

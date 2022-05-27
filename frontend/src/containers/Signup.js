@@ -6,6 +6,7 @@ import '../components/common/styles/Form.css';
 import { FaEnvelope, FaLock, FaUserAlt, FaUserTie, FaPhoneAlt } from "react-icons/fa";
 import '../components/common/styles/Card.css';
 import { ToastContainer, toast } from 'react-toastify';
+import Alert from "sweetalert2";
 
 
 
@@ -41,11 +42,11 @@ const Signup = ({ signup, isAuthenticated }) => {
             toast.error('El número telefónico ingresado no es válido.');
         }else{
             signup(name, last_name, email, phone_number, password, re_password, is_admin === 'true', toast, setAccountCreated);
+            // await Alert.fire("Cita eliminada!", `Tu cita ha sido eliminada`, "success");
+            // window.location.reload();
         }   
     };
 
-    //Is the user authenticated
-    //Redirect them to the home page
     if(isAuthenticated){
         return (<Navigate to='/home' replace={true} />);
     }
