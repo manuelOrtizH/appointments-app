@@ -8,12 +8,11 @@ import InfoApptModal from '../ModalAppt';
 import Alert from "sweetalert2";
 
 
-const Info = ({user, professionals, employees, appointment, id, pymeId,pyme, address,reason,responsable,day,month,hour, imageUrl, customForm, isHistorial, isAdmin}) => {
+const Info = ({user, professionals, employees, appointment, id, pymeId,pyme, address,reason,responsable,day,month,hour, imageUrl, customForm, isHistorial, isAdmin, client}) => {
     const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
     const listInfoAppt = [];
     const apptForm = {date: '', reason: '', pyme: id, completed: false, data: customForm, responsable: ''}
     const [modalState, setModalState] = useState({viewCompleted: false, modal: false, apptForm: '' });
-    const [userAppts, setUserAppts] = useState([]);
     const toggle = () => setModalState({ modal: !modalState.modal });
     
     const handleSubmit = async(formData, apptData) => {
@@ -72,7 +71,17 @@ const Info = ({user, professionals, employees, appointment, id, pymeId,pyme, add
                             <i> 
                                 <span style={{fontSize: '80%', color: 'green'}}>Responsable:</span> {responsable}
                             </i>
-                        </span>
+                        </span> <br></br> 
+                        {isAdmin && 
+                        <div>
+                            
+                            <span>
+                                <i> 
+                                    <span style={{fontSize: '80%', color: 'green'}}>Cliente:</span> {client}
+                                </i>
+                            </span>
+                        </div>
+                        }
                     </span>
                     <span className='date-info'>{day} <span>de</span> {month}<span> <br></br> Hora: {hour}</span></span>
 

@@ -4,10 +4,10 @@ import '../styles/Card.css';
 import { createApptFragments } from '../../../actions/createApptsCard';
 
 
-const Pending = ({date,month, appointments, professionals, pymes, user, allAppointments, isAdmin}) => {
+const Pending = ({date,month, appointments, professionals, pymes, user, allAppointments, isAdmin, clients}) => {
     const [isLoading, setIsLoading] = useState(false);
     const notCompletedAppts = appointments.filter(el=> !el.completed);
-    const listAppointmentsItems = createApptFragments(notCompletedAppts, pymes, professionals, false, user, isAdmin);
+    const listAppointmentsItems = createApptFragments(notCompletedAppts, pymes, professionals, false, user, isAdmin, clients);
     
 
     return (

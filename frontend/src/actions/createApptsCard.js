@@ -2,15 +2,18 @@ import React from "react";
 import Info from '../components/common/appointments/Info';
 import { getDate } from "./getDate";
 
-export const createApptFragments = (appointments, pymes, professionals, isHistorial, user, isAdmin) => {
-    const dayFormatter = new Intl.DateTimeFormat('es', {day: '2-digit'});
-    const monthFormatter = new Intl.DateTimeFormat('es', {month: 'long'});
-    const hourFormatter = new Intl.DateTimeFormat('es', {hour: '2-digit', minute: '2-digit'})
-
+export const createApptFragments = (appointments, pymes, professionals, isHistorial, user, isAdmin, clients) => {
 
     const listAppointmentsItems = [];
     let eventKey = 0;
     for (const [key, appt] of Object.entries(appointments)) {
+        let client = '';
+        if(isAdmin){
+            console.log(clients);
+            const filteredClient = clients.filter(el => el.appointments.includes(appt.id))[0];
+            client = `${filteredClient.name} ${filteredClient.last_name}`
+        }
+        // clients.filter(el => el.appointments.includes(appt.id))[0]
         const pyme = pymes.filter(el=> el.id === appt.pyme)[0]
         const responsable = professionals.filter(el=>el.id === appt.responsable)[0]
         const [day,month,hour] = [...getDate(new Date(appt.date))]
@@ -34,6 +37,7 @@ export const createApptFragments = (appointments, pymes, professionals, isHistor
                     customForm={appt.data}
                     isHistorial={isHistorial}
                     isAdmin={isAdmin}
+                    client={isAdmin ? client : {}}
                 />
             </div>
         );

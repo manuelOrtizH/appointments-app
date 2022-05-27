@@ -34,9 +34,16 @@ const Appointment = ({isAuthenticated}) => {
     }, []);
 
     const isAdmin = user.length > 0 ? user[0].is_admin : false;
-    const adminFiltered = admins.length > 0 ? admins.filter(el=> el.uid == localStorage.getItem('userId')) : [];
-    const filteredAppts = userAppts ? userAppts.filter(el=>appointments.includes(el.id)) : [];    
-    const notCompletedAppts = userAppts.filter(el=>!el.completed);
+    const adminFiltered = admins.length > 0 ? admins.filter(el=> el.uid == localStorage.getItem('userId'))[0] : [];
+    let filteredAppts = userAppts ? userAppts.filter(el=>appointments.includes(el.id)) : []; 
+    let pyme = [];
+    let pymeAppts = [];
+    if(isAdmin && !isLoading){
+        filteredAppts = userAppts ? userAppts.filter(el=>appointments.includes(el.id)) : [];
+        pyme = pymes ? pymes.filter(el=> el.admin === adminFiltered.id)[0] : [];
+        pymeAppts = userAppts ? userAppts.filter(el=>  el.pyme === pyme.id) : [];
+    }
+
 
     return(
         <div className='centered '>
@@ -51,6 +58,7 @@ const Appointment = ({isAuthenticated}) => {
                             pymes={pymes}
                             user={user}
                             isAdmin={isAdmin}
+                            clients={[]}
                         />
                         <Pending 
                             date={date}
@@ -61,27 +69,30 @@ const Appointment = ({isAuthenticated}) => {
                             user={user}
                             allAppointments={appointments}
                             isAdmin={isAdmin}
+                            clients={[]}
                         />
                     </section>
                     }
                     {isAdmin && 
                         <section className='cards ' style={{display:'flex', border: 'transparent'}}>
                             <History
-                                appointments={filteredAppts}
+                                appointments={pymeAppts}
                                 professionals={professionals}
                                 pymes={pymes}
                                 user={user}
                                 isAdmin={isAdmin}
+                                clients={userClients}
                             />
                             <Pending 
                                 date={date}
                                 month={month}
-                                appointments={filteredAppts}
+                                appointments={pymeAppts}
                                 professionals={professionals}
                                 pymes={pymes}
                                 user={user}
                                 allAppointments={appointments}
                                 isAdmin={isAdmin}
+                                clients={userClients}
                             />
                         </section>
                     }
