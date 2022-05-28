@@ -153,7 +153,7 @@ export const getPyme = async(id, setPyme)=>{
 
 };
 
-export const handleAppointment = async (user, body, appts) => {
+export const handleAppointment = async (user, body) => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -165,8 +165,8 @@ export const handleAppointment = async (user, body, appts) => {
     } else {
         await axios.post(`${process.env.REACT_APP_API_URL}/api/appointments/`, body,config)
         .then(async(res)=>{
-            appts.push(res.data.id); 
-            user.appointments = appts;
+            console.log(user);            
+            user.appointments.push(res.data.id); 
             await axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user, config);
         });
     };
@@ -191,9 +191,11 @@ export const handleUser = async (body, toast) => {
 
 };
 
-export const deleteAppointment = async (id) => {
+export const deleteAppointment = async (id, user) => {
     await axios.delete(`${process.env.REACT_APP_API_URL}/api/appointments/${id}/`)
-    .then((res) => console.log('Succesfully deleted: ', res));
+    .then(async (res) => {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/users_clients/${user.id}/`, user);
+    });
 }
 
 export const handlePyme = async(body, setPyme) => {

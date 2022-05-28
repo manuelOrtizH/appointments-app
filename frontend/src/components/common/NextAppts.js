@@ -4,7 +4,7 @@ import Loading from '../common/Loading';
 import OwlCarousel from 'react-owl-carousel';
 import './styles/Appointments.css';
 import { Link } from 'react-router-dom';
-import { getDate } from '../../actions/getDate';
+import { getDate } from '../../actions/date';
 import '../userComponents/pyme/styles/Pymes.css';
 
 const NextAppts = ({userAppts, professionals, appointments, pymes, isAdmin, clients}) => {
@@ -34,7 +34,7 @@ const NextAppts = ({userAppts, professionals, appointments, pymes, isAdmin, clie
             const color = isAdmin ? 'yellow' : 'blue'
             let client = '';
             if(isAdmin){
-                client = clients ? clients.filter(el => el.appointments.includes(appt.id))[0] : []; 
+                client = clients ? clients.filter(el => el.appointments.includes(appt.id))[0] : false; 
             };
             listAppts.push(
                 <div className="container bootstrap snippets bootdeys" key={key} >
@@ -48,7 +48,7 @@ const NextAppts = ({userAppts, professionals, appointments, pymes, isAdmin, clie
                                         <h4 className='description'><b>{day}</b> de <b>{month}</b> a las <b>{hour}</b></h4>
                                         <h5 className='description'>{appt.reason}</h5>
                                         {isAdmin && 
-                                            <h5 className='category'>Cliente : {client.name + ' ' + client.last_name}</h5>
+                                            <h5 className='category'>Cliente : {client ? client.name + ' ' + client.last_name : ' '}</h5>
                                         }
                                     </div>
                                 </div> 

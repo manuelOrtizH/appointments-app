@@ -81,7 +81,7 @@ const Dashboard = ({isAuthenticated}) => {
                 </div>
             }
             {isLoading && <div className='mt-5'><Loading></Loading></div>}
-
+            {isLoading && !user && <div>No hay nada xd error</div>}
         </div>
     );
 };

@@ -2,10 +2,10 @@ import React from 'react';
 import '../styles/Appointments.css';
 import { createApptFragments } from '../../../actions/createApptsCard';
 
-const History = ({appointments, professionals, pymes, user, isAdmin}) => {
+const History = ({appointments, professionals, pymes, user, isAdmin, clients}) => {
     
     const completedAppointments = appointments.filter(el=>el.completed);
-    const listAppointmentsItems = createApptFragments(completedAppointments, pymes, professionals, true, user);
+    const listAppointmentsItems = createApptFragments(completedAppointments, pymes, professionals, true, user, isAdmin, clients);
 
     
     return (
@@ -17,7 +17,7 @@ const History = ({appointments, professionals, pymes, user, isAdmin}) => {
                         <hr></hr>
                     </div>
                     <div>
-                        {completedAppointments.length === 0 && <p className='text-center'>Aún no has completado una cita</p>}
+                        {completedAppointments.length === 0 && <p className='text-center'>Aún no se ha completado una cita</p>}
                         {completedAppointments.length > 0 && 
                             listAppointmentsItems
                         }

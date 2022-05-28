@@ -14,17 +14,29 @@ import {
 
 
 const ModalAppt = (props) => {
-
+	const listClients = [];
+	if(props.isAdmin && !props.isEdit){
+		props.clients.map((el,index)=>{
+			const clientName = `${el.name} ${el.last_name}`
+			listClients.push(<option key={index}  value={el.id}> {clientName} / {el.email} </option>);
+		});
+	}
     const [formData, setFormData] = useState(props.customForm);	
 	const [professionals, setProfessionals] = useState(props.professionals);
-	const [apptData, setApptData] = useState(props.apptForm)
+	const [apptData, setApptData] = useState(props.apptForm);
+	const [isDateModified, setIsDateModified] = useState(false);
     const listFormData = [];
 	const listOptions = [];
 	const buttonLabel = props.isEdit ? 'Editar' : 'Agendar'; 
+
 	const modalLabel = props.isEdit ? 'Edite los campos que desee' : 'Ingrese los siguientes campos';
     const onCustomFormChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-	const onApptFormChange = e => setApptData({ ...apptData, [e.target.name]: e.target.value });
-        
+	const onApptFormChange = e => {
+		setIsDateModified(true);
+		setApptData({ ...apptData, [e.target.name]: e.target.value });
+	};
+
+  
 	const filteredPros = professionals.filter(el=>props.pymeEmployees.includes(el.id));
 	
 	filteredPros.map((el,index)=>{
@@ -89,7 +101,7 @@ const ModalAppt = (props) => {
 						 	className='form-control form-field' 
 							type="datetime-local" id="date"
 							min={new Date().toISOString().slice(0,16)}
-							name="date" value={props.isEdit ? new Date(apptData.date).toISOString().slice(0,16) : apptData.date}
+							name="date" value={props.isEdit && !isDateModified ? new Date(apptData.date).toISOString().slice(0,16) : apptData.date}
 							onChange={e=>onApptFormChange(e)}
 							required
 						/>
@@ -126,6 +138,25 @@ const ModalAppt = (props) => {
 							{listOptions}
 						</Input>
 					</FormGroup>
+					{props.isAdmin && 
+						<FormGroup>
+							<span className="card-text text-white">
+								Cliente
+							</span>
+							<Input 
+								id='responsable'
+								type='select'
+								size='1'
+								name='client'
+								value={apptData.client}
+								onChange={e=>onApptFormChange(e)}
+								required
+							>
+								<option value='' hidden></option>
+								{listClients}
+							</Input>
+						</FormGroup>
+					}
 				</Form>
 				<ToastContainer
 					toastClassName='text-center'

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { FaCalendarCheck } from 'react-icons/fa'
 import ModalAppt from '../../common/ModalAppt';
+import { isDateOccupied } from '../../../actions/date';
 import { getAllProfessionals, getPyme, getUser, handleAppointment, getUserAppointments } from '../../../actions/api';
 import CalendarPyme from './CalendarPyme';
 import Alert from "sweetalert2";
@@ -33,34 +34,17 @@ const InfoPyme = () => {
     }, []);
 
     
-    const filteredAppts = userAppts.length > 0 ? userAppts.filter(el=>appointments.includes(el.id)) : [];
-    const appointmentsId = filteredAppts.length > 0 ? filteredAppts.map(el=>el.id) : [];
+    const filteredAppts = userAppts.length > 0 ? userAppts.filter(el=>appointments.includes(el.id) && !el.completed) : [];
+    const appointmentsId = userAppts.length > 0 ? userAppts.map(el=>el.id) : [];
     const pymeAppts = userAppts.length > 0 ? userAppts.filter(el=>el.pyme === id): [];
     
     const handleSubmit = async(formData, apptData, toast) => {
-        
+
         apptData.data = formData;
-            
-        var dateCollision = false;
-        
-
-        const aD = new Date(apptData.date);
-
-        for (let i = 0; i < filteredAppts.length; i++) {
-            
-            const date = new Date(filteredAppts[i].date);
-            const correctedDate = new Date(date.toISOString().slice(0, -1));
-            
-            if (aD.getTime()===correctedDate.getTime()){
-                dateCollision=true;
-                break;
-            };
-        };
-
-        if (dateCollision===true){
+        if (isDateOccupied(new Date(apptData.date), filteredAppts)){
             toast.error('Horario no disponible, selecciona otro porfavor.');
         }else{
-            handleAppointment(user[0], apptData, appointmentsId);
+            handleAppointment(user[0], apptData);
             toggle();
             await Alert.fire("Cita creada!", `Tu cita con ${pyme.name} ha sido registrada con éxito`, "success");
             window.location.reload();
