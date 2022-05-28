@@ -131,7 +131,7 @@ const AddFieldsModal = (props) => {
                                 > 
                                 <FaTrash style={{color: '#880808'}}/>
                             </button>
-                            <span style={{backgroundColor: '#95C1D6', color: 'black'}}className="card-text text-black"><FaPenFancy/> Nombre Campo</span>
+                            <span style={{backgroundColor: '#95C1D6', color: 'black'}}className="card-text text-black">Campo</span>
                             <Input 
                                 id='responsable'
                                 type='select'
