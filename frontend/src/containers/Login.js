@@ -54,8 +54,7 @@ const Login = ({ login, isAuthenticated }) => {
                         
                         <div className='form-group'>
                             <span className="card-text text-white">
-                                <FaEnvelope style={{color: 'white', marginRight: '5px'}}/>
-                                Correo Electrónico:
+                                Correo
                             </span>
                             <input
                                 className='form-control form-field'
@@ -70,8 +69,7 @@ const Login = ({ login, isAuthenticated }) => {
                         
                         <div className='form-group '>
                             <span className="card-text text-white mt-3">
-                                <FaLock style={{color: 'white', marginRight: '5px'}}/>
-                                Contraseña:
+                                Contraseña
                             </span>
                             <input
                                 className='form-control form-field mt-3'
