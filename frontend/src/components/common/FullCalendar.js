@@ -7,7 +7,7 @@ import esLocale from '@fullcalendar/core/locales/es'
 import { getUser, getUserAppointments, getAllProfessionals, getAllPymes, deleteAppointment } from '../../actions/api';
 import Alert from "sweetalert2";
 import Loading from './Loading';
-import { getDate } from '../../actions/getDate';
+import { getDate } from '../../actions/date';
 
 
 const Calendar = ({filteredAppts, professionals, pymes, isAdmin}) => {

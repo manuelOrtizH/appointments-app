@@ -6,3 +6,16 @@ export const getDate = date => {
 
     return [dayFormatter.format(date), monthFormatter.format(date), hourFormatter.format(date)];
 };
+
+export const isDateOccupied = (appointmentDate, notCompletedAppts) => {
+    for (let i = 0; i < notCompletedAppts.length; i++) {
+        const date = new Date(notCompletedAppts[i].date);
+        const correctedDate = new Date(date.toISOString().slice(0, -1));
+        if (appointmentDate.getTime()===correctedDate.getTime()){
+            return true;
+        };
+    };
+    return false;
+    
+};
+

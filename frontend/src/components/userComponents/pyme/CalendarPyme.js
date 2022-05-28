@@ -6,7 +6,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import esLocale from '@fullcalendar/core/locales/es'
 import { deleteAppointment } from '../../../actions/api';
 import Alert from "sweetalert2";
-import { getDate } from '../../../actions/getDate';
+import { getDate } from '../../../actions/date';
 
 
 const CalendarPyme = ({filteredAppts, professionals, pyme}) => {

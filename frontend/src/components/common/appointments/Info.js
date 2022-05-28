@@ -4,7 +4,7 @@ import '../styles/Card.css';
 import '../styles/ListAppts.css';
 import useCollapse from 'react-collapsed';
 import { deleteAppointment, handleAppointment, getUserAppointments } from '../../../actions/api';
-import InfoApptModal from '../ModalAppt';
+import ModalAppt from '../ModalAppt';
 import Alert from "sweetalert2";
 
 
@@ -39,7 +39,9 @@ const Info = ({user, professionals, employees, appointment, id, pymeId,pyme, add
     };    
 
     const handleDelete = async() => {
-        deleteAppointment(id);
+        user[0].appointments = user[0].appointments.filter(el=>el !== id);
+        deleteAppointment(id, user[0]);
+        
         await Alert.fire("Cita eliminada!", `Tu cita ha sido eliminada`, "success");
         window.location.reload();
     };
@@ -113,7 +115,7 @@ const Info = ({user, professionals, employees, appointment, id, pymeId,pyme, add
 
             </section>
             {modalState.modal ? (
-                <InfoApptModal
+                <ModalAppt
                     activeItem={modalState.activeItem}
                     toggle={toggle}
                     onSave={handleSubmit}
@@ -125,6 +127,7 @@ const Info = ({user, professionals, employees, appointment, id, pymeId,pyme, add
                     pymeEmployees={employees}
                     apptForm={appointment}
                     isEdit={true}
+                    isAdmin={isAdmin}
                 />
             ) : null}
         </div>

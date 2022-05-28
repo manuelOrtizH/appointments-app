@@ -69,6 +69,7 @@ const Appointment = ({isAuthenticated}) => {
                             user={user}
                             allAppointments={appointments}
                             isAdmin={isAdmin}
+                            pymeAdmin={pyme}
                             clients={[]}
                         />
                     </section>
@@ -93,6 +94,7 @@ const Appointment = ({isAuthenticated}) => {
                                 allAppointments={appointments}
                                 isAdmin={isAdmin}
                                 clients={userClients}
+                                pymeAdmin={pyme}
                             />
                         </section>
                     }
