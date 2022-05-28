@@ -18,11 +18,8 @@ export const getUser = async (uid, setUser, setAppointments) => {
         }
         
         localStorage.setItem('userClientId', actualUser[0].id);
-        
     });   
 };
-
-
 
 export const getUserClient = async (id, setUser) => {
     const config = {

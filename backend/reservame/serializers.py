@@ -34,7 +34,7 @@ class UserClientSerializer(serializers.DocumentSerializer):
 class BusinessLineSerializer(serializers.DocumentSerializer):
     class Meta: 
         model = BusinessLine
-        fields = 'id', 'name', 'description', 'image_description', 'static_forms'
+        fields = 'id', 'name', 'description', 'pymes', 'image_description', 'static_forms'
 
 class ProfessionistSerializer(serializers.DocumentSerializer):
     class Meta: 
