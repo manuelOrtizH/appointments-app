@@ -121,7 +121,7 @@ const EditProfile = () => {
                                             <Avatar alt="Remy Sharp" src={profile_image} style={{marginLeft: '50%', alignSelf: 'center'}} sx={{ width: 90, height: 90 }}/>
                                         </div>
                                         <div className='col text-center'>
-                                        <label className='btn btn-success btn-lg mr-5' htmlFor="img_id" style={{marginLeft: '10%', marginTop: '5%', padding:"1px 10px" }}>Seleccionar imagen</label>
+                                            <label className='btn btn-success btn-lg mr-5' htmlFor="img_id" style={{marginLeft: '10%', marginTop: '5%', padding:"1px 10px" }}>Seleccionar imagen</label>
                                             <input id='img_id' style={{marginLeft: '20vh', visibility:"hidden"}} type='file' name='profile_image' onChange={e=>onImageChange(e)} ></input>
                                         </div>
                                     </div>
