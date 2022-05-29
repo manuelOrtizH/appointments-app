@@ -89,3 +89,52 @@ dd {
 .header-landing-1{
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 100%), url(https://images.unsplash.com/photo-1606327054476-256fc9690fe2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
 }
+
+.info_text{
+    display: flex;
+    flex-direction: column;
+}
+.titulos_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: white;
+    background-color: #880808;
+}
+.info_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.info_text_2{
+    display: none;
+}
+h1{
+    font-weight: 900;
+}
+.autores_info_2{
+    display: none;
+}
+.autores_info{
+    display: block;
+}
+@media screen and (max-width: 999px) {
+    .info_text {
+        display: none;
+    }
+    .info_text_2{
+        display: block;
+    }
+    .titulos{
+        color: white;
+        background-color: #880808;
+    }
+}
+@media screen and (max-width: 580px) {
+    .autores_info{
+        display: none;
+    }
+    .autores_info_2{
+        display: block;
+    }
+} 

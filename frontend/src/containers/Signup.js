@@ -7,6 +7,8 @@ import { FaEnvelope, FaLock, FaUserAlt, FaUserTie, FaPhoneAlt } from "react-icon
 import '../components/common/styles/Card.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Alert from "sweetalert2";
+import './Signup.css';
+
 
 
 
@@ -76,23 +78,21 @@ const Signup = ({ signup, isAuthenticated }) => {
                 <div className='card-body card-body-form'>
                     <p className="card-text text-center">Crea tu cuenta para comenzar!</p>
                     <form onSubmit={e => onSubmit(e)}>
-                        <div className='form-group'>
-                            <span className="card-text text-white mr-5">
-                                <FaUserTie style={{color: 'white', marginRight: '5px'}}/>
+                        <div className='form-group tipo_container'>
+                            <span className="card-text text-white mr-5 tipo_user">
                                 Tipo de usuario:
                             </span>
-                            <div className="form-check form-check-inline mr-5">
+                            <div className="form-check form-check-inline mr-5 tipo_cliente">
                                 <input className="form-check-input" type="radio" name="is_admin" id="inlineRadio1" value= 'false' onChange={e=>onChange(e)}/>
                                 <label className="form-check-label">Soy cliente</label>
                             </div>
-                            <div className="form-check form-check-inline">
+                            <div className="form-check form-check-inline tipo_pyme">
                                 <input className="form-check-input" type="radio" name="is_admin" id="inlineRadio2" value='true' onChange={e=>onChange(e)}/>
                                 <label className="form-check-label">Soy admin de una PyME</label>
                             </div>
                         </div>
                         <div className='form-group'>
                             <span className="card-text text-white">
-                                <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
                                 Nombre(s)
                             </span>
                             <input
@@ -107,7 +107,6 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
                         <div className='form-group'>
                             <span className="card-text text-white">
-                                <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
                                 Apellidos
                             </span>
                             <input
@@ -120,11 +119,9 @@ const Signup = ({ signup, isAuthenticated }) => {
                                 required
                             />
                         </div>
-                        
                         <div className='form-group'>
                             <span className="card-text text-white">
-                                <FaEnvelope style={{color: 'white', marginRight: '5px'}}/>
-                                Correo Electrónico:
+                                Correo
                             </span>
                             <input
                                 className='form-control form-field'
@@ -138,8 +135,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
                         <div className='form-group'>
                             <span className="card-text text-white">
-                                <FaPhoneAlt style={{color: 'white', marginRight: '5px'}}/>
-                                Numero Telefónico:
+                                Celular
                             </span>
                             <input
                                 className='form-control form-field'
@@ -152,13 +148,12 @@ const Signup = ({ signup, isAuthenticated }) => {
                             />
                         </div>
                         
-                        <div className='form-group '>
-                            <span className="card-text text-white mt-3">
-                                <FaLock style={{color: 'white', marginRight: '5px'}}/>
-                                Contraseña:
+                        <div className='form-group'>
+                            <span className="card-text text-white">
+                                Contraseña
                             </span>
                             <input
-                                className='form-control form-field mt-3'
+                                className='form-control form-field'
                                 type='password'
                                 placeholder='Contraseña'
                                 name='password'
@@ -170,13 +165,12 @@ const Signup = ({ signup, isAuthenticated }) => {
                                 
                         </div>
 
-                        <div className='form-group '>
-                            <span className="card-text text-white mt-3">
-                                <FaLock style={{color: 'white', marginRight: '5px'}}/>
-                                Confirma Contraseña:
+                        <div className='form-group'>
+                            <span className="card-text text-white">
+                                Contraseña
                             </span>
                             <input
-                                className='form-control form-field mt-3'
+                                className='form-control form-field'
                                 type='password'
                                 placeholder='Confirma contraseña'
                                 name='re_password'

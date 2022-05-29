@@ -3,6 +3,7 @@ import './Home.css';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { Card, Grid, Row, Text } from "@nextui-org/react";
 import { connect } from 'react-redux';
+import Avatar from '@mui/material/Avatar';
 
 const Home = ({isAuthenticated}) => {
 
@@ -25,7 +26,7 @@ const Home = ({isAuthenticated}) => {
             </div>
         </div>
         <div className='container'> 
-            <div className=' mt-4 mb-5'>
+            <div className='mt-4 mb-5'>
                 
                 <h1 className='key-words-l mb-4 mt-2' ><i>/ ¿Quiénes somos? /</i></h1>
                 <h1 className='main-description mb-2'>
@@ -38,22 +39,33 @@ const Home = ({isAuthenticated}) => {
                     Interactúa con los diferentes usuarios.
                 </h3>
             </div>
-            <section className="dl-blurbs text-center mb-5">
-                <dl>
-                    <dt className='mr-3'> Flexible</dt>
-                    <dd>Crea tus citas y extiendes los campos que contendrán tu cita, dependiendo el giro de tu empresa.</dd>
-                    <dt className='ml-4'>  Accesible</dt>
-                    <dd>Registra tu Empresa Pequeña o Mediana, registralos junto a tus profesionales y empleados.</dd>
-                </dl>
-                <dl>
-                    <dt className='ml-2'>Amigable</dt>
-                    <dd>Una interfaz amigable y en dond el usuario puede encontrar lo que necesite.</dd>
-                    <dt style={{marginRight: '85px'}}> Simple</dt>
-                    <dd>Con su simpleza ayuda a los usuarios al entendimiento del proceso de citas.</dd>                
-                </dl>
-            </section>
-        </div>
-        
+            <div className="info_text text-center mb-5">
+                <div className='titulos_info text-center mb-5'>
+                    <h1>Flexible</h1>
+                    <h1>Accesible</h1>
+                    <h1>Amigable</h1>
+                    <h1>Simple</h1>
+                </div>
+                <div className='info_info text-center mb-5'>
+                    <h5>Crea tus citas y extiendes los campos que contendrán tu cita, dependiendo el giro de tu empresa.</h5>
+                    <h5>Registra tu Empresa Pequeña o Mediana, registralos junto a tus profesionales y empleados.</h5>
+                    <h5>Una interfaz amigable y en dond el usuario puede encontrar lo que necesite.</h5>
+                    <h5>Con su simpleza ayuda a los usuarios al entendimiento del proceso de citas.</h5>
+                </div>
+            </div>
+            <div className="info_text_2 text-center mb-5">
+                <div className='titulos_info_2 text-center mb-5'>
+                    <h1 className='titulos'>Flexible</h1>
+                    <h5>Crea tus citas y extiendes los campos que contendrán tu cita, dependiendo el giro de tu empresa.</h5>
+                    <h1 className='titulos'>Accesible</h1>
+                    <h5>Registra tu Empresa Pequeña o Mediana, registralos junto a tus profesionales y empleados.</h5>
+                    <h1 className='titulos'>Amigable</h1>
+                    <h5>Una interfaz amigable y en dond el usuario puede encontrar lo que necesite.</h5>
+                    <h1 className='titulos'>Simple</h1>
+                    <h5>Con su simpleza ayuda a los usuarios al entendimiento del proceso de citas.</h5>
+                </div>
+            </div>
+        </div>  
         <div className='second-level' >
             <div className=' mt-4 mb-5 container'>
                 <h1 className='key-words-r mb-4'><i>/ ¿Qué hacemos? /</i></h1>
@@ -127,7 +139,6 @@ const Home = ({isAuthenticated}) => {
             </div>
 
         </div>
-        
         <div className='third-level' >
             <div className=' mt-4 mb-5 container'>
                 <h1 className='key-words-l mb-4'><i>/ Equipo /</i></h1>
@@ -140,10 +151,15 @@ const Home = ({isAuthenticated}) => {
 
                 </h3>
             </div>
-            <div className="container mb-5">
+            <div className="container mb-5 autores_info">
                 <div className="row text-center">
                     <a className="col text-center" >
-                        <img style={{ width:'18%', borderRadius: '50%', margin:'0 auto', height:'auto'}} src='https://www.seekpng.com/png/full/612-6121902_pingu-the-penguin-pingu-cartoon.png'/>
+                    <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Manuel.jpeg?alt=media&token=cea05487-bff3-4c2f-9441-a558382580db'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
                     </a>
                 </div>
                 <div className="row text-center">
@@ -161,13 +177,21 @@ const Home = ({isAuthenticated}) => {
                 <div className="row">
                     <div className="col text-center">                   
                         <a className="text-center" >
-                            <img style={{ width:'30%', borderRadius: '50%', margin:'auto'}} src='https://www.seekpng.com/png/full/612-6121902_pingu-the-penguin-pingu-cartoon.png'/>
+                        <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Raul.jpeg?alt=media&token=e23e7bf2-159a-4c52-8731-63df2e137ea2'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
                         </a>
                     </div>
                     <div className="col text-center">
-                        
-                        <img style={{ width:'30%', borderRadius: '50%', margin:'auto'}} src='https://www.seekpng.com/png/full/612-6121902_pingu-the-penguin-pingu-cartoon.png'/>
-                        
+                        <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Omar.jpeg?alt=media&token=7fb501f8-d912-4bd7-bc57-0051a48a1859'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
                     </div>
                 </div>
                 <div className="row">
@@ -199,13 +223,21 @@ const Home = ({isAuthenticated}) => {
                 <div className="row">
                     <div className="col text-center">                   
                         <a className="text-center" >
-                            <img style={{ width:'30%', borderRadius: '50%', margin:'auto'}} src='https://www.seekpng.com/png/full/612-6121902_pingu-the-penguin-pingu-cartoon.png'/>
+                        <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Diego.jpeg?alt=media&token=fc01ad25-5c0a-4836-b718-b589f1e79a7c'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
                         </a>
                     </div>
                     <div className="col text-center">
-                        
-                        <img style={{ width:'30%', borderRadius: '50%', margin:'auto'}} src='https://www.seekpng.com/png/full/612-6121902_pingu-the-penguin-pingu-cartoon.png'/>
-                        
+                    <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Victor.jpeg?alt=media&token=79174352-e9b3-499b-bbae-d398ce46a6f6'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
                     </div>
                 </div>
                 <div className="row">
@@ -234,13 +266,120 @@ const Home = ({isAuthenticated}) => {
                         </Card>
                     </div>
                 </div>
-
             </div>
-
+            <div className="container mb-5 autores_info_2">
+                <div className="row text-center">
+                    <a className="col text-center" >
+                    <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Manuel.jpeg?alt=media&token=cea05487-bff3-4c2f-9441-a558382580db'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
+                    </a>
+                </div>
+                <div className="row text-center">
+                    <Card hoverable className='mb-3 text-center' style={{width: '60%', margin: 'auto'}}>
+                        <Card.Body >
+                        <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Manuel Ortiz</Text>
+                        </Card.Body>
+                        <Card.Footer style={{backgroundColor: 'yellow'}}>
+                        <Row wrap="wrap" justify="space-between">
+                            <Text b style={{fontSize: '15px', color: 'black', textAlign:'center'}}>Diseñador de Arquitectura de Software</Text>
+                        </Row>
+                        </Card.Footer>
+                    </Card>
+                </div>
+                <div className="row text-center">
+                    <a className="col text-center" >
+                    <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Raul.jpeg?alt=media&token=e23e7bf2-159a-4c52-8731-63df2e137ea2'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
+                    </a>
+                </div>
+                <div className="row text-center">
+                <Card hoverable className='mb-3 text-center' style={{width: '60%', margin: 'auto'}}>
+                            <Card.Body >
+                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Raúl Cardona</Text>
+                            </Card.Body>
+                            <Card.Footer style={{backgroundColor: 'blue'}}>
+                            <Row wrap="wrap" justify="space-between">
+                                <Text b style={{fontSize: '15px', color: 'white', textAlign:'center'}}>Desarrollador Frontend</Text>
+                            </Row>
+                            </Card.Footer>
+                        </Card>
+                </div>
+                <div className="row text-center">
+                    <a className="col text-center" >
+                    <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Omar.jpeg?alt=media&token=7fb501f8-d912-4bd7-bc57-0051a48a1859'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
+                    </a>
+                </div>
+                <div className="row text-center">
+                <Card hoverable className='mb-3 text-center' style={{width: '60%', margin: 'auto'}}>
+                            <Card.Body >
+                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Omar Robledo</Text>
+                            </Card.Body>
+                            <Card.Footer style={{backgroundColor: 'green'}}>
+                            <Row wrap="wrap" justify="space-between">
+                                <Text b style={{fontSize: '15px', color: 'white', textAlign:'center'}}>Desarrollador Backend</Text>
+                            </Row>
+                            </Card.Footer>
+                        </Card>
+                </div>
+                <div className="row text-center">
+                    <a className="col text-center" >
+                    <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Diego.jpeg?alt=media&token=fc01ad25-5c0a-4836-b718-b589f1e79a7c'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
+                    </a>
+                </div>
+                <div className="row text-center">
+                <Card hoverable className='mb-3 text-center' style={{width: '60%', margin: 'auto'}}>
+                            <Card.Body >
+                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Diego Levy</Text>
+                            </Card.Body>
+                            <Card.Footer style={{backgroundColor: 'orange'}}>
+                            <Row wrap="wrap" justify="space-between">
+                                <Text b style={{fontSize: '15px', color: 'white', textAlign:'center'}}>Desarrollador Fullstack</Text>
+                            </Row>
+                            </Card.Footer>
+                        </Card>
+                </div>
+                <div className="row text-center">
+                    <a className="col text-center" >
+                    <Avatar
+                            alt="Remy Sharp"
+                            src={'https://firebasestorage.googleapis.com/v0/b/reservamedb.appspot.com/o/Victor.jpeg?alt=media&token=79174352-e9b3-499b-bbae-d398ce46a6f6'}
+                            style={{margin: 'auto', alignSelf: 'center'}}
+                            sx={{ width: 100, height: 100 }}
+                        />
+                    </a>
+                </div>
+                <div className="row text-center">
+                <Card hoverable className='mb-3 text-center' style={{width: '60%', margin: 'auto'}}>
+                            <Card.Body >
+                            <Text b style={{fontSize: '25px', color: 'black', textAlign:'center'}}>Victor Godínez</Text>
+                            </Card.Body>
+                            <Card.Footer style={{backgroundColor: 'pink'}}>
+                            <Row wrap="wrap" justify="space-between" >
+                                <Text b style={{fontSize: '15px', color: 'black', textAlign:'center'}}>Modelado de Base de Datos</Text>
+                            </Row>
+                            </Card.Footer>
+                        </Card>
+                </div>
+            </div>
         </div>
-
-    
-
     </div>
     );
 };
