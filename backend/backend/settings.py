@@ -17,8 +17,10 @@ from datetime import timedelta
 from dotenv import load_dotenv
 
 from pymongo import MongoClient
+import certifi
 
 load_dotenv()
+
 
 DB_SQL = os.getenv('LOCAL_SQL_DB')
 USER_SQL = os.getenv('USER_LOCAL_SQL_DB')
@@ -27,8 +29,11 @@ DB_MONGO = os.getenv('LOCAL_MONGO_DB')
 USER_MONGO = os.getenv('USER_LOCAL_MONGO_DB')
 PASSWORD_MONGO = os.getenv('PASSWORD_LOCAL_MONGO_DB')
 DB_CL='mongodb+srv://manuelortiz:mfkm03162212@newcluster.0vf8b.mongodb.net/reservamedb?retryWrites=true&w=majority'
-mongoengine.connect(host=DB_CL, connect=False)
-
+# # mongoengine.connect(host=DB_CL)
+# client = MongoClient("localhost", 27017)
+# db = 'reservamedb'
+ca = certifi.where()
+mongoengine.connect(host=DB_CL,  tlsCAFile=ca)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -106,7 +111,8 @@ DATABASES = {
         'PASSWORD': PASSWORD_SQL,
         'HOST': 'localhost',
         'PORT': '3306',
-    }
+    },
+
 }
 
 
