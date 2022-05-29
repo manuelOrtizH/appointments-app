@@ -35,7 +35,7 @@ const Navbar = ({ logout, isAuthenticated }) => {
                 <Link to="/home" className="nav-link text-white">Inicio</Link>
             </li>
             <li className="nav-item">
-                <a href="/profile" className="nav-link text-white">Perfil</a>
+                <Link to="/profile" className="nav-link text-white">Perfil</Link>
             </li>
             <li className="nav-item">
                 <Link to='/appointment' className="nav-link text-white">Citas</Link>

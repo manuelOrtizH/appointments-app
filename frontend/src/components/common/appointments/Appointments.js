@@ -51,15 +51,7 @@ const Appointment = ({isAuthenticated}) => {
                 
                 <div>
                     {!isAdmin && 
-                    <section className='cards ' style={{display:'flex', border: 'transparent'}}>
-                        <History
-                            appointments={filteredAppts}
-                            professionals={professionals}
-                            pymes={pymes}
-                            user={user}
-                            isAdmin={isAdmin}
-                            clients={[]}
-                        />
+                    <section>
                         <Pending 
                             date={date}
                             month={month}
@@ -72,18 +64,18 @@ const Appointment = ({isAuthenticated}) => {
                             pymeAdmin={pyme}
                             clients={[]}
                         />
+                        <History
+                            appointments={filteredAppts}
+                            professionals={professionals}
+                            pymes={pymes}
+                            user={user}
+                            isAdmin={isAdmin}
+                            clients={[]}
+                        />
                     </section>
                     }
                     {isAdmin && 
-                        <section className='cards ' style={{display:'flex', border: 'transparent'}}>
-                            <History
-                                appointments={pymeAppts}
-                                professionals={professionals}
-                                pymes={pymes}
-                                user={user}
-                                isAdmin={isAdmin}
-                                clients={userClients}
-                            />
+                        <section >
                             <Pending 
                                 date={date}
                                 month={month}
@@ -95,6 +87,14 @@ const Appointment = ({isAuthenticated}) => {
                                 isAdmin={isAdmin}
                                 clients={userClients}
                                 pymeAdmin={pyme}
+                            />
+                            <History
+                                appointments={pymeAppts}
+                                professionals={professionals}
+                                pymes={pymes}
+                                user={user}
+                                isAdmin={isAdmin}
+                                clients={userClients}
                             />
                         </section>
                     }

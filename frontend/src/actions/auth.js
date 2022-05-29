@@ -64,11 +64,10 @@ export const load_user = () => async dispatch => {
 
         
         try{
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
-            
+            const  res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/users/me/`, config);
             localStorage.setItem('userName', res.data.name);
             localStorage.setItem('userId', res.data.id);
-            
+
             dispatch({
                 type: USER_LOADED_SUCCESS,
                 payload: res.data

@@ -9,6 +9,7 @@ import { handlePyme, handleProfessional } from '../../../actions/api';
 import Alert from 'sweetalert2';
 import AddProModal from './modals/AddProModal';
 import EditPymeModal from './modals/EditPymeModal';
+import Avatar from '@mui/material/Avatar';
 
 const PymeDashboard = () => {
     const { id } = useParams();
@@ -149,7 +150,17 @@ const PymeDashboard = () => {
                                     <h1 className='card-title text-center' style={{color: '#880808'}}><b>{pymeInfo.name}</b></h1>
                                     <hr></hr>
                                     <a className='card-title text-center'>
-                                        <img src={pymeInfo.image_url} style={{borderRadius: '50%', width: '20%'}}/>
+                                        <div className='row'>
+                                            <div className='col text-center'>
+                                                <Avatar
+                                                    alt="image-pyme"
+                                                    src={pymeInfo.image_url}
+                                                    style={{alignSelf: 'center', marginLeft: '47%'}}
+                                                    sx={{ width: 120, height: 120 }}
+                                                />
+                                            </div>
+                                        </div>
+
                                     </a>
                                     <br></br>
                                     <h5 className='card-title text-center mt-5'>Dirección</h5>

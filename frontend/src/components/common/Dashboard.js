@@ -24,6 +24,8 @@ const Dashboard = ({isAuthenticated}) => {
     const [userAppts, setUserAppts] = useState([]);
     const [admins, setAdmins] = useState([]);
     const [userClients, setUserClients] = useState([]);
+
+    
     
     useEffect(async () => {
         setIsLoading(true);
@@ -38,7 +40,7 @@ const Dashboard = ({isAuthenticated}) => {
     }, []);
     
     const isAdmin = user.length > 0 ? user[0].is_admin : false;
-    let username = localStorage.getItem('userName');
+    let username = user.length > 0 ? user[0].name : 'usuario';
     
     const adminFiltered = admins.length > 0 ? admins.filter(el=> el.uid == localStorage.getItem('userId')) : [];
 
@@ -51,7 +53,7 @@ const Dashboard = ({isAuthenticated}) => {
         <div>
             <div className = 'jumbotron jumbotron-fluid text-white' >
                 <div className='container'>
-                    <h1 className='display-4 text-white'>Hola, {username} !</h1>                
+                    <h1 className='display-4 text-white'>Hola, {username} </h1>                
                 </div>
             </div>
             {!isLoading && user.length > 0 && 

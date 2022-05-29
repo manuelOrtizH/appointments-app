@@ -17,8 +17,11 @@ const ModalAppt = (props) => {
 	const listClients = [];
 	if(props.isAdmin && !props.isEdit){
 		props.clients.map((el,index)=>{
-			const clientName = `${el.name} ${el.last_name}`
-			listClients.push(<option key={index}  value={el.id}> {clientName} / {el.email} </option>);
+			if(props.user[0].uid !== el.uid){
+				const clientName = `${el.name} ${el.last_name}`
+				listClients.push(<option key={index}  value={el.id}> {clientName} / {el.email} </option>);
+			}
+			
 		});
 	}
     const [formData, setFormData] = useState(props.customForm);	

@@ -27,8 +27,13 @@ const Calendar = () => {
     }, []);
 
     const isAdmin = user.length > 0 ? user[0].is_admin : false;
-    const adminFiltered = admins.length > 0 ? admins.filter(el=> el.uid == localStorage.getItem('userId')) : [];
-    const pyme = pymes.length > 0 ? pymes.filter(el=>el.admin === adminFiltered.id)[0] : [];
+    let adminFiltered = [];
+    let pyme = [];
+    if(adminFiltered){
+        adminFiltered = admins.length > 0 ? admins.filter(el=> el.uid == localStorage.getItem('userId'))[0] : [];
+        pyme = pymes.length > 0 ? pymes.filter(el=>el.admin === adminFiltered.id)[0] : [];
+    };
+    
 
     return (
         <div>
@@ -42,7 +47,7 @@ const Calendar = () => {
                             isAdmin={false}
                         />
                     }
-                    {isAdmin && 
+                    {isAdmin && adminFiltered && pyme &&
                         <FullCalendar
                             filteredAppts={userAppts ? userAppts.filter(el=> el.pyme === pyme.id): []}
                             professionals={professionals}
