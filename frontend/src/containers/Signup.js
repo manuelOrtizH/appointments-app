@@ -44,8 +44,8 @@ const Signup = ({ signup, isAuthenticated }) => {
             toast.error('El número telefónico ingresado no es válido.');
         }else{
             signup(name, last_name, email, phone_number, password, re_password, is_admin === 'true', toast, setAccountCreated);
-            // await Alert.fire("Cita eliminada!", `Tu cita ha sido eliminada`, "success");
-            // window.location.reload();
+            Alert.fire("Cuenta creada!", `Se te redireccionará en unos momentos`, "success");
+            
         }   
     };
 
