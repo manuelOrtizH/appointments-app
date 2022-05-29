@@ -16,6 +16,8 @@ from datetime import timedelta
 
 from dotenv import load_dotenv
 
+from pymongo import MongoClient
+
 load_dotenv()
 
 DB_SQL = os.getenv('LOCAL_SQL_DB')
@@ -24,9 +26,8 @@ PASSWORD_SQL = os.getenv('PASSWORD_LOCAL_SQL_DB')
 DB_MONGO = os.getenv('LOCAL_MONGO_DB')
 USER_MONGO = os.getenv('USER_LOCAL_MONGO_DB')
 PASSWORD_MONGO = os.getenv('PASSWORD_LOCAL_MONGO_DB')
-
-mongoengine.connect(DB_MONGO, 
-                    username=USER_MONGO, password=PASSWORD_MONGO)
+DB_CL='mongodb+srv://manuelortiz:mfkm03162212@newcluster.0vf8b.mongodb.net/reservamedb?retryWrites=true&w=majority'
+mongoengine.connect(host=DB_CL, connect=False)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
