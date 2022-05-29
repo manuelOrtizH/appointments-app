@@ -33,7 +33,7 @@ DB_CL='mongodb+srv://manuelortiz:mfkm03162212@newcluster.0vf8b.mongodb.net/reser
 # client = MongoClient("localhost", 27017)
 # db = 'reservamedb'
 ca = certifi.where()
-mongoengine.connect(host=DB_CL,  tlsCAFile=ca)
+mongoengine.connect(host=DB_CL, tlsCAFile=ca)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
