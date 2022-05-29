@@ -79,9 +79,8 @@ const Signup = ({ signup, isAuthenticated }) => {
                         <div className='form-group'>
                             <span className="card-text text-white mr-5">
                                 <FaUserTie style={{color: 'white', marginRight: '5px'}}/>
-                                Tipo de usuario
+                                Tipo de usuario:
                             </span>
-                            <br></br>
                             <div className="form-check form-check-inline mr-5">
                                 <input className="form-check-input" type="radio" name="is_admin" id="inlineRadio1" value= 'false' onChange={e=>onChange(e)}/>
                                 <label className="form-check-label">Soy cliente</label>
@@ -93,7 +92,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
                         <div className='form-group'>
                             <span className="card-text text-white">
-                                
+                                <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
                                 Nombre(s)
                             </span>
                             <input
@@ -108,7 +107,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
                         <div className='form-group'>
                             <span className="card-text text-white">
-                                
+                                <FaUserAlt style={{color: 'white', marginRight: '5px'}}/>
                                 Apellidos
                             </span>
                             <input
@@ -124,7 +123,8 @@ const Signup = ({ signup, isAuthenticated }) => {
                         
                         <div className='form-group'>
                             <span className="card-text text-white">
-                                Correo
+                                <FaEnvelope style={{color: 'white', marginRight: '5px'}}/>
+                                Correo Electrónico:
                             </span>
                             <input
                                 className='form-control form-field'
@@ -138,8 +138,8 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </div>
                         <div className='form-group'>
                             <span className="card-text text-white">
-                                
-                                Teléfono
+                                <FaPhoneAlt style={{color: 'white', marginRight: '5px'}}/>
+                                Numero Telefónico:
                             </span>
                             <input
                                 className='form-control form-field'
@@ -154,8 +154,8 @@ const Signup = ({ signup, isAuthenticated }) => {
                         
                         <div className='form-group '>
                             <span className="card-text text-white mt-3">
-                                
-                                Contraseña
+                                <FaLock style={{color: 'white', marginRight: '5px'}}/>
+                                Contraseña:
                             </span>
                             <input
                                 className='form-control form-field mt-3'
@@ -169,11 +169,11 @@ const Signup = ({ signup, isAuthenticated }) => {
                             />
                                 
                         </div>
-                        Confirmar
+
                         <div className='form-group '>
-                            
                             <span className="card-text text-white mt-3">
-                                Contraseña
+                                <FaLock style={{color: 'white', marginRight: '5px'}}/>
+                                Confirma Contraseña:
                             </span>
                             <input
                                 className='form-control form-field mt-3'

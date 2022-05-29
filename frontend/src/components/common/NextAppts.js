@@ -12,7 +12,7 @@ const NextAppts = ({userAppts, professionals, appointments, pymes, isAdmin, clie
     
 
     const options = {
-        items: 3,
+        items: 1,
         nav: true,
         loop: false,
     };
@@ -44,7 +44,7 @@ const NextAppts = ({userAppts, professionals, appointments, pymes, isAdmin, clie
                                 <div className="card-pyme card-just-text" data-background="color" data-color={color} data-radius="none">
                                     <div className="content text-center">
                                         <h6 className="category">{responsable.name + ' ' + responsable.last_name}</h6>
-                                        <h4 className="title"><a href="#">{pyme.name}</a></h4>
+                                        <h4 className="title"><Link to="/appointment">{pyme.name}</Link></h4>
                                         <h4 className='description'><b>{day}</b> de <b>{month}</b> a las <b>{hour}</b></h4>
                                         <h5 className='description'>{appt.reason}</h5>
                                         {isAdmin && 
@@ -64,8 +64,8 @@ const NextAppts = ({userAppts, professionals, appointments, pymes, isAdmin, clie
         
         <div >
             {!isLoading && notCompletedAppts && 
-            <div>
-                <OwlCarousel style={{marginBottom: '10px'}} className='slider-items owl-theme' {...options}>
+            <div className='container'>
+                <OwlCarousel  className='slider-items owl-theme text-center' {...options}>
                     {listAppts}
                 </OwlCarousel>
             </div>

@@ -13,7 +13,7 @@ const Pymes = ({pymes}) => {
     const listPymes = [];
 
     const options = {
-        items: 3,
+        items: 1,
         nav: true,
         loop: true,
     };

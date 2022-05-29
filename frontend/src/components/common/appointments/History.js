@@ -9,7 +9,7 @@ const History = ({appointments, professionals, pymes, user, isAdmin, clients}) =
 
     
     return (
-        <article className='appt-data ml-5 card mr-5 mt-5' >
+        <article className='appt-data card mt-5' >
             <div>
                 <div className='card-body'>
                     <div className=' text-center'>

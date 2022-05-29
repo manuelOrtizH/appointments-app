@@ -3,8 +3,9 @@ import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../actions/auth';
 import '../components/common/styles/Form.css';
-import { FaEnvelope, FaLock } from "react-icons/fa";
+
 import '../components/common/styles/Card.css';
+import {  useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 
@@ -13,6 +14,7 @@ const Login = ({ login, isAuthenticated }) => {
         email: '',
         password: '',
     });
+    let navigate = useNavigate();
 
     const { email, password } = formData;
 
@@ -22,12 +24,14 @@ const Login = ({ login, isAuthenticated }) => {
         e.preventDefault();
 
         login(email,password, toast);
+        
     };
 
     //Is the user authenticated
     //Redirect them to the home page
     if(isAuthenticated){
-        return (<Navigate to='/home' replace={true} />);
+        navigate("/home", { replace: true });
+
     }
 
     return (

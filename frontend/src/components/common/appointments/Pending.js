@@ -36,7 +36,7 @@ const Pending = ({date,month, appointments, professionals, pymes, user, allAppoi
     const scheduleAppointment = item => setModalState({ apptForm: {}, modal: !modalState.modal });
 
     return (
-        <article className='appt-list mr-5 card  mt-5 mb-5'>
+        <article className='appt-list card  mt-5 mb-5'>
             <div>
 
                 <div className='card-body'>
@@ -88,6 +88,7 @@ const Pending = ({date,month, appointments, professionals, pymes, user, allAppoi
                     isEdit={false}
                     clients={clients}
                     isAdmin={isAdmin}
+                    user={user}
                 />
             ) : null}
             

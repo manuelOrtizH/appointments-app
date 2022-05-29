@@ -1,12 +1,32 @@
-.appt-data{
-    width: 45%;
-    height: 100%;
+
+
+@media only screen and (min-device-width: 720px) {
+
+
+    .appt-data{
+        width: 90%;
+        margin: auto;
+        
+    }
+    
+    .appt-list{
+        width: 90%;
+        margin: auto;
+        
+    }
 }
 
-.appt-list{
-    width: 55%;
-    height: 100%;
-}
+@media screen and (max-device-width: 720px) {
+    .app-list{
+        width: 100%;
+    }    
+    
+    .appt-data{
+        width: 100%;
+    }
+}   
+
+
 
 .diagonalCross2 {
     background: linear-gradient(to top right, #fff calc(50% - 1px), black , #880808 calc(50% + 1px) )
