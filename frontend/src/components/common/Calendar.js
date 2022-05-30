@@ -29,7 +29,7 @@ const Calendar = () => {
     const isAdmin = user.length > 0 ? user[0].is_admin : false;
     let adminFiltered = [];
     let pyme = [];
-    if(adminFiltered){
+    if(isAdmin){
         adminFiltered = admins.length > 0 ? admins.filter(el=> el.uid == localStorage.getItem('userId'))[0] : [];
         pyme = pymes.length > 0 ? pymes.filter(el=>el.admin === adminFiltered.id)[0] : [];
     };

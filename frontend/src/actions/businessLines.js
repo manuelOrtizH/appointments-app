@@ -1,5 +1,5 @@
 export const businesLinesOptions = () => {
-    const businesLines = ['Entretenimiento', 'Salud', 'Comida', 'Derecho', 'Educación', 'Belleza', 'Música']
+    const businesLines = ['Entretenimiento', 'Salud', 'Comida', 'Derecho', 'Educación', 'Estética', 'Música']
     let index=0;
     const listOptions = [];
     for(const bL of businesLines){

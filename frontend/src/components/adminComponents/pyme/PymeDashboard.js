@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
-import { getPyme } from '../../../actions/api';
+import { getPyme, getAllProfessionals } from '../../../actions/api';
 import Loading from '../../common/Loading';
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import EditFieldsModal from './modals/EditFieldsModal';
@@ -10,6 +10,7 @@ import Alert from 'sweetalert2';
 import AddProModal from './modals/AddProModal';
 import EditPymeModal from './modals/EditPymeModal';
 import Avatar from '@mui/material/Avatar';
+import { list } from 'firebase/storage';
 
 const PymeDashboard = () => {
     const { id } = useParams();
@@ -21,6 +22,7 @@ const PymeDashboard = () => {
     const [isLoading, setIsLoading] = useState(false);
     const customDataForm = [];
     const invertedCustomDataForm = {}
+    const [professionals, setProfessionals] = useState([]);
     const [professionalForm, setProfessionalForm] = useState({
         name: '',
         last_name: '',
@@ -33,11 +35,34 @@ const PymeDashboard = () => {
     useEffect(async () => {
         setIsLoading(true);
         await getPyme(id, setPyme);
+        await getAllProfessionals(setProfessionals);
         setIsLoading(false);
     }, []);
-
+    const numEmployees = 0;
     const pymeInfo = pyme ? pyme : [];
-    const numEmployees = pymeInfo.length > 0 ? pymeInfo.employees.length : 0;
+    // if(pyme){
+    //     pyme.map(el=> {
+    //         console.log(el.employees)
+    //     });
+    // }
+
+    const filteredProfessionals = professionals ? professionals.filter(el=> pyme.employees.includes(el.id)) : [];
+    const listColaborators = [];
+    if(filteredProfessionals){
+        filteredProfessionals.map(el=>{
+            listColaborators.push(
+                <div key={el.id}>
+                    <div >
+                        <h6 style={{color: 'green'}}>{el.name} {el.last_name} : {el.phone_number}</h6>
+                    </div>
+                </div>
+
+            );
+        })
+        
+    }
+
+    console.log(filteredProfessionals);
 
     const deleteField = k => {
         const tempInfo = pyme.custom_data_form;
@@ -100,7 +125,7 @@ const PymeDashboard = () => {
             handleProfessional(formData, pyme);
             addProModalToggle();
             Alert.fire("Colaborador registrado!", `Has registrado con éxito a un colaborador`, "success");
-            
+            window.location.reload();
             
         }
     };
@@ -145,7 +170,7 @@ const PymeDashboard = () => {
                 <div>
                     <div className='card-body'>
                         <div className='no-border text-center'>
-                            {!isLoading && pymeInfo &&
+                            {!isLoading && pymeInfo && filteredProfessionals &&
                                 <div>
                                     <h1 className='card-title text-center' style={{color: '#880808'}}><b>{pymeInfo.name}</b></h1>
                                     <hr></hr>
@@ -172,9 +197,9 @@ const PymeDashboard = () => {
                                     <h5 className='card-title text-center mt-5'>Descripción</h5>
                                     <h5 className='card-title text-center '><b>{pymeInfo.description}</b></h5>
                                     <hr></hr>
-                                    <h5 className='card-title text-center mt-5'>Número de colaboradores</h5>
-
-                                    <h5 className='card-title text-center '><b>{numEmployees}</b></h5>
+                                    <h5 className='card-title text-center mt-5'>Colaboradores </h5>
+                                    {listColaborators}
+                                    
                                     <button className='btn btn-success' onClick={handleAddPro} href='#'><FaPlus style={{color: 'white'}}/> Agregar Colaboardor</button>
                                     <hr></hr>
                                     <h5 className='card-title text-center'>Giro</h5>

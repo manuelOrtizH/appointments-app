@@ -22,7 +22,7 @@ const CreatePyme = ({admin}) => {
     
     const listOptions = [];
 
-    const businesLines = ['Entretenimiento', 'Salud', 'Comida', 'Derecho', 'Educación', 'Belleza', 'Música']
+    const businesLines = ['Entretenimiento', 'Salud', 'Comida', 'Derecho', 'Educación', 'Estética', 'Música']
     let index=0;
     for(const bL of businesLines){
         index+=1;
@@ -151,7 +151,6 @@ const CreatePyme = ({admin}) => {
                                 <option value='Otro'>Otro</option>
                                 </select>
                             </div>
-                            <h6 className='form-group text-right'><i>*No es necesario tener un slogan o descripción</i></h6>
                             <hr></hr>
                             <div className='row'>
                                 <div className='col text-center'>

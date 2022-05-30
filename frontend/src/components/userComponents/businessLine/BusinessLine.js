@@ -8,17 +8,19 @@ import Loading from '../../common/Loading';
 import { getAllBusinessLines } from '../../../actions/api';
 
 
-const BusinessLine = ({businessLines}) => {
+const BusinessLine = ({businessLines, pymes}) => {
 
     const options = {
         items: 1,
         nav: true,
         loop: true,
-        fluidSpeed: true,
+        fluidSpeed: false,
         animateIn: true,
         autoplay: true,
+        autoplaySpeed: 10000,
+        autoplayTimeout: 10000,
     };
-
+    
     // const [businessLines, setBusinessLines] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
@@ -36,7 +38,7 @@ const BusinessLine = ({businessLines}) => {
                         <Postcard
                         name={business.name}
                         description={business.description}
-                        pymes={business.pymes}
+                        pymes={pymes}
                         imageUrl={business.image_description}
                         />
                        </div>)

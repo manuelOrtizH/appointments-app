@@ -63,6 +63,7 @@ const Appointment = ({isAuthenticated}) => {
                             isAdmin={isAdmin}
                             pymeAdmin={pyme}
                             clients={[]}
+                            admins={[]}
                         />
                         <History
                             appointments={filteredAppts}
@@ -87,6 +88,7 @@ const Appointment = ({isAuthenticated}) => {
                                 isAdmin={isAdmin}
                                 clients={userClients}
                                 pymeAdmin={pyme}
+                                admins={admins}
                             />
                             <History
                                 appointments={pymeAppts}

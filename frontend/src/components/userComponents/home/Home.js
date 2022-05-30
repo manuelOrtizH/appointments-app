@@ -4,6 +4,9 @@ import NextAppts from '../../common/NextAppts';
 import Pymes from '../pyme/PymesCarousel';
 
 const Home = ({username, pymes, userAppts, professionals, appointments, businessLines}) => {
+
+    console.log(pymes);
+
     return(
         <div>
             {/* Desplegar citas */}
@@ -29,7 +32,9 @@ const Home = ({username, pymes, userAppts, professionals, appointments, business
             <div className='container'>
                 <h1 style={{fontWeight: 'bold'}} className='text-black text-center mt-5'>Explora los diferentes sectores que puedes encontrar</h1>
             </div>           
-            <BusinessLine businessLines={businessLines}
+            <BusinessLine 
+                businessLines={businessLines} 
+                pymes={pymes}
             />
         </div>
     );

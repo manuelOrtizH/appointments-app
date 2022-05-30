@@ -8,9 +8,10 @@ import Alert from 'sweetalert2';
 import { isDateOccupied } from '../../../actions/date';
 
 
-const Pending = ({date,month, appointments, professionals, pymes, user, allAppointments, isAdmin, clients, pymeAdmin}) => {
+const Pending = ({date,month, appointments, professionals, pymes, user, allAppointments, isAdmin, clients, pymeAdmin, admins}) => {
     const notCompletedAppts = appointments.filter(el=> !el.completed);
-    
+    const adminsUID = admins.map(el=>el.uid);
+    const notAdmins = clients.filter(el=> !adminsUID.includes(el.uid));
     const listAppointmentsItems = createApptFragments(notCompletedAppts, pymes, professionals, false, user, isAdmin, clients);
     const [modalState, setModalState] = useState({viewCompleted: false, modal: false, apptForm: '' });
     const apptForm = {date: '', reason: '', pyme: pymeAdmin.id, completed: false, data: pymeAdmin.custom_data_form, responsable: '', client: ''}
@@ -86,7 +87,7 @@ const Pending = ({date,month, appointments, professionals, pymes, user, allAppoi
                     pymeEmployees={pymeAdmin.employees}
                     apptForm={apptForm}
                     isEdit={false}
-                    clients={clients}
+                    clients={notAdmins}
                     isAdmin={isAdmin}
                     user={user}
                 />

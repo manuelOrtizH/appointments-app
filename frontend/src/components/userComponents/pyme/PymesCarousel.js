@@ -13,10 +13,12 @@ const Pymes = ({pymes}) => {
     const listPymes = [];
 
     const options = {
-        items: 1,
+        items: 2,
         nav: true,
         loop: true,
     };
+
+    
     
     useEffect(() => {
         setIsLoading(true);

@@ -17,7 +17,7 @@ const CalendarPyme = ({filteredAppts, professionals, pyme}) => {
         const namePyme = pyme.name;
         const nameResponsable = `${responsable.name} ${responsable.last_name}`
         const eventColor = new Date(el.date).toISOString().slice(0,16) < new Date().toISOString().slice(0,16) ? 'red' : 'blue'
-        userEvents.push({id: el.id, title: el.reason, date: new Date(el.date).toISOString().slice(0,16), color: eventColor});
+        userEvents.push({id: el.id, title: 'Ocupado', date: new Date(el.date).toISOString().slice(0,16), color: eventColor});
     });
 
     const handleDateClick = eventClick => { // bind with an arrow function
