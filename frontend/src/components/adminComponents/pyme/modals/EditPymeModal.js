@@ -50,7 +50,7 @@ const EditPymeModal = (props) => {
         //Lo que ahorita de diga poner
         let img = e.target.files[0];
         setImage(URL.createObjectURL(img));
-        console.log('form', formData);
+        
         uploadBytes(storageRef, img).then((snapshot) => {
             console.log('Uploaded the image!');
         });
@@ -110,7 +110,7 @@ const EditPymeModal = (props) => {
                         <FormGroup>
                             <span className="card-text text-white">
                                 <FaLocationArrow style={{color: 'white', marginRight: '5px'}}/>
-                                Direcci贸n
+                                Dirección
                             </span>
                             <Input
                                 className='form-control form-field'
@@ -143,7 +143,7 @@ const EditPymeModal = (props) => {
                                 
                                 <span className="card-text text-white">
                                     <FaBook style={{color: 'white', marginRight: '5px'}}/>
-                                    Descripci贸n
+                                    Descripción
                                 </span>
                                 <Input
                                     style={{overflow: 'hidden', resize:'none'}}

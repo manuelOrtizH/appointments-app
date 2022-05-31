@@ -18,7 +18,7 @@ const ModalAppt = (props) => {
 	if(props.isAdmin && !props.isEdit){
 		props.clients.map((el,index)=>{
 			if(props.user[0].uid !== el.uid){
-				const clientName = `${el.name} ${el.last_name}`
+				const clientName = `${el.name} ${el.last_name}`;
 				listClients.push(<option key={index}  value={el.id}> {clientName} / {el.email} </option>);
 			}
 			

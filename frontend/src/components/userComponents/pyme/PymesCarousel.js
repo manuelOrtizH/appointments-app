@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './styles/Pymes.css';
 import { useNavigate } from 'react-router-dom';
-import { getAllPymes } from '../../../actions/api';
 import OwlCarousel from 'react-owl-carousel';
 import Loading from '../../common/Loading';
 import Avatar from '@mui/material/Avatar';

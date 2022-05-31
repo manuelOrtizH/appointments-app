@@ -76,6 +76,8 @@ const Calendar = ({filteredAppts, professionals, pymes, isAdmin}) => {
         <div className='container'>
             <div className='text-center mt-5 mb-5' style={{color: '#880808'}}>
                 <div>
+                    {isAdmin && <h1 className='text-center'>El calendario de tu PyME</h1>}
+                    {!isAdmin && <h1 className='text-center'>Tu calendario</h1>}
                     <FullCalendar
                         plugins={[ dayGridPlugin, interactionPlugin, timeGridPlugin ]}
                         headerToolbar={{

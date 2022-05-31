@@ -48,21 +48,21 @@ const PymeDashboard = () => {
 
     const filteredProfessionals = professionals ? professionals.filter(el=> pyme.employees.includes(el.id)) : [];
     const listColaborators = [];
-    if(filteredProfessionals){
-        filteredProfessionals.map(el=>{
-            listColaborators.push(
-                <div key={el.id}>
-                    <div >
-                        <h6 style={{color: 'green'}}>{el.name} {el.last_name} : {el.phone_number}</h6>
-                    </div>
+
+    filteredProfessionals.map(el=>{
+        listColaborators.push(
+            <div key={el.id}>
+                <div >
+                    <h6 style={{color: 'green'}}>{el.name} {el.last_name} : {el.phone_number}</h6>
                 </div>
+            </div>
 
-            );
-        })
-        
-    }
+        );
+    })
+    
+    
 
-    console.log(filteredProfessionals);
+    
 
     const deleteField = k => {
         const tempInfo = pyme.custom_data_form;
@@ -117,14 +117,14 @@ const PymeDashboard = () => {
         Alert.fire("Campos Editados!", `Tus cambios se han hecho con éxito`, "success");
     };
 
-    const handleSubmitAddPro = (formData, toast) => {
+    const handleSubmitAddPro = async(formData, toast) => {
         
         if(!phoneValidation(formData.phone_number)){
             toast.error('El número telefónico ingresado no es válido.');
         }else{
             handleProfessional(formData, pyme);
             addProModalToggle();
-            Alert.fire("Colaborador registrado!", `Has registrado con éxito a un colaborador`, "success");
+            await Alert.fire("Colaborador registrado!", `Has registrado con éxito a un colaborador`, "success");
             window.location.reload();
             
         }
